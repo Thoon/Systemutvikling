@@ -1,0 +1,35 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package springmvc.kontroller;
+
+import java.beans.PropertyEditorSupport;
+import springmvc.domene.Person;
+import springmvc.service.PersonService;
+import springmvc.service.PersonServiceImpl;
+
+/**
+ *
+ * @author Grethe
+ * Brukes for å konvertere String til Person
+ */
+public class PersonEditor extends PropertyEditorSupport {
+    private PersonService personService;
+    
+    public PersonEditor(PersonService personService){
+        this.personService = personService;
+    }
+    
+    @Override
+    public void setAsText(String text) throws IllegalArgumentException{
+        String[] t = text.split(" ");
+        Person p = personService.getPerson(t[0]);
+        setValue(p);   
+    }
+    
+    public String getAString(){
+        Person p = (Person)getValue();
+        return p.getPersonnr();
+    }
+}

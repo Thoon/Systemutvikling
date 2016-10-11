@@ -1,0 +1,18 @@
+drop table person;
+
+CREATE TABLE person(
+	personnr VARCHAR(12) not null primary key,
+	fornavn VARCHAR(40) NOT NULL,
+	etternavn VARCHAR(40) NOT NULL);
+
+INSERT INTO person VALUES('100', 'OLA', 'HANSEN');
+INSERT INTO person VALUES('101', 'ANNE GRETHE','�S');
+INSERT INTO person VALUES('102', 'JONNY','HANSEN');
+INSERT INTO person VALUES('104', 'NINA','ANSLIEN');
+INSERT INTO person VALUES('106', 'JOHN','NIELSEN');
+INSERT INTO person VALUES('103', 'FREDRIKKE','�RNES');
+INSERT INTO person VALUES('105', 'PEDER','OPPSAHL');
+
+
+
+ 

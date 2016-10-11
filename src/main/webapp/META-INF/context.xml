@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/database">
+
+<Resource name="jdbc/su_test" auth="Container"
+          type="javax.sql.DataSource" username="t" password="t"
+          driverClassName="org.apache.derby.jdbc.ClientDriver" 
+          url="jdbc:derby://localhost/su1_test"
+          maxActive="8" maxIdle="4"/>   
+ 
+</Context>
