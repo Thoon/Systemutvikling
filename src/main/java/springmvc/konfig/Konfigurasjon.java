@@ -3,6 +3,7 @@ package springmvc.konfig;
 
 import java.sql.Connection;
 import javax.sql.DataSource;
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -68,11 +69,15 @@ public class Konfigurasjon extends WebMvcConfigurationSupport {
     
     @Bean
     public DataSource dataSource(){
-        String url = "jdbc:derby://localhost:1527/su1_test";
-        String username = "t";
-        String password = "t";
-        DriverManagerDataSource dmds = new DriverManagerDataSource(url, username, password);
-        dmds.setDriverClassName("org.apache.derby.jdbc.ClientDriver");
+        String url = "jdbc:mysql://smartcylinders.com.mysql";
+        String username = "smartcylinders_com";
+        String password = "y5ifZnQ8";
+        BasicDataSource dmds = new BasicDataSource();
+        dmds.setUrl(url);
+        dmds.setUsername(username);
+        dmds.setPassword(password);
+        //DriverManagerDataSource dmds = new DriverManagerDataSource(url, username, password);
+        dmds.setDriverClassName("com.mysql.jdbc.Driver");
         try{
             Connection con = dmds.getConnection();
             System.out.println(" *********  Konfig " + con );
