@@ -17,7 +17,7 @@ import org.springframework.web.servlet.handler.AbstractHandlerMapping;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
 import springmvc.respository.PersonDatabaseJdbcTemplateRepositoryImpl;
 import springmvc.respository.PersonRepository;
 import springmvc.service.PersonService;
@@ -76,12 +76,10 @@ public class Konfigurasjon extends WebMvcConfigurationSupport {
         dmds.setUrl(url);
         dmds.setUsername(username);
         dmds.setPassword(password);
-        //DriverManagerDataSource dmds = new DriverManagerDataSource(url, username, password);
         dmds.setDriverClassName("com.mysql.jdbc.Driver");
         try{
             Connection con = dmds.getConnection();
             System.out.println(" *********  Konfig " + con );
-            //getAllePersoner(con); //brukes for testing av oppkobling
         }catch(Exception e){
             System.out.println(" Konfig.Feil ved henting av conncetion() " + e);
         }

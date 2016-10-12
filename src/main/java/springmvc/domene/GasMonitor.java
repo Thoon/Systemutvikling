@@ -14,8 +14,11 @@ public class GasMonitor {
     private int customerId;
     private int supplierId;
     
-    public GasMonitor(int id, int customerId, int supplierId){
+    public GasMonitor(int id,int maxWeight, int currentWeight, double battery, int customerId, int supplierId){
         this.id = id;
+        this.maxWeight = maxWeight;
+        this.currentWeight = currentWeight;
+        this.battery = battery;
         this.customerId = customerId;
         this.supplierId = supplierId;
     }
