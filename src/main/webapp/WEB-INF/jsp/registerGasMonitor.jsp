@@ -4,11 +4,6 @@
 
 <form:form action="registerGasMonitor.htm" method="post" modelAttribute="gasMonitor" >
     <table>
-        <tr><td> Gasmonitor ID: </td>
-            <td>  <form:input path="id" /> 
-                  <form:errors path="id" />
-            </td>
-        </tr>
         <tr>  
             <td> Maksvekt i kg: </td>
             <td> <form:input path="maxWeight" />
