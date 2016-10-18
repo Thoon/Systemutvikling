@@ -17,7 +17,7 @@ import springmvc.service.PersonService;
 //import org.springframework.dao.
 
 @Controller
-public class NyPersonKontroller {
+public class RegisterPersonController {
     
     @Autowired
     private PersonService personService;
@@ -29,7 +29,7 @@ public class NyPersonKontroller {
     //PersonDatabaseRepositoryImpl. Dette avgjøres i springmvc.konfig.Konfigurasjon.respoistory().
     @ExceptionHandler({Exception.class})
     public ModelAndView handleError(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i NyPersonKontroller.handleError " + exception);
+        System.out.println("Feil i RegisterPersonController.handleError " + exception);
         
         ModelAndView mav = new ModelAndView();
         mav.addObject("melding", "feilmelding.generell");
@@ -41,7 +41,7 @@ public class NyPersonKontroller {
     //Håndterer "SQL"-unntaket DuplicateKeyException
     @ExceptionHandler({DuplicateKeyException.class})
     public ModelAndView handleDuplicateKey(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i NyPersonKontroller.handleError " + exception);
+        System.out.println("Feil i RegisterPersonController.handleError " + exception);
         
         ModelAndView mav = new ModelAndView();
         //mav.addObject("melding", "To personer kan ikke ha samme personnr");
@@ -51,22 +51,22 @@ public class NyPersonKontroller {
         return mav;
     }
        
-    @RequestMapping(value = "nyperson" , method=RequestMethod.GET)
+    @RequestMapping(value = "RegisterPerson" , method=RequestMethod.GET)
     public String person(@ModelAttribute Person person) {
         System.out.println(" ******   NyPerson.controller.person() ");
-        return "nyperson";
+        return "RegisterPerson";
     }
 
-    @RequestMapping(value = "nyperson" , method=RequestMethod.POST)
+    @RequestMapping(value = "RegisterPerson" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("person") Person person, BindingResult error, Model modell) {
         
         if(error.hasErrors()){
             System.out.println(" Validering feilet **** ");
             //modell.addAttribute("melding", "Personnr ikke fylt ut riktig"); // kun ibruk v return svarside
-            return "nyperson";
+            return "RegisterPerson";
         }
         
-        System.out.println(" **** Person verdi i nypersoncontroller " + person);
+        System.out.println(" **** Person verdi i RegisterPersonController " + person);
         
         if (personService.registrerPerson(person)) {
             modell.addAttribute("melding","Person " + person + " er registrert");

@@ -83,7 +83,7 @@ public class Konfigurasjon extends WebMvcConfigurationSupport {
             System.out.println(" *********  Konfig " + con );
             //getAllePersoner(con); //brukes for testing av oppkobling
         }catch(Exception e){
-            System.out.println(" Konfig.Feil ved henting av conncetion() " + e);
+            System.out.println(" Konfig.Feil ved henting av connection() " + e);
         }
         return dmds;
     }

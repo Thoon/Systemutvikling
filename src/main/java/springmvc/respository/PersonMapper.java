@@ -16,9 +16,9 @@ public class PersonMapper implements RowMapper<Person> {
     @Override
     public Person mapRow(ResultSet rs, int i) throws SQLException {
         Person person = new Person();
-        person.setPersonnr(rs.getString("personnr"));
-        person.setFornavn(rs.getString("fornavn"));
-        person.setEtternavn(rs.getString("etternavn"));
+        person.setPersonId(rs.getInt("personId"));
+        person.setFirstName(rs.getString("firstName"));
+        person.setSurname(rs.getString("surname"));
         return person;
     }
 }

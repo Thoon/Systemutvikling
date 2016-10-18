@@ -66,7 +66,7 @@ public class PersonDatabaseRepositoryImpl implements PersonRepository{
             stmt.setString(1, personNr);
             res = stmt.executeQuery();
             if (res.next()) {
-                person = new Person(res.getString("personnr"),res.getString("fornavn"), res.getString("etternavn"));
+                person = new Person(res.getInt("personId"),res.getString("firstName"), res.getString("surname"), res.getString("password"), res.getString("email"), res.getInt("phoneNumber"));
             }
         } catch (SQLException e) {
             Opprydder.rullTilbake(forbindelse);
@@ -92,7 +92,7 @@ public class PersonDatabaseRepositoryImpl implements PersonRepository{
             psSelectAlle = forbindelse.prepareStatement(sqlSelectAllePersoner);
             res = psSelectAlle.executeQuery();
             while (res.next()) {
-                Person p = new Person(res.getString("personnr"), res.getString("fornavn"), res.getString("etternavn"));
+                Person p = new Person(res.getInt("personId"),res.getString("firstName"), res.getString("surname"), res.getString("password"), res.getString("email"), res.getInt("phoneNumber"));
                 if (personListe == null) {
                     personListe = new ArrayList<Person>();
                 }
@@ -120,9 +120,9 @@ public class PersonDatabaseRepositoryImpl implements PersonRepository{
         try {
             åpneForbindelse();
             psInsertPerson = forbindelse.prepareStatement(sqlInsertPerson);
-            psInsertPerson.setString(1, p.getPersonnr());
-            psInsertPerson.setString(2, p.getFornavn());
-            psInsertPerson.setString(3, p.getEtternavn());
+            psInsertPerson.setInt(1, p.getPersonId());
+            psInsertPerson.setString(2, p.getFirstName());
+            psInsertPerson.setString(3, p.getSurname());
 
             int i = psInsertPerson.executeUpdate();
             if (i > 0) {
@@ -149,9 +149,9 @@ public class PersonDatabaseRepositoryImpl implements PersonRepository{
         try {
             åpneForbindelse();
             psUpdatePerson = forbindelse.prepareStatement(sqlUpdatePerson);
-            psUpdatePerson.setString(3, p.getPersonnr());
-            psUpdatePerson.setString(1, p.getFornavn());
-            psUpdatePerson.setString(2, p.getEtternavn());
+            psUpdatePerson.setInt(3, p.getPersonId());
+            psUpdatePerson.setString(1, p.getFirstName());
+            psUpdatePerson.setString(2, p.getSurname());
 
             int i = psUpdatePerson.executeUpdate();
             if (i > 0) {
@@ -178,7 +178,7 @@ public class PersonDatabaseRepositoryImpl implements PersonRepository{
         try {
             åpneForbindelse();
             psDeletePerson = forbindelse.prepareStatement(sqlDeletePerson);
-            psDeletePerson.setString(1, p.getPersonnr());
+            psDeletePerson.setInt(1, p.getPersonId());
 
             int i = psDeletePerson.executeUpdate();
             if (i > 0) {

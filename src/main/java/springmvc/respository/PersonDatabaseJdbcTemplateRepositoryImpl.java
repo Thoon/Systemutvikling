@@ -45,15 +45,15 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     }
 
     public boolean slettPerson(Person person) {
-        jdbcTemplateObject.update(sqlDeletePerson, person.getPersonnr() );
+        jdbcTemplateObject.update(sqlDeletePerson, person.getPersonId() );
         return true;
     }
     
     public boolean oppdaterPerson(Person person){
         jdbcTemplateObject.update(sqlUpdatePerson, new Object[]{
-            person.getFornavn(),
-            person.getEtternavn(),
-            person.getPersonnr()
+            person.getFirstName(),
+            person.getSurname(),
+            person.getPersonId()
         });
         return true;
     }
@@ -61,9 +61,9 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     public boolean registrerPerson(Person person){
         jdbcTemplateObject.update(sqlInsertPerson, 
             new Object[]{
-                person.getPersonnr(), 
-                person.getFornavn(), 
-                person.getEtternavn()
+                person.getPersonId(), 
+                person.getFirstName(), 
+                person.getSurname()
         });
         return true;
     }

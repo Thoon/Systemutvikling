@@ -26,9 +26,9 @@ public class PersonFormBackingBean {
         return allePersoner;
     }
     
-    public Person getPerson(String fnr){
+    public Person getPerson(int fnr){
         for (Person p : valgtePersoner){
-            if(p.getPersonnr().equals(fnr)) return p;
+            if(p.getPersonId() == fnr) return p;
         }
         return null;
     }
