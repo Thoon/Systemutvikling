@@ -69,7 +69,7 @@ public class Konfigurasjon extends WebMvcConfigurationSupport {
     
     @Bean
     public DataSource dataSource(){
-        String url = "jdbc:mysql://mysql.stud.iie.ntnu.no/phpmyadmin/g_tdat3022b";
+        String url = "jdbc:mysql://mysql.stud.iie.ntnu.no/g_tdat3022b";
         String username = "g_tdat3022b";
         String password = "Gs0qzpT8";
         BasicDataSource dmds = new BasicDataSource();
