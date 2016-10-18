@@ -81,7 +81,7 @@ public class Konfigurasjon extends WebMvcConfigurationSupport {
             Connection con = dmds.getConnection();
             System.out.println(" *********  Konfig " + con );
         }catch(Exception e){
-            System.out.println(" Konfig.Feil ved henting av conncetion() " + e);
+            System.out.println(" Konfig.Feil ved henting av connection() " + e);
         }
         return dmds;
     }
