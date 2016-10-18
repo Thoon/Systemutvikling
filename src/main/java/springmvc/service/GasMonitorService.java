@@ -9,6 +9,6 @@ package springmvc.service;
  *
  * @author ander
  */
-public class GasMonitorService {
+public interface GasMonitorService {
     
 }
