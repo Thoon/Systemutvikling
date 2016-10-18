@@ -1,65 +1,92 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package springmvc.domene;
 
-//import javax.validation.constraints.NotNull;
-
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-//import javax.validation.constraints.Size;
-
-/**
- *
- * @author Grethe
- */
 public class Person {
     
-    @Size(min = 3)
-    private String personnr;
     @NotEmpty
-    private String fornavn;
+    private Integer personId;
     @NotEmpty
-    private String etternavn;
+    private String firstName;
+    @NotEmpty
+    private String surname;
+    @NotEmpty
+    private String username;
+    @Pattern(regexp = "^(?=.*[a-zæøå])(?=.*[A-ZÆØÅ])(?=.*[^a-zA-ZæøåÆØÅ0-9 ].*[^a-zA-ZæøåÆØÅ0-9 ])(?!\\s)\\S{8,}",
+            message = "Passordet må inneholde 8 tegn bestående av store og små bokstaver, og minst 2 spesialtegn")
+    private String password;
+    @Email
+    private String email;
+    private int phoneNumber;
+    
 
-    public Person(String personnr, String fornavn, String etternavn) {
-        this.personnr = personnr.trim().toUpperCase();
-        this.fornavn = fornavn.trim().toUpperCase();
-        this.etternavn = etternavn.trim().toUpperCase();
+    public Person(Integer personId, String firstName, String surname, String password, String email, int phoneNumber) {
+        this.personId = personId;
+        this.firstName = firstName.trim().toUpperCase();
+        this.surname = surname.trim().toUpperCase();
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+    
+    public Person(){}
+    
+    public Integer getPersonId() {
+        return personId;
     }
 
-    public Person() {
+    public void setPersonId(Integer pId) {
+        this.personId = pId;
     }
 
-    public String getPersonnr() {
-        return personnr;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPersonnr(String newValue) {
-        personnr = newValue;
+    public void setFirstName(String fn) {
+        this.firstName = fn;
     }
 
-    public String getFornavn() {
-        return fornavn;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setFornavn(String newVaule) {
-        fornavn = newVaule;
+    public void setSurname(String sn) {
+        this.surname = sn;
     }
 
-    public String getEtternavn() {
-        return etternavn;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEtternavn(String newVaule) {
-        etternavn = newVaule;
+    public void setUsername(String un) {
+        this.username = un;
     }
 
-    @Override
-    public String toString() {
-        return personnr + " " + fornavn + " " + etternavn;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String pw) {
+        this.password = pw;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int pn) {
+        this.phoneNumber = pn;
     }
 
     @Override
@@ -69,18 +96,11 @@ public class Person {
             return false;
         } else {
             Person p = (Person) obj;
-            if (this.personnr.equals(p.getPersonnr())) {
+            if (this.personId.equals(p.getPersonId())) {
                 return true;
             } else {
                 return false;
             }
         }
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + (this.personnr != null ? this.personnr.hashCode() : 0);
-        return hash;
     }
 }
