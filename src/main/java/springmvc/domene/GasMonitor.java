@@ -27,6 +27,14 @@ public class GasMonitor {
         this.customerId = customerId;
         this.supplierId = supplierId;
     }
+    
+    public GasMonitor(int maxWeight, int currentWeight, double battery, int customerId, int supplierId){
+        this.maxWeight = maxWeight;
+        this.currentWeight = currentWeight;
+        this.battery = battery;
+        this.customerId = customerId;
+        this.supplierId = supplierId;
+    }
 
     public int getId() {
         return id;

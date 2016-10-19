@@ -2,9 +2,12 @@
 package springmvc.kontroller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,9 +45,27 @@ public class RegisterGasMonitorController {
     }
     
     @RequestMapping(value = "RegisterGasMonitor" , method=RequestMethod.GET)
-    public String person(@ModelAttribute GasMonitor gasMonitor) {
+    public String gasMonitor(@ModelAttribute GasMonitor gasMonitor) {
         System.out.println(" ******   GasMonitor.controller.person() ");
         return "RegisterGasMonitor";
+    }
+    @RequestMapping(value = "RegisterGasMonitor" , method=RequestMethod.POST)
+    public String svarside(@Valid @ModelAttribute("gasMonitor") GasMonitor gasMonitor, BindingResult error, Model modell) {
+        
+        if(error.hasErrors()){
+            System.out.println(" Validering feilet **** ");
+            return "GasMonitor";
+        }
+        
+        System.out.println(" **** Person verdi i RegisterPersonController " + gasMonitor);
+        
+        if (gasMonitorService.registerGasMonitor(gasMonitor)) {
+            modell.addAttribute("melding","GasMonitor " + gasMonitor + " er registrert");
+            return "svarside";
+        } else {
+            modell.addAttribute("melding","feilmelding.reg.person");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
+            return "error";
+        }
     }
     
 }
