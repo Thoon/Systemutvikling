@@ -7,6 +7,7 @@ import springmvc.domene.GasMonitor;
 
 public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     private final String sqlInsertGasMonitor = "insert into gasmonitor(maxweight, currentweight, battery, customerid, supplierid) values(?,?,?,?,?)";
+    private final String sqlSelectGasMonitor = "Select * from gasmonitor where id = ?";
     
     private DataSource dataSource;
     static JdbcTemplate jdbcTemplateObject;
@@ -27,5 +28,10 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
                     g.getSupplierId()
                 });
         return true;
+    }
+    @Override
+    public GasMonitor getGasMonitor(int id) {
+        GasMonitor g = (GasMonitor) jdbcTemplateObject.queryForObject(sqlSelectGasMonitor, new Object[]{id}, new GasMonitorMapper());
+        return g;
     }
 }

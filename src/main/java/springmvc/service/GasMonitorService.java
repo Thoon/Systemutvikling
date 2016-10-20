@@ -14,4 +14,6 @@ import springmvc.domene.GasMonitor;
 public interface GasMonitorService {
     
    public boolean registerGasMonitor(GasMonitor g);
+   
+   public GasMonitor getGasMonitor(int id);
 }

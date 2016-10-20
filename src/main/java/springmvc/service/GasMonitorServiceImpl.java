@@ -14,6 +14,10 @@ public class GasMonitorServiceImpl implements GasMonitorService {
         System.out.println("GasMonitorServiceImpl.setDatabase2   " + repo);
         this.repo = repo;
     }
+    public GasMonitor getGasMonitor(int id){
+        System.out.println("**** PersonServiceImpl.getPerson()  *** ");
+        return repo.getGasMonitor(id);
+    }
     
     public boolean registerGasMonitor(GasMonitor g){
         System.out.println("******* GasMonitorServiceImpl.registerGasMonitor() ***** ");

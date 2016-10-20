@@ -19,6 +19,9 @@ public class GasMonitor {
     @NotEmpty
     private int supplierId;
     
+    public GasMonitor(){
+    }
+    
     public GasMonitor(int id,int maxWeight, int currentWeight, double battery, int customerId, int supplierId){
         this.id = id;
         this.maxWeight = maxWeight;

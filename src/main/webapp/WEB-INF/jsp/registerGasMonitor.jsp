@@ -34,6 +34,6 @@
                  <form:errors path="supplierId" />
             </td>
         </tr>
-        <tr><td colspan="2"><input type="submit" value="Registrer gasmonitor"</td></tr>
+        <tr><td colspan="2"><input type="submit" value="Registrer Gasmonitor"</td></tr>
     </table>
 </form:form>
