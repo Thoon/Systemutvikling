@@ -16,10 +16,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.handler.AbstractHandlerMapping;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import springmvc.respository.GasMonitorRepository;
+import springmvc.respository.GasMonitorRepositoryImpl;
 
 
 import springmvc.respository.PersonDatabaseJdbcTemplateRepositoryImpl;
 import springmvc.respository.PersonRepository;
+import springmvc.service.GasMonitorService;
+import springmvc.service.GasMonitorServiceImpl;
 import springmvc.service.PersonService;
 import springmvc.service.PersonServiceImpl;
 
@@ -97,37 +101,13 @@ public class Konfigurasjon extends WebMvcConfigurationSupport {
         return new PersonServiceImpl();
     }
     
-//    public ArrayList<Person> getAllePersoner(Connection forbindelse) {
-//         String sqlSelectAllePersoner = "Select * from person";
-//         System.out.println("*******************   Konfig.getAllePersoner()"   );
-//         PreparedStatement psSelectAlle = null;
-//         ResultSet res;
-//         ArrayList<Person> personListe = null;
-//         try {
-//             psSelectAlle = forbindelse.prepareStatement(sqlSelectAllePersoner);
-//             res = psSelectAlle.executeQuery();
-//             while (res.next()) {
-//                 Person p = new Person(res.getString("personnr"), res.getString("fornavn"), res.getString("etternavn"));
-//                 if (personListe == null) {
-//                     personListe = new ArrayList<Person>();
-//                 }
-//                 personListe.add(p);
-//                 System.out.println(" Konfig: Person er " +p );
-//             }
-//         } catch (SQLException e) {
-//             Opprydder.rullTilbake(forbindelse);
-//             Opprydder.skrivMelding(e, "Konfig.getAllePersoner()");
-//         } catch (Exception e) {
-//             Opprydder.skrivMelding(e, "Konfig.getAllePersoner - ikke sqlfeil");
-//         } finally {
-//             Opprydder.settAutoCommit(forbindelse);
-//             Opprydder.lukkSetning(psSelectAlle);
-//         }
-//         try{
-//         forbindelse.close();
-//         }catch(Exception e){
-//             System.out.println("Konfig. Feil i lukk" + e);
-//         }
-//         return personListe;
-//     }
+    @Bean
+    public GasMonitorService gasMonitorService(){
+        return new GasMonitorServiceImpl();
+    }
+    
+    @Bean
+    public GasMonitorRepository gasMonitorRepository(){
+        return new GasMonitorRepositoryImpl();
+    }    
 }

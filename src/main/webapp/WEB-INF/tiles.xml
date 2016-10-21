@@ -43,4 +43,9 @@
         <put-attribute name="title"  value="Feilmelding"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/error.jsp"/>      
     </definition>
+    
+    <definition name="registerGasMonitor" extends="baseLayout">
+        <put-attribute name="title"  value="Registrer Gasmonitor"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/registerGasMonitor.jsp"/>      
+    </definition>
 </tiles-definitions>

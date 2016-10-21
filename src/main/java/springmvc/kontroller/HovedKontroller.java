@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import springmvc.domene.Person;
+import springmvc.service.GasMonitorService;
 import springmvc.service.PersonService;
 import springmvc.ui.PersonFormBackingBean;
 
@@ -22,6 +23,9 @@ public class HovedKontroller {
     
     @Autowired
     private PersonService personService;
+    
+    @Autowired
+    private GasMonitorService gasMonitorService;
     
     // brukes for å gjøre om de valgte personene fra tekst til Person-objekt
     @InitBinder

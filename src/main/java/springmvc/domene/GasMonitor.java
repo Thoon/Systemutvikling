@@ -5,17 +5,33 @@
  */
 package springmvc.domene;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 public class GasMonitor {
     private int id;
+    @NotEmpty
     private int maxWeight;
     private int currentWeight;    
     private double battery;
+    @NotEmpty
     private int customerId;
+    @NotEmpty
     private int supplierId;
+    
+    public GasMonitor(){
+    }
     
     public GasMonitor(int id,int maxWeight, int currentWeight, double battery, int customerId, int supplierId){
         this.id = id;
+        this.maxWeight = maxWeight;
+        this.currentWeight = currentWeight;
+        this.battery = battery;
+        this.customerId = customerId;
+        this.supplierId = supplierId;
+    }
+    
+    public GasMonitor(int maxWeight, int currentWeight, double battery, int customerId, int supplierId){
         this.maxWeight = maxWeight;
         this.currentWeight = currentWeight;
         this.battery = battery;

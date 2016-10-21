@@ -53,7 +53,11 @@ public class RegisterPersonController {
        
     @RequestMapping(value = "/registerPerson" , method=RequestMethod.GET)
     public String person(@ModelAttribute Person person) {
+<<<<<<< HEAD
         System.out.println(" ******   RegisterPerson.controller.person() ");
+=======
+        System.out.println(" ******   NyPerson.controller.person() ");
+>>>>>>> origin/regPerson
         return "registerPerson";
     }
 
