@@ -44,11 +44,13 @@ public class RegisterGasMonitorController {
         return mav;
     }
     
-    @RequestMapping(value = "registerGasMonitor" , method=RequestMethod.GET)
+    @RequestMapping(value = "/registerGasMonitor" , method=RequestMethod.GET)
     public String gasMonitor(@ModelAttribute GasMonitor gasMonitor) {
-        System.out.println(" ******   GasMonitor.controller.person() ");
+        System.out.println(" ******   GasMonitor.controller.gasMonitor() ");
         return "registerGasMonitor";
     }
+    
+    
     @RequestMapping(value = "RegisterGasMonitor" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("gasMonitor") GasMonitor gasMonitor, BindingResult error, Model modell) {
         
@@ -57,13 +59,13 @@ public class RegisterGasMonitorController {
             return "registerGasMonitor";
         }
         
-        System.out.println(" **** Person verdi i RegisterPersonController " + gasMonitor);
+        System.out.println(" **** GasMonitor verdi i RegisterPersonController " + gasMonitor);
         
         if (gasMonitorService.registerGasMonitor(gasMonitor)) {
             modell.addAttribute("melding","GasMonitor " + gasMonitor + " er registrert");
             return "svarside";
         } else {
-            modell.addAttribute("melding","feilmelding.reg.person");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
+            modell.addAttribute("melding","feilmelding.reg.gasmonitor");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
             return "error";
         }
     }

@@ -102,10 +102,4 @@ public class HovedKontroller {
         }
         return "manipulerPersoner";
     }
-    
-    @RequestMapping(value = "/registerGasMonitor")
-    public String regGasMonitorWin(){
-        System.out.println("****************Register Gas Monitor***********************");
-        return "registerGasMonitor";
-    }
 }

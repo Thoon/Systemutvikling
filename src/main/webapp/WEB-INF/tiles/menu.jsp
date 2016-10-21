@@ -5,7 +5,7 @@
 <a href="<c:url value="index"/>" >           <spring:message code="menyvalg1" />  </a><br>
 <a href="<c:url value="manipulerPersoner"/>" >   <spring:message code="menyvalg2" />  </a><br>
 <a href="<c:url value="nyperson"/>">         <spring:message code="menyvalg3" />  </a><br>
-<a href="<c:url value="registrer gasmonitor"/>">         <spring:message code="menyvalg4" />  </a><br>
+<a href="<c:url value="registerGasMonitor"/>">         <spring:message code="menyvalg4" />  </a><br>
 
 
 

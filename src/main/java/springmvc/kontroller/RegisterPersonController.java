@@ -54,7 +54,7 @@ public class RegisterPersonController {
     @RequestMapping(value = "RegisterPerson" , method=RequestMethod.GET)
     public String person(@ModelAttribute Person person) {
         System.out.println(" ******   NyPerson.controller.person() ");
-        return "RegisterPerson";
+        return "registerPerson";
     }
 
     @RequestMapping(value = "RegisterPerson" , method=RequestMethod.POST)
