@@ -4,13 +4,8 @@
 
 <a href="<c:url value="index"/>" >           <spring:message code="menyvalg1" />  </a><br>
 <a href="<c:url value="manipulerPersoner"/>" >   <spring:message code="menyvalg2" />  </a><br>
-<<<<<<< HEAD
 <a href="<c:url value="registerPerson"/>">         <spring:message code="menyvalg3" />  </a><br>
-=======
-<a href="<c:url value="nyperson"/>">         <spring:message code="menyvalg3" />  </a><br>
 <a href="<c:url value="registerGasMonitor"/>">         <spring:message code="menyvalg4" />  </a><br>
-
->>>>>>> origin/regPerson
 
 
 

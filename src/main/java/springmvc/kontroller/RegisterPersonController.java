@@ -53,15 +53,11 @@ public class RegisterPersonController {
        
     @RequestMapping(value = "/registerPerson" , method=RequestMethod.GET)
     public String person(@ModelAttribute Person person) {
-<<<<<<< HEAD
         System.out.println(" ******   RegisterPerson.controller.person() ");
-=======
-        System.out.println(" ******   NyPerson.controller.person() ");
->>>>>>> origin/regPerson
         return "registerPerson";
     }
 
-    @RequestMapping(value = "/registerPerson" , method=RequestMethod.POST)
+    @RequestMapping(value = "RegisterPerson" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("person") Person person, BindingResult error, Model modell) {
         
         if(error.hasErrors()){
