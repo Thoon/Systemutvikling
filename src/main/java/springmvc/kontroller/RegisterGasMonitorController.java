@@ -51,9 +51,8 @@ public class RegisterGasMonitorController {
     }
     
     
-    @RequestMapping(value = "RegisterGasMonitor" , method=RequestMethod.POST)
+    @RequestMapping(value = "registerGasmonitor" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("gasMonitor") GasMonitor gasMonitor, BindingResult error, Model modell) {
-        
         if(error.hasErrors()){
             System.out.println(" Validering feilet **** ");
             return "registerGasMonitor";
@@ -65,7 +64,7 @@ public class RegisterGasMonitorController {
             modell.addAttribute("melding","GasMonitor " + gasMonitor + " er registrert");
             return "svarside";
         } else {
-            modell.addAttribute("melding","feilmelding.reg.gasmonitor");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
+            modell.addAttribute("melding","feilmelding.reg.gasmonitor");
             return "error";
         }
     }
