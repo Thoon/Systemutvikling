@@ -51,24 +51,24 @@ public class RegisterPersonController {
         return mav;
     }
        
-    @RequestMapping(value = "RegisterPerson" , method=RequestMethod.GET)
+    @RequestMapping(value = "/registerPerson" , method=RequestMethod.GET)
     public String person(@ModelAttribute Person person) {
-        System.out.println(" ******   NyPerson.controller.person() ");
-        return "RegisterPerson";
+        System.out.println(" ******   RegisterPerson.controller.person() ");
+        return "registerPerson";
     }
 
-    @RequestMapping(value = "RegisterPerson" , method=RequestMethod.POST)
+    @RequestMapping(value = "/registerPerson" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("person") Person person, BindingResult error, Model modell) {
         
         if(error.hasErrors()){
             System.out.println(" Validering feilet **** ");
             //modell.addAttribute("melding", "Personnr ikke fylt ut riktig"); // kun ibruk v return svarside
-            return "RegisterPerson";
+            return "registerPerson";
         }
         
         System.out.println(" **** Person verdi i RegisterPersonController " + person);
         
-        if (personService.registrerPerson(person)) {
+        if (personService.registerPerson(person)) {
             modell.addAttribute("melding","Person " + person + " er registrert");
             return "svarside";
         } else {

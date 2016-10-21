@@ -28,8 +28,8 @@ public class PersonEditor extends PropertyEditorSupport {
         setValue(p);   
     }
     
-    public int getAString(){
+    public String getAString(){
         Person p = (Person)getValue();
-        return p.getPersonId();
+        return p.getEmail();
     }
 }

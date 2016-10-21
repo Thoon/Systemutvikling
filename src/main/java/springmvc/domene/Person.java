@@ -7,40 +7,31 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Person {
     
     @NotEmpty
-    private Integer personId;
-    @NotEmpty
     private String firstName;
     @NotEmpty
     private String surname;
-    @NotEmpty
-    private String username;
     @Pattern(regexp = "^(?=.*[a-zæøå])(?=.*[A-ZÆØÅ])(?=.*[^a-zA-ZæøåÆØÅ0-9 ].*[^a-zA-ZæøåÆØÅ0-9 ])(?!\\s)\\S{8,}",
             message = "Passordet må inneholde 8 tegn bestående av store og små bokstaver, og minst 2 spesialtegn")
+    @NotEmpty
     private String password;
     @Email
     private String email;
     private int phoneNumber;
+    private int permission;
+    private boolean isActive;
     
-
-    public Person(Integer personId, String firstName, String surname, String password, String email, int phoneNumber) {
-        this.personId = personId;
+    public Person(String firstName, String surname, String password, String email, int phoneNumber, int permission, boolean isActive) {
         this.firstName = firstName.trim().toUpperCase();
         this.surname = surname.trim().toUpperCase();
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.permission = permission;
+        this.isActive = isActive;
     }
     
     public Person(){}
     
-    public Integer getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(Integer pId) {
-        this.personId = pId;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -55,14 +46,6 @@ public class Person {
 
     public void setSurname(String sn) {
         this.surname = sn;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String un) {
-        this.username = un;
     }
 
     public String getPassword() {
@@ -88,19 +71,20 @@ public class Person {
     public void setPhoneNumber(int pn) {
         this.phoneNumber = pn;
     }
+    
+    public int getPermission() {
+        return permission;
+    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Person)) {
-            return false;
-        } else {
-            Person p = (Person) obj;
-            if (this.personId.equals(p.getPersonId())) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+    public void setPermission(int permission) {
+        this.permission = permission;
+    }
+    
+    public boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 }

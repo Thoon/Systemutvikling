@@ -29,9 +29,9 @@
         <put-attribute name="body"   value="/WEB-INF/jsp/manipulerPersoner.jsp"/>      
     </definition>
   
-    <definition name="nyperson" extends="baseLayout">
+    <definition name="registerPerson" extends="baseLayout">
         <put-attribute name="title"  value="Registrer person"/>
-        <put-attribute name="body"   value="/WEB-INF/jsp/nyperson.jsp"/>      
+        <put-attribute name="body"   value="/WEB-INF/jsp/registerPerson.jsp"/>      
     </definition>
     
     <definition name="svarside" extends="baseLayout">

@@ -15,13 +15,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepository{
     
-    private Connection forbindelse;
-    private final String sqlDeletePerson = "Delete from person where personnr = ?";
-    private final String sqlSelectPerson = "Select * from person where personnr = ?";
-    private final String sqlSelectAllePersoner = "Select * from person";
+    private Connection connection;
+    private final String sqlDeletePerson = "Delete from Person where email = ?";
+    private final String sqlSelectPerson = "Select * from Person where email = ?";
+    private final String sqlSelectEveryone = "Select * from Person";
     
-    private final String sqlInsertPerson = "insert into person values(?,?,?)";
-    private final String sqlUpdatePerson = "update person set fornavn=?, etternavn = ? where personnr = ?";
+    private final String sqlInsertPerson = "insert into Person values(?,?,?)";
+    private final String sqlUpdatePerson = "update Person set firstName=?, surname = ? where email = ?";
 
     
     private DataSource dataSource;
@@ -40,28 +40,28 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
         return (Person)jdbcTemplateObject.queryForObject(sqlSelectPerson, new Object[]{personnr}, new PersonMapper());
     }
     
-    public List<Person> getAllePersoner(){
-        return jdbcTemplateObject.query(sqlSelectAllePersoner, new PersonMapper());
+    public List<Person> getEveryone(){
+        return jdbcTemplateObject.query(sqlSelectEveryone, new PersonMapper());
     }
 
-    public boolean slettPerson(Person person) {
-        jdbcTemplateObject.update(sqlDeletePerson, person.getPersonId() );
+    public boolean deletePerson(Person person) {
+        jdbcTemplateObject.update(sqlDeletePerson, person.getEmail() );
         return true;
     }
     
-    public boolean oppdaterPerson(Person person){
+    public boolean updatePerson(Person person){
         jdbcTemplateObject.update(sqlUpdatePerson, new Object[]{
             person.getFirstName(),
             person.getSurname(),
-            person.getPersonId()
+            person.getEmail()
         });
         return true;
     }
     
-    public boolean registrerPerson(Person person){
+    public boolean registerPerson(Person person){
         jdbcTemplateObject.update(sqlInsertPerson, 
             new Object[]{
-                person.getPersonId(), 
+                person.getEmail(), 
                 person.getFirstName(), 
                 person.getSurname()
         });

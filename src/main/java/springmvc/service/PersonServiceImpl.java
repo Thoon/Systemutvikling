@@ -22,40 +22,40 @@ public class PersonServiceImpl implements PersonService{
         return repo.getPerson(personNr);
     }
      
-    public List<Person> getAllePersoner(){
-        System.out.println("**** PersonServiceImpl.getAllePersoner()  *** ");
-        return repo.getAllePersoner();
+    public List<Person> getEveryone(){
+        System.out.println("**** PersonServiceImpl.getEveryone()  *** ");
+        return repo.getEveryone();
     }
     
-    public boolean oppdaterPersoner(List<Person> personListe){
-        System.out.println("**** PersonServiceImpl.oppdaterPerson()  *** ");
+    public boolean updatePersons(List<Person> personListe){
+        System.out.println("**** PersonServiceImpl.updatePerson()  *** ");
         if (personListe == null || personListe.size() == 0) return true;
             
-        boolean erOppdateringOk = true;
+        boolean isUpdateOK = true;
         for (Person p : personListe){
-            if (!repo.oppdaterPerson(p)) erOppdateringOk=false;
+            if (!repo.updatePerson(p)) isUpdateOK=false;
         }
-        return erOppdateringOk;
+        return isUpdateOK;
     }
     
-    public boolean registrerPerson(Person p){
-        System.out.println("**** PersonServiceImpl.registrerPerson()  *** ");
-        return repo.registrerPerson(p);
+    public boolean registerPerson(Person p){
+        System.out.println("**** PersonServiceImpl.registerPerson()  *** ");
+        return repo.registerPerson(p);
     }
     
-    public boolean slettPersoner(List<Person> personListe){
-        System.out.println("**** PersonServiceImpl.slettPersonER()  *** ");
-        if (personListe == null || personListe.size() == 0) return true;
+    public boolean deletePersons(List<Person> personList){
+        System.out.println("**** PersonServiceImpl.deletePersons()  *** ");
+        if (personList == null || personList.size() == 0) return true;
                
-        boolean erSlettingOk = true;
-        for (Person p : personListe){
-            if (!repo.slettPerson(p)) erSlettingOk = false;
+        boolean isDeleteOK = true;
+        for (Person p : personList){
+            if (!repo.deletePerson(p)) isDeleteOK = false;
         }
-        return erSlettingOk;
+        return isDeleteOK;
     }
     
-    public boolean oppdaterPerson(Person p){
-        System.out.println("**** PersonServiceImpl.oppdaterPerson()  *** ");
-        return repo.oppdaterPerson(p);
+    public boolean updatePerson(Person p){
+        System.out.println("**** PersonServiceImpl.updatePerson()  *** ");
+        return repo.updatePerson(p);
     }
 }
