@@ -4,27 +4,16 @@
 
 <form:form action="registerPerson.htm" method="post" modelAttribute="person" >
     <table>
-        <tr><td> PersonId</td>
-            <td>  <form:input path="personId" /> 
-                  <form:errors path="personId" />
-            </td>
-        </tr>
         <tr>  
             <td> Fornavn: </td>
-            <td> <form:input path="fornavn" />
-                 <form:errors path="fornavn" />
+            <td> <form:input path="firstName" />
+                 <form:errors path="firstName" />
             </td> 
         </tr>
         <tr>
             <td> Etternavn: </td>
-            <td> <form:input path="etternavn" />
-                 <form:errors path="etternavn" />
-            </td>
-        </tr>
-        <tr>
-            <td> Brukernavn: </td>
-            <td> <form:input path="username" />
-                 <form:errors path="username" />
+            <td> <form:input path="surname" />
+                 <form:errors path="surname" />
             </td>
         </tr>
         <tr>
@@ -45,7 +34,13 @@
                  <form:errors path="phoneNumber" />
             </td>
         </tr>
-
+        <tr>
+            <td> Brukerrettigheter: </td>
+            <td> <form:radiobutton path="permission" value="Admin" />
+                 <form:radiobutton path="permission" value="Leverandør" />
+                 <form:radiobutton path="permission" value="Sluttbruker" />
+            </td>
+        </tr>
         <tr><td colspan="2"><input type="submit" value="Registrer person"</td></tr>
     </table>
 </form:form>

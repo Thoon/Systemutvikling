@@ -4,37 +4,33 @@ import java.util.List;
 import javax.validation.Valid;
 import springmvc.domene.Person;
 
-/**
- *
- * @author tomash
- */
 public class PersonFormBackingBean {
     
     @Valid
-    private List<Person> allePersoner = null;
-    private List<Person> valgtePersoner = null;
+    private List<Person> everyone = null;
+    private List<Person> selectedPersons = null;
     
-    public List<Person> getValgtePersoner() {
-        return valgtePersoner;
+    public List<Person> getSelectedPersons() {
+        return selectedPersons;
     }
 
-    public void setValgtePersoner(List<Person> valgtePersoner) {
-        this.valgtePersoner = valgtePersoner;
+    public void setSelectedPersons(List<Person> selectedPersons) {
+        this.selectedPersons = selectedPersons;
     }
     
-    public List<Person> getAllePersoner(){
-        return allePersoner;
+    public List<Person> getEveryone(){
+        return everyone;
     }
     
     public Person getPerson(int fnr){
-        for (Person p : valgtePersoner){
-            if(p.getPersonId() == fnr) return p;
+        for (Person p : selectedPersons){
+            if(p.getEmail().equals(fnr)) return p;
         }
         return null;
     }
     
-    public void setAllePersoner(List<Person> allePersoner){
-        System.out.println(" PersonFormBackingBean.setAllerPersoner()  "  + allePersoner);
-        this.allePersoner = allePersoner;
+    public void setEveryone(List<Person> everyone){
+        System.out.println(" PersonFormBackingBean.setEveryone()  "  + everyone);
+        this.everyone = everyone;
     }
 }

@@ -17,13 +17,13 @@ import springmvc.repository.utils.Opprydder;
  */
 
 public class PersonDatabaseRepositoryImpl implements PersonRepository{
-    private Connection forbindelse;
-    private final String sqlDeletePerson = "Delete from person where personnr = ?";
-    private final String sqlSelectPerson = "Select * from person where personnr = ?";
-    private final String sqlSelectAllePersoner = "Select * from person";
+    private Connection connection;
+    private final String sqlDeletePerson = "Delete from Person where email = ?";
+    private final String sqlSelectPerson = "Select * from Person where email = ?";
+    private final String sqlSelectEveryone = "Select * from Person";
     
-    private final String sqlInsertPerson = "insert into person values(?,?,?)";
-    private final String sqlUpdatePerson = "update person set fornavn=?, etternavn = ? where personnr = ?";
+    private final String sqlInsertPerson = "insert into Person values(?,?,?)";
+    private final String sqlUpdatePerson = "update Person set firstName=?, surname = ? where email = ?";
 
     
     private DataSource dataSource;
@@ -36,91 +36,93 @@ public class PersonDatabaseRepositoryImpl implements PersonRepository{
         this.dataSource = dataSource;
     }
     
-    private void åpneForbindelse() throws Exception {
+    private void openConnection() throws Exception {
         try {
             System.out.println("Skal åpne forbindelse");
-            forbindelse = dataSource.getConnection();
+            connection = dataSource.getConnection();
             System.out.println("**** Databaseforbindelse opprettet***");
         } catch (SQLException e) {
             System.out.println(" SqlFeil: " + e);
-            Opprydder.skrivMelding(e, "Konstruktøren");
-            Opprydder.lukkForbindelse(forbindelse);
+            Opprydder.write(e, "Konstruktøren");
+            Opprydder.closeConnection(connection);
         } catch( Exception ee){
             System.out.println(" Feil " + ee);
         }
     }
 
-    private void lukkForbindelse() {
-        System.out.println("Lukker databaseforbindelsen");
-        Opprydder.lukkForbindelse(forbindelse);
+    private void closeConnection() {
+        System.out.println("Lukker databaseforbindelse");
+        Opprydder.closeConnection(connection);
     }
     
-    public Person getPerson(String personNr){
+    public Person getPerson(String email){
         System.out.println("Database.getPerson()");
         PreparedStatement stmt = null;
         ResultSet res;
         Person person = null;
         try {
-            åpneForbindelse();
-            stmt = forbindelse.prepareStatement(sqlSelectPerson);
-            stmt.setString(1, personNr);
+            openConnection();
+            stmt = connection.prepareStatement(sqlSelectPerson);
+            stmt.setString(1, email);
             res = stmt.executeQuery();
             if (res.next()) {
-                person = new Person(res.getInt("personId"),res.getString("firstName"), res.getString("surname"), res.getString("password"), res.getString("email"), res.getInt("phoneNumber"));
+                person = new Person(res.getString("firstName"), res.getString("surname"), res.getString("password"), res.getString("email"), 
+                        res.getInt("phoneNumber"), res.getInt("permission"), res.getBoolean("isActive"));
             }
         } catch (SQLException e) {
-            Opprydder.rullTilbake(forbindelse);
-            Opprydder.skrivMelding(e, "getAllePersoner()");
+            Opprydder.rollback(connection);
+            Opprydder.write(e, "getEveryone()");
         } catch (Exception e) {
-            Opprydder.skrivMelding(e, "getAllePersoner - ikke sqlfeil");
+            Opprydder.write(e, "getEveryone - ikke sqlfeil");
         } finally {
-            Opprydder.settAutoCommit(forbindelse);
-            Opprydder.lukkSetning(stmt);
+            Opprydder.setAutoCommit(connection);
+            Opprydder.closeSentence(stmt);
         }
-        lukkForbindelse();
+        closeConnection();
         System.out.println(" Database.getPerson(). Har funnet person=" + person );
         return person;
     }
 
-    public ArrayList<Person> getAllePersoner() {
-        System.out.println("Database.getAllePersoner()");
+    public ArrayList<Person> getEveryone() {
+        System.out.println("Database.getEveryone()");
         PreparedStatement psSelectAlle = null;
         ResultSet res;
-        ArrayList<Person> personListe = null;
+        ArrayList<Person> personList = null;
         try {
-            åpneForbindelse();
-            psSelectAlle = forbindelse.prepareStatement(sqlSelectAllePersoner);
+            openConnection();
+            psSelectAlle = connection.prepareStatement(sqlSelectEveryone);
             res = psSelectAlle.executeQuery();
             while (res.next()) {
-                Person p = new Person(res.getInt("personId"),res.getString("firstName"), res.getString("surname"), res.getString("password"), res.getString("email"), res.getInt("phoneNumber"));
-                if (personListe == null) {
-                    personListe = new ArrayList<Person>();
+                Person p = new Person(res.getString("firstName"), res.getString("surname"), res.getString("password"), res.getString("email"), 
+                        res.getInt("phoneNumber"), res.getInt("permission"), res.getBoolean("isActive"));
+                if (personList == null) {
+                    personList = new ArrayList<Person>();
                 }
-                personListe.add(p);
+                personList.add(p);
             }
         } catch (SQLException e) {
-            Opprydder.rullTilbake(forbindelse);
-            Opprydder.skrivMelding(e, "getAllePersoner()");
+            Opprydder.rollback(connection);
+            Opprydder.write(e, "getEveryone()");
         } catch (Exception e) {
-            Opprydder.skrivMelding(e, "getAllePersoner - ikke sqlfeil");
+            Opprydder.write(e, "getEveryone - ikke sqlfeil");
         } finally {
-            Opprydder.settAutoCommit(forbindelse);
-            Opprydder.lukkSetning(psSelectAlle);
+            Opprydder.setAutoCommit(connection);
+            Opprydder.closeSentence(psSelectAlle);
         }
-        lukkForbindelse();
-        System.out.println(" Database.getAllePersoner(). Har funnet #personer=" + personListe.size());
-        return personListe;
+        closeConnection();
+        System.out.println(" Database.getEveryone(). Har funnet #personer=" + personList.size());
+        return personList;
     }
 
-    public synchronized boolean registrerPerson(Person p) {
+    public synchronized boolean registerPerson(Person p) {
         boolean ok = false;
-        System.out.println("Database.registrerPerson()");
+        System.out.println("Database.registerPerson()");
         PreparedStatement psInsertPerson = null;
 
         try {
-            åpneForbindelse();
-            psInsertPerson = forbindelse.prepareStatement(sqlInsertPerson);
-            psInsertPerson.setInt(1, p.getPersonId());
+            openConnection();
+            psInsertPerson = connection.prepareStatement(sqlInsertPerson);
+            psInsertPerson.setString(1, p.getEmail());
             psInsertPerson.setString(2, p.getFirstName());
             psInsertPerson.setString(3, p.getSurname());
 
@@ -129,27 +131,27 @@ public class PersonDatabaseRepositoryImpl implements PersonRepository{
                 ok = true;
             }
         } catch (SQLException e) {
-            Opprydder.rullTilbake(forbindelse);
-            Opprydder.skrivMelding(e, "*** registrerPerson()");
+            Opprydder.rollback(connection);
+            Opprydder.write(e, "*** registerPerson()");
         } catch (Exception e) {
-            Opprydder.skrivMelding(e, "**** registrerPerson - ikke sqlfeil");
+            Opprydder.write(e, "**** registerPerson - ikke sqlfeil");
         } finally {
-            Opprydder.settAutoCommit(forbindelse);
-            Opprydder.lukkSetning(psInsertPerson);
+            Opprydder.setAutoCommit(connection);
+            Opprydder.closeSentence(psInsertPerson);
         }
-        lukkForbindelse();
+        closeConnection();
         return ok;
     }
 
-    public synchronized boolean oppdaterPerson(Person p) {
+    public synchronized boolean updatePerson(Person p) {
         boolean ok = false;
-        System.out.println("oppdaterPerson()");
+        System.out.println("updatePerson()");
         PreparedStatement psUpdatePerson = null;
 
         try {
-            åpneForbindelse();
-            psUpdatePerson = forbindelse.prepareStatement(sqlUpdatePerson);
-            psUpdatePerson.setInt(3, p.getPersonId());
+            openConnection();
+            psUpdatePerson = connection.prepareStatement(sqlUpdatePerson);
+            psUpdatePerson.setString(3, p.getEmail());
             psUpdatePerson.setString(1, p.getFirstName());
             psUpdatePerson.setString(2, p.getSurname());
 
@@ -158,42 +160,42 @@ public class PersonDatabaseRepositoryImpl implements PersonRepository{
                 ok = true;
             }
         } catch (SQLException e) {
-            Opprydder.rullTilbake(forbindelse);
-            Opprydder.skrivMelding(e, "oppdaterPerson()");
+            Opprydder.rollback(connection);
+            Opprydder.write(e, "updatePerson()");
         } catch (Exception e) {
-            Opprydder.skrivMelding(e, "oppdaterPerson - ikke sqlfeil");
+            Opprydder.write(e, "updatePerson - ikke sqlfeil");
         } finally {
-            Opprydder.settAutoCommit(forbindelse);
-            Opprydder.lukkSetning(psUpdatePerson);
+            Opprydder.setAutoCommit(connection);
+            Opprydder.closeSentence(psUpdatePerson);
         }
-        lukkForbindelse();
+        closeConnection();
         return ok;
     }
 
-    public synchronized boolean slettPerson(Person p) {
+    public synchronized boolean deletePerson(Person p) {
         boolean ok = false;
-        System.out.println("slettPerson()");
+        System.out.println("deletePerson()");
         PreparedStatement psDeletePerson = null;
 
         try {
-            åpneForbindelse();
-            psDeletePerson = forbindelse.prepareStatement(sqlDeletePerson);
-            psDeletePerson.setInt(1, p.getPersonId());
+            openConnection();
+            psDeletePerson = connection.prepareStatement(sqlDeletePerson);
+            psDeletePerson.setString(1, p.getEmail());
 
             int i = psDeletePerson.executeUpdate();
             if (i > 0) {
                 ok = true;
             }
         } catch (SQLException e) {
-            Opprydder.rullTilbake(forbindelse);
-            Opprydder.skrivMelding(e, "slettPerson()");
+            Opprydder.rollback(connection);
+            Opprydder.write(e, "deletePerson()");
         } catch (Exception e) {
-            Opprydder.skrivMelding(e, "slettPerson - ikke sqlfeil");
+            Opprydder.write(e, "deletePerson - ikke sqlfeil");
         } finally {
-            Opprydder.settAutoCommit(forbindelse);
-            Opprydder.lukkSetning(psDeletePerson);
+            Opprydder.setAutoCommit(connection);
+            Opprydder.closeSentence(psDeletePerson);
         }
-        lukkForbindelse();
+        closeConnection();
         return ok;
 
     }

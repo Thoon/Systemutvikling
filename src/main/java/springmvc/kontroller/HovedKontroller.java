@@ -49,7 +49,7 @@ public class HovedKontroller {
     
     @RequestMapping(value = "/manipulerPersoner")
     public String manipulerPersoner(@ModelAttribute PersonFormBackingBean backingBean) {
-        backingBean.setAllePersoner(personService.getAllePersoner());
+        backingBean.setEveryone(personService.getEveryone());
         System.out.println("** ControllerClass.person() ******");
         return "manipulerPersoner";
     }
@@ -63,7 +63,7 @@ public class HovedKontroller {
                
         //Hent personer valgt i checkbox'er
         if (hentPersoner != null) { 
-            if (backingBean.getValgtePersoner() != null && backingBean.getValgtePersoner().size() > 0) {
+            if (backingBean.getSelectedPersons() != null && backingBean.getSelectedPersons().size() > 0) {
                 return "utskrift";
             }else { //ingen valgt
                 return "manipulerPersoner";
@@ -71,12 +71,12 @@ public class HovedKontroller {
             
         //Slett personer valgt i checkbox'er
         } else if (slettPersoner != null) { 
-            List<Person> valgtePersoner = backingBean.getValgtePersoner();
+            List<Person> valgtePersoner = backingBean.getSelectedPersons();
             
             System.out.println("*** slett person **** ");
             if (valgtePersoner != null) {
-                if (personService.slettPersoner(valgtePersoner)){
-                    backingBean.setAllePersoner(personService.getAllePersoner());//oppdaterer verdiene i backingBean
+                if (personService.deletePersons(valgtePersoner)){
+                    backingBean.setEveryone(personService.getEveryone());//oppdaterer verdiene i backingBean
                     return "manipulerPersoner";
                 }else{ //feil ved sletting
                     modell.addAttribute("melding","feilside.slett");//feilside.slett er kode. Tekst hentes fra message.properties.
@@ -92,8 +92,8 @@ public class HovedKontroller {
                 return "manipulerPersoner";
             }
                     
-            if (personService.oppdaterPersoner(backingBean.getAllePersoner())){
-                backingBean.setAllePersoner(personService.getAllePersoner());
+            if (personService.updatePersons(backingBean.getEveryone())){
+                backingBean.setEveryone(personService.getEveryone());
                 return "manipulerPersoner";
             }else{ //feil ved oppdatering
                 modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.

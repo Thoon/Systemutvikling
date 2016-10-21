@@ -8,19 +8,15 @@ package springmvc.respository;
 import java.util.List;
 import springmvc.domene.Person;
 
-/**
- *
- * @author tomash
- */
 public interface PersonRepository {
      
     public Person getPerson(String personNr);
 
-    public List<Person> getAllePersoner() ;
+    public List<Person> getEveryone() ;
 
-    public boolean registrerPerson(Person p) ;
+    public boolean registerPerson(Person p) ;
 
-    public boolean oppdaterPerson(Person p) ;
+    public boolean updatePerson(Person p) ;
 
-    public boolean slettPerson(Person p) ;
+    public boolean deletePerson(Person p) ;
 }
