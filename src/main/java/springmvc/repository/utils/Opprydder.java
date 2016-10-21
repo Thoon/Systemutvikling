@@ -16,53 +16,49 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author Grethe
- */
 public class Opprydder {
-    public static void lukkResSet(ResultSet res) {
+    public static void closeResSet(ResultSet res) {
     try {
       if (res != null &&!res.isClosed()) res.close();
     } catch (SQLException e) {
-      skrivMelding(e, "lukkResSet()");
+      write(e, "closeResSet()");
     }
   }
 
-  public static void lukkSetning(Statement stm) {
+  public static void closeSentence(Statement stm) {
     try {
       if (stm != null && !stm.isClosed()) stm.close();
     } catch (SQLException e) {
-      skrivMelding(e, "lukkSetning()");
+      write(e, "closeSentence()");
     }
   }
 
-  public static void lukkForbindelse(Connection forbindelse) {
+  public static void closeConnection(Connection con) {
     try {
-      if (forbindelse != null && !forbindelse.isClosed()) forbindelse.close();
+      if (con != null && !con.isClosed()) con.close();
     } catch (SQLException e) {
-      skrivMelding(e, "lukkForbindelse()");
+      write(e, "closeConnection()");
     }
   }
 
-  public static void rullTilbake(Connection forbindelse) {
+  public static void rollback(Connection con) {
     try {
-      if (forbindelse != null && !forbindelse.getAutoCommit()) forbindelse.rollback();
+      if (con != null && !con.getAutoCommit()) con.rollback();
     } catch (SQLException e) {
-      skrivMelding(e, "rollback()");
+      write(e, "rollback()");
     }
   }
 
-  public static void settAutoCommit(Connection forbindelse) {
+  public static void setAutoCommit(Connection con) {
     try {
-      if (forbindelse != null && !forbindelse.getAutoCommit()) forbindelse.setAutoCommit(true);
+      if (con != null && !con.getAutoCommit()) con.setAutoCommit(true);
     } catch (SQLException e) {
-      skrivMelding(e, "settAutoCommit()");
+      write(e, "setAutoCommit()");
     }
   }
 
-  public static void skrivMelding(Exception e, String melding) {
-    System.err.println("*** Feil oppstÃ¥tt: " + melding + ". ***");
+  public static void write(Exception e, String msg) {
+    System.err.println("*** Feil oppstått: " + msg + ". ***");
     e.printStackTrace(System.err);
   }
 }
