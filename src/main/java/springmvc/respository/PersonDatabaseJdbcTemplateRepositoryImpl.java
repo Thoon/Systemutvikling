@@ -15,7 +15,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepository{
     
-    private Connection forbindelse;
     private final String sqlDeletePerson = "Delete from person where personnr = ?";
     private final String sqlSelectPerson = "Select * from person where personnr = ?";
     private final String sqlSelectAllePersoner = "Select * from person";

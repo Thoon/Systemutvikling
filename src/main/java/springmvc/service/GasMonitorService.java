@@ -5,10 +5,15 @@
  */
 package springmvc.service;
 
+import springmvc.domene.GasMonitor;
+
 /**
  *
  * @author ander
  */
-public class GasMonitorService {
+public interface GasMonitorService {
     
+   public boolean registerGasMonitor(GasMonitor g);
+   
+   public GasMonitor getGasMonitor(int id);
 }

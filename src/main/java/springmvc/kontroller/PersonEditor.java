@@ -7,8 +7,6 @@ package springmvc.kontroller;
 import java.beans.PropertyEditorSupport;
 import springmvc.domene.Person;
 import springmvc.service.PersonService;
-import springmvc.service.PersonServiceImpl;
-
 /**
  *
  * @author Grethe
