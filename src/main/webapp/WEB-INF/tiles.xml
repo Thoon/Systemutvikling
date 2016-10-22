@@ -30,7 +30,7 @@
     </definition>
   
     <definition name="registerPerson" extends="baseLayout">
-        <put-attribute name="title"  value="Registrer person"/>
+        <put-attribute name="title"  value="Registrer Person"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/registerPerson.jsp"/>      
     </definition>
     
