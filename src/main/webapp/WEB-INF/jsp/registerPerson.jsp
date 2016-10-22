@@ -36,9 +36,9 @@
         </tr>
         <tr>
             <td> Brukerrettigheter: </td>
-            <td> <form:radiobutton path="permission" value="Admin" />
-                 <form:radiobutton path="permission" value="Leverandør" />
-                 <form:radiobutton path="permission" value="Sluttbruker" />
+            <td> <form:radiobutton path="permission" value="admin" /> Admin 
+                <form:radiobutton path="permission" value="leverandør" /> Leverandør
+                <form:radiobutton path="permission" value="sluttbruker" /> Sluttbruker
             </td>
         </tr>
         <tr><td colspan="2"><input type="submit" value="Registrer person"</td></tr>

@@ -67,7 +67,7 @@ public class PersonDatabaseRepositoryImpl implements PersonRepository{
             res = stmt.executeQuery();
             if (res.next()) {
                 person = new Person(res.getString("firstName"), res.getString("surname"), res.getString("password"), res.getString("email"), 
-                        res.getInt("phoneNumber"), res.getInt("permission"), res.getBoolean("isActive"));
+                        res.getInt("phoneNumber"), res.getString("permission"), res.getBoolean("isActive"));
             }
         } catch (SQLException e) {
             Opprydder.rollback(connection);
@@ -94,7 +94,7 @@ public class PersonDatabaseRepositoryImpl implements PersonRepository{
             res = psSelectAlle.executeQuery();
             while (res.next()) {
                 Person p = new Person(res.getString("firstName"), res.getString("surname"), res.getString("password"), res.getString("email"), 
-                        res.getInt("phoneNumber"), res.getInt("permission"), res.getBoolean("isActive"));
+                        res.getInt("phoneNumber"), res.getString("permission"), res.getBoolean("isActive"));
                 if (personList == null) {
                     personList = new ArrayList<Person>();
                 }

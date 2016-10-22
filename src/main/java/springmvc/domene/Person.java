@@ -1,5 +1,6 @@
 package springmvc.domene;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -16,11 +17,12 @@ public class Person {
     private String password;
     @Email
     private String email;
+    @Min(8)
     private int phoneNumber;
-    private int permission;
+    private String permission;
     private boolean isActive;
     
-    public Person(String firstName, String surname, String password, String email, int phoneNumber, int permission, boolean isActive) {
+    public Person(String firstName, String surname, String password, String email, int phoneNumber, String permission, boolean isActive) {
         this.firstName = firstName.trim().toUpperCase();
         this.surname = surname.trim().toUpperCase();
         this.password = password;
@@ -72,11 +74,11 @@ public class Person {
         this.phoneNumber = pn;
     }
     
-    public int getPermission() {
+    public String getPermission() {
         return permission;
     }
 
-    public void setPermission(int permission) {
+    public void setPermission(String permission) {
         this.permission = permission;
     }
     
