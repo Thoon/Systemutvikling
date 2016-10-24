@@ -20,8 +20,8 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     private final String sqlSelectPerson = "Select * from Person where email = ?";
     private final String sqlSelectEveryone = "Select * from Person";
     
-    private final String sqlInsertPerson = "insert into Person values(?,?,?)";
-    private final String sqlUpdatePerson = "update Person set firstName=?, surname = ? where email = ?";
+    private final String sqlInsertPerson = "insert into Person (firstName, surname, password, email, phoneNumber, permission) values(?,?,?,?,?,?)";
+    private final String sqlUpdatePerson = "update Person set firstName=?, surname = ?, password = ?, phoneNumber = ?, permission = ? where email = ?";
 
     
     private DataSource dataSource;
@@ -61,9 +61,12 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     public boolean registerPerson(Person person){
         jdbcTemplateObject.update(sqlInsertPerson, 
             new Object[]{
-                person.getEmail(), 
                 person.getFirstName(), 
-                person.getSurname()
+                person.getSurname(),
+                person.getPassword(),
+                person.getEmail(),
+                person.getPhoneNumber(),
+                person.getPermission()
         });
         return true;
     }

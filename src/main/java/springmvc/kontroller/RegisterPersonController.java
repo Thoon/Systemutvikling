@@ -51,7 +51,7 @@ public class RegisterPersonController {
         return mav;
     }
        
-    @RequestMapping(value = "/registerPerson" , method=RequestMethod.GET)
+    @RequestMapping(value = "registerPerson" , method=RequestMethod.GET)
     public String person(@ModelAttribute Person person) {
         System.out.println(" ******   RegisterPerson.controller.person() ");
         return "registerPerson";
