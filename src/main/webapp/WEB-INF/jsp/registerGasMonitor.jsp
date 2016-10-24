@@ -1,8 +1,8 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <h2>Registrer ny gassmonitor</h2>
 
-<form:form action="registerGasMonitor.htm" method="post" modelAttribute="gasMonitor" >
+<form:form action="RegisterGasMonitor" method="post" modelAttribute="gasMonitor" >
     <table>
         <tr>  
             <td> Maksvekt i kg: </td>

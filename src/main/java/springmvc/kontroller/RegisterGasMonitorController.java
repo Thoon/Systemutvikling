@@ -24,7 +24,7 @@ public class RegisterGasMonitorController {
     
     @ExceptionHandler({Exception.class})
     public ModelAndView handleError(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterPersonController.handleError " + exception);
+        System.out.println("Feil i RegisterGasMonitorController.handleError " + exception);
         
         ModelAndView mav = new ModelAndView();
         mav.addObject("melding", "feilmelding.generell");
@@ -51,7 +51,7 @@ public class RegisterGasMonitorController {
     }
     
     
-    @RequestMapping(value = "Registrer Gassmonitor" , method=RequestMethod.POST)
+    @RequestMapping(value = "RegisterGasMonitor" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("gasMonitor") GasMonitor gasMonitor, /*BindingResult error,*/ Model modell) {
         /*if(error.hasErrors()){
             System.out.println(" Validering feilet **** ");

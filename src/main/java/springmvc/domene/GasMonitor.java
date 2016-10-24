@@ -20,9 +20,13 @@ public class GasMonitor {
     private int supplierId;
     
     public GasMonitor(){
+                System.out.println("--------------------------------hei");
+
     }
     
     public GasMonitor(int id,int maxWeight, int currentWeight, double battery, int customerId, int supplierId){
+                System.out.println("--------------------------------hei");
+
         this.id = id;
         this.maxWeight = maxWeight;
         this.currentWeight = currentWeight;
@@ -32,6 +36,7 @@ public class GasMonitor {
     }
     
     public GasMonitor(int maxWeight, int currentWeight, double battery, int customerId, int supplierId){
+        System.out.println("--------------------------------hei");
         this.maxWeight = maxWeight;
         this.currentWeight = currentWeight;
         this.battery = battery;
