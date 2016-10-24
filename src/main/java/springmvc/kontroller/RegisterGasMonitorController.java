@@ -25,7 +25,6 @@ public class RegisterGasMonitorController {
     @ExceptionHandler({Exception.class})
     public ModelAndView handleError(HttpServletRequest req, Exception exception) {
         System.out.println("Feil i RegisterGasMonitorController.handleError " + exception);
-        
         ModelAndView mav = new ModelAndView();
         mav.addObject("melding", "feilmelding.generell");
         mav.addObject("unntak", exception);
@@ -35,7 +34,7 @@ public class RegisterGasMonitorController {
     
     @ExceptionHandler({DuplicateKeyException.class})
     public ModelAndView handleDuplicateKey(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterGasMonitorController.handleError " + exception);
+        System.out.println("Feil i RegisterGasMonitorController.handleError2 " + exception);
         
         ModelAndView mav = new ModelAndView();
         mav.addObject("melding", "feilmelding.prim.nokkel");
@@ -58,7 +57,7 @@ public class RegisterGasMonitorController {
             return "registerGasMonitor";
         }
         
-        System.out.println(" **** GasMonitor verdi i RegisterPersonController " + gasMonitor);
+        System.out.println(" **** GasMonitor verdi i RegisterGasMonitorController " + gasMonitor);
         
         if (gasMonitorService.registerGasMonitor(gasMonitor)) {
             modell.addAttribute("melding","GasMonitor " + gasMonitor + " er registrert");

@@ -5,18 +5,20 @@
  */
 package springmvc.domene;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 public class GasMonitor {
     private int id;
-    //@NotEmpty
+    @NotNull
     private int maxWeight;
+    @NotNull
     private int currentWeight;    
+    @NotNull
     private double battery;
-    //@NotEmpty
+    @NotNull
     private int customerId;
-    //@NotEmpty
+    @NotNull
     private int supplierId;
     
     public GasMonitor(){
@@ -94,6 +96,10 @@ public class GasMonitor {
 
     @Override
     public String toString() {
-        return "GasMonitor{" + "id=" + id + ", maxWeight=" + maxWeight + ", currentWeight=" + currentWeight + ", battery=" + battery + ", customerId=" + customerId + ", supplierId=" + supplierId + '}';
+        if(id == 0){
+            return "GasMonitor{maxWeight=" + maxWeight + ", currentWeight=" + currentWeight + ", battery=" + battery + ", customerId=" + customerId + ", supplierId=" + supplierId + '}';
+        }else{
+            return "GasMonitor{" + "id=" + id + ", maxWeight=" + maxWeight + ", currentWeight=" + currentWeight + ", battery=" + battery + ", customerId=" + customerId + ", supplierId=" + supplierId + '}';
+        }
     }
 }

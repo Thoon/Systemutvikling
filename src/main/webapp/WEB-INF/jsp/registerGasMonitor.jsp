@@ -2,7 +2,7 @@
 
 <h2>Registrer ny gassmonitor</h2>
 
-<form:form action="RegisterGasMonitor" method="post" modelAttribute="gasMonitor" >
+<form:form action="RegisterGasMonitor.htm" method="post" modelAttribute="gasMonitor" >
     <table>
         <tr>  
             <td> Maksvekt i kg: </td>
