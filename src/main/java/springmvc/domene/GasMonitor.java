@@ -10,22 +10,22 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class GasMonitor {
     private int id;
-    @NotEmpty
+    //@NotEmpty
     private int maxWeight;
     private int currentWeight;    
     private double battery;
-    @NotEmpty
+    //@NotEmpty
     private int customerId;
-    @NotEmpty
+    //@NotEmpty
     private int supplierId;
     
     public GasMonitor(){
-                System.out.println("--------------------------------hei");
+                System.out.println("--------------------------------hei1");
 
     }
     
     public GasMonitor(int id,int maxWeight, int currentWeight, double battery, int customerId, int supplierId){
-                System.out.println("--------------------------------hei");
+                System.out.println("--------------------------------hei2");
 
         this.id = id;
         this.maxWeight = maxWeight;
@@ -36,7 +36,7 @@ public class GasMonitor {
     }
     
     public GasMonitor(int maxWeight, int currentWeight, double battery, int customerId, int supplierId){
-        System.out.println("--------------------------------hei");
+        System.out.println("--------------------------------hei3");
         this.maxWeight = maxWeight;
         this.currentWeight = currentWeight;
         this.battery = battery;

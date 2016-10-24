@@ -52,11 +52,11 @@ public class RegisterGasMonitorController {
     
     
     @RequestMapping(value = "RegisterGasMonitor" , method=RequestMethod.POST)
-    public String svarside(@Valid @ModelAttribute("gasMonitor") GasMonitor gasMonitor, /*BindingResult error,*/ Model modell) {
-        /*if(error.hasErrors()){
+    public String svarside(@Valid @ModelAttribute("gasMonitor") GasMonitor gasMonitor, BindingResult error, Model modell) {
+        if(error.hasErrors()){
             System.out.println(" Validering feilet **** ");
             return "registerGasMonitor";
-        }*/
+        }
         
         System.out.println(" **** GasMonitor verdi i RegisterPersonController " + gasMonitor);
         
