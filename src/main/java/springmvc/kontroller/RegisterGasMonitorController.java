@@ -8,7 +8,9 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +24,11 @@ public class RegisterGasMonitorController {
     @Autowired
     private GasMonitorService gasMonitorService;
     
+    @InitBinder
+    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
+        binder.registerCustomEditor(GasMonitor.class, new GasMonitorEditor(gasMonitorService));
+    }
+    
     @ExceptionHandler({Exception.class})
     public ModelAndView handleError(HttpServletRequest req, Exception exception) {
         System.out.println("Feil i RegisterGasMonitorController.handleError " + exception);
@@ -29,6 +36,7 @@ public class RegisterGasMonitorController {
         mav.addObject("melding", "feilmelding.generell");
         mav.addObject("unntak", exception);
         mav.setViewName("error");
+        System.out.println(exception);
         return mav;
     }
     
@@ -60,7 +68,7 @@ public class RegisterGasMonitorController {
         System.out.println(" **** GasMonitor verdi i RegisterGasMonitorController " + gasMonitor);
         
         if (gasMonitorService.registerGasMonitor(gasMonitor)) {
-            modell.addAttribute("melding","GasMonitor " + gasMonitor + " er registrert");
+            modell.addAttribute("melding","GasMonitor" + gasMonitor + " er registrert");
             return "svarside";
         } else {
             modell.addAttribute("melding","feilmelding.reg.gasmonitor");
