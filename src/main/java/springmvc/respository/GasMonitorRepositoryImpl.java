@@ -17,6 +17,7 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
         System.out.println(" Database.setDataSource " + dataSource);
         this.dataSource = dataSource;
     }
+    
     @Override
     public boolean registerGasMonitor(GasMonitor g){
         System.out.println("*** GAS MONITOR REPOSITORY *** " + g);
