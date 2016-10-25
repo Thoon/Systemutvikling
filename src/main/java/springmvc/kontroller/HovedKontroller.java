@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import springmvc.domene.GasMonitor;
 import springmvc.domene.Person;
 import springmvc.service.GasMonitorService;
 import springmvc.service.PersonService;
+import springmvc.ui.GasMonitorFormBackingBean;
 import springmvc.ui.PersonFormBackingBean;
 
 @Controller
@@ -101,5 +104,11 @@ public class HovedKontroller {
             }  
         }
         return "manipulerPersoner";
+    }
+    
+    @RequestMapping(value = "EditGasMonitor", method = RequestMethod.POST)
+    public String sokResultat(@ModelAttribute("gasMonitor") GasMonitor gasM, GasMonitorFormBackingBean gasMonitor){
+        gasMonitor.getAllGasMonitors();
+        return "editGasMonitor";
     }
 }
