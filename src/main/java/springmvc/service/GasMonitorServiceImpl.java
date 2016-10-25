@@ -14,12 +14,14 @@ public class GasMonitorServiceImpl implements GasMonitorService {
         System.out.println("GasMonitorServiceImpl.setDatabase2   " + repo);
         this.repo = repo;
     }
+    @Override
     public GasMonitor getGasMonitor(int id){
         System.out.println("**** PersonServiceImpl.getPerson()  *** ");
         return repo.getGasMonitor(id);
     }
-    
+    @Override
     public boolean registerGasMonitor(GasMonitor g){
+        System.out.println(g);
         System.out.println("******* GasMonitorServiceImpl.registerGasMonitor() ***** ");
         return repo.registerGasMonitor(g);
     }
