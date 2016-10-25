@@ -6,12 +6,11 @@
 <form:form action="EditGasMonitor" method="post" modelAttribute="gasMonitor" >
     <table>
         <tr>
-            <th>Epost</th>
-            <th>Fornavn</th>
-            <th>Etternavn</th>
-            <th>Rettighet</th>
-            <th>Aktiv</th>
-            <th>Velg </th>
+            <th>Gassmonitor ID</th>
+            <th>Maks Vekt</th>
+            <th>Målt Vekt</th>
+            <th>Batteri</th>
+            <th>Kunde</th>
         </tr>
         <c:forEach var="gasMonitor" items="${gasMonitorFormBackingBean.allGasMonitors}" varStatus="status">
             <tr>
