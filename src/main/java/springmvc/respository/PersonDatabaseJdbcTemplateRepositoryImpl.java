@@ -20,7 +20,7 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     private final String sqlSelectPerson = "Select * from person where email = ?";
     private final String sqlSelectEveryone = "Select * from person";
     
-    private final String sqlInsertPerson = "insert into person (firstName, lastname, password, email, phone, permissions) values(?,?,?,?,?,?)";
+    private final String sqlInsertPerson = "insert into person (firstName, lastname, password, email, phone, permissions, active) values(?,?,?,?,?,?,?)";
     private final String sqlUpdatePerson = "update person set firstName=?, lastname = ?, password = ?, phoneNumber = ?, permission = ? where email = ?";
 
     
@@ -52,7 +52,7 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     public boolean updatePerson(Person person){
         jdbcTemplateObject.update(sqlUpdatePerson, new Object[]{
             person.getFirstName(),
-            person.getSurname(),
+            person.getLastName(),
             person.getEmail()
         });
         return true;
@@ -62,11 +62,12 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
         jdbcTemplateObject.update(sqlInsertPerson, 
             new Object[]{
                 person.getFirstName(), 
-                person.getSurname(),
+                person.getLastName(),
                 person.getPassword(),
                 person.getEmail(),
                 person.getPhoneNumber(),
-                person.getPermission()
+                person.getPermission(),
+                person.isIsActive()
         });
         return true;
     }

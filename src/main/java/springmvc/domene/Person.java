@@ -10,7 +10,7 @@ public class Person {
     @NotEmpty
     private String firstName;
     @NotEmpty
-    private String surname;
+    private String lastName;
     @Pattern(regexp = "^(?=.*[a-zæøå])(?=.*[A-ZÆØÅ])(?=.*[^a-zA-ZæøåÆØÅ0-9 ].*[^a-zA-ZæøåÆØÅ0-9 ])(?!\\s)\\S{8,}",
             message = "Passordet må inneholde 8 tegn bestående av store og små bokstaver, og minst 2 spesialtegn")
     @NotEmpty
@@ -22,9 +22,9 @@ public class Person {
     private String permission;
     private boolean isActive;
     
-    public Person(String firstName, String surname, String password, String email, int phoneNumber, String permission, boolean isActive) {
+    public Person(String firstName, String lastName, String password, String email, int phoneNumber, String permission, boolean isActive) {
         this.firstName = firstName.trim().toUpperCase();
-        this.surname = surname.trim().toUpperCase();
+        this.lastName = lastName.trim().toUpperCase();
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -42,12 +42,12 @@ public class Person {
         this.firstName = fn;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String sn) {
-        this.surname = sn;
+    public void setLastName(String sn) {
+        this.lastName = sn;
     }
 
     public String getPassword() {
