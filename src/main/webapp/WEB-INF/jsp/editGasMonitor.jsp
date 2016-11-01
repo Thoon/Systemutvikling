@@ -28,6 +28,9 @@
                 
                 <td> <c:out value="${gasMonitor.customerId}"/>
                     <form:hidden path="allGasMonitors[${status.index}].customerId" value="${gasMonitor.customerId}"/></td>
+                
+                <td> <c:out value="${gasMonitor.supplierId}"/>
+                    <form:hidden path="allGasMonitors[${status.index}].supplierId" value="${gasMonitor.supplierId}"/></td>
             </tr>
     </table>
 </form:form>
