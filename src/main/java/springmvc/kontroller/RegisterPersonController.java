@@ -69,7 +69,7 @@ public class RegisterPersonController {
         System.out.println(" **** Person verdi i RegisterPersonController " + person);
         
         if (personService.registerPerson(person)) {
-            modell.addAttribute("melding","Person " + person + " er registrert");
+            modell.addAttribute("melding","Person " + person.toString() + " er registrert");
             return "svarside";
         } else {
             modell.addAttribute("melding","feilmelding.reg.person");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET

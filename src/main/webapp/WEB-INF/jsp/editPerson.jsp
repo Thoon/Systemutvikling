@@ -12,26 +12,34 @@
     <h5>Checkboxene trengs kun å brukes ved sletting og henting, ikke ved oppdatering av personer</h5>
     <table border="1" width="100%">
         <tr>
-            <th>Personnummer</th>
+            <th>Epost</th>
             <th>Fornavn</th>
             <th>Etternavn</th>
+            <th>Telefon</th>
+            <th>Tilgangs nivå</th>
             <th>Velg </th>
         </tr>
                      
-        <c:forEach var="person" items="${personFormBackingBean.allePersoner}" varStatus="status">
+        <c:forEach var="person" items="${personFormBackingBean.everyone}" varStatus="status">
           
             <tr>
-                <td><c:out value="${person.personnr}"/>
-                    <form:hidden path="allePersoner[${status.index}].personnr" />
+                <td><c:out value="${person.email}"/>
+                    <form:hidden path="everyone[${status.index}].email" />
                 </td> 
                                     
-                <td> <form:input path="allePersoner[${status.index}].fornavn" /> 
-                     <form:errors path="allePersoner[${status.index}].fornavn" />
+                <td> <form:input path="everyone[${status.index}].firstName" /> 
+                     <form:errors path="everyone[${status.index}].firstName" />
                 </td>
-                <td> <form:input path="allePersoner[${status.index}].etternavn" /> 
-                     <form:errors path="allePersoner[${status.index}].etternavn" />
+                <td> <form:input path="everyone[${status.index}].lastName" /> 
+                     <form:errors path="everyone[${status.index}].lastName" />
                 </td>
-                <td> <form:checkbox path="valgtePersoner" value="${person}" /> </td>
+                <td> <form:input path="everyone[${status.index}].phoneNumber" /> 
+                     <form:errors path="everyone[${status.index}].phoneNumber" />
+                </td>
+                <td> <form:input path="everyone[${status.index}].permission" /> 
+                     <form:errors path="everyone[${status.index}].permission" />
+                </td>
+                <td> <form:checkbox path="selectedPersons" value="${person}" /> </td>
             </tr>
         </c:forEach>
     </table>

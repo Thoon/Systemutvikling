@@ -24,9 +24,9 @@
         <put-attribute name="body"   value="/WEB-INF/jsp/utskrift.jsp"/>      
     </definition>
   
-    <definition name="manipulerPersoner" extends="baseLayout">
+    <definition name="editPerson" extends="baseLayout">
         <put-attribute name="title"  value="Velg Person"/>
-        <put-attribute name="body"   value="/WEB-INF/jsp/manipulerPersoner.jsp"/>      
+        <put-attribute name="body"   value="/WEB-INF/jsp/editPerson.jsp"/>      
     </definition>
   
     <definition name="registerPerson" extends="baseLayout">

@@ -57,7 +57,7 @@ public class HovedKontroller {
         return "manipulerPersoner";
     }
 
-    @RequestMapping(value = "/endrePersoner")
+    @RequestMapping(value = "/editPerson")
     public String endrePersoner(@Valid @ModelAttribute PersonFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
         System.out.println("****************Start oversikt***********************");
            
@@ -69,7 +69,7 @@ public class HovedKontroller {
             if (backingBean.getSelectedPersons() != null && backingBean.getSelectedPersons().size() > 0) {
                 return "utskrift";
             }else { //ingen valgt
-                return "manipulerPersoner";
+                return "editPerson";
             }
             
         //Slett personer valgt i checkbox'er
@@ -80,7 +80,7 @@ public class HovedKontroller {
             if (valgtePersoner != null) {
                 if (personService.deletePersons(valgtePersoner)){
                     backingBean.setEveryone(personService.getEveryone());//oppdaterer verdiene i backingBean
-                    return "manipulerPersoner";
+                    return "editPerson";
                 }else{ //feil ved sletting
                     modell.addAttribute("melding","feilside.slett");//feilside.slett er kode. Tekst hentes fra message.properties.
                     return "error";
@@ -92,18 +92,18 @@ public class HovedKontroller {
         } else { 
             
             if (error.hasErrors()){ //ikke oppdater grunnet valideringsfeil
-                return "manipulerPersoner";
+                return "editPerson";
             }
                     
             if (personService.updatePersons(backingBean.getEveryone())){
                 backingBean.setEveryone(personService.getEveryone());
-                return "manipulerPersoner";
+                return "editPerson";
             }else{ //feil ved oppdatering
                 modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
                 return "error";
             }  
         }
-        return "manipulerPersoner";
+        return "editPerson";
     }
     
     @RequestMapping(value = "/editGasMonitor", method = RequestMethod.POST)

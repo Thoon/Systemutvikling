@@ -19,10 +19,10 @@ public class Person {
     private String email;
     @Min(8)
     private int phoneNumber;
-    private String permission;
+    private int permission;
     private boolean isActive;
     
-    public Person(String firstName, String lastName, String password, String email, int phoneNumber, String permission, boolean isActive) {
+    public Person(String firstName, String lastName, String password, String email, int phoneNumber, int permission, boolean isActive) {
         this.firstName = firstName.trim().toUpperCase();
         this.lastName = lastName.trim().toUpperCase();
         this.password = password;
@@ -74,11 +74,11 @@ public class Person {
         this.phoneNumber = pn;
     }
     
-    public String getPermission() {
+    public int getPermission() {
         return permission;
     }
 
-    public void setPermission(String permission) {
+    public void setPermission(int permission) {
         this.permission = permission;
     }
     
@@ -88,5 +88,10 @@ public class Person {
 
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" + "firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phoneNumber=" + phoneNumber + ", permission=" + permission + '}';
     }
 }
