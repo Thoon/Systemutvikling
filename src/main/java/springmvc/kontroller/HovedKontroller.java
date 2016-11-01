@@ -106,7 +106,7 @@ public class HovedKontroller {
         return "manipulerPersoner";
     }
     
-    @RequestMapping(value = "EditGasMonitor", method = RequestMethod.POST)
+    @RequestMapping(value = "editGasMonitor", method = RequestMethod.POST)
     public String sokResultat(@ModelAttribute("gasMonitor") GasMonitor gasM, GasMonitorFormBackingBean gasMonitor){
         gasMonitor.getAllGasMonitors();
         return "editGasMonitor";

@@ -16,12 +16,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepository{
     
     private Connection connection;
-    private final String sqlDeletePerson = "Delete from Person where email = ?";
-    private final String sqlSelectPerson = "Select * from Person where email = ?";
-    private final String sqlSelectEveryone = "Select * from Person";
+    private final String sqlDeletePerson = "Delete from person where email = ?";
+    private final String sqlSelectPerson = "Select * from person where email = ?";
+    private final String sqlSelectEveryone = "Select * from person";
     
-    private final String sqlInsertPerson = "insert into Person (firstName, surname, password, email, phoneNumber, permission) values(?,?,?,?,?,?)";
-    private final String sqlUpdatePerson = "update Person set firstName=?, surname = ?, password = ?, phoneNumber = ?, permission = ? where email = ?";
+    private final String sqlInsertPerson = "insert into person (firstName, lastname, password, email, phone, permissions) values(?,?,?,?,?,?)";
+    private final String sqlUpdatePerson = "update person set firstName=?, lastname = ?, password = ?, phoneNumber = ?, permission = ? where email = ?";
 
     
     private DataSource dataSource;

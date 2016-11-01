@@ -20,7 +20,7 @@ public class GasMonitorMapper implements RowMapper<GasMonitor> {
         GasMonitor g = new GasMonitor();
         g.setMaxWeight(rs.getInt("maxWeight"));
         g.setCurrentWeight(rs.getInt("currentWeight"));
-        g.setBattery(rs.getInt("battery"));
+        g.setBattery(rs.getDouble("battery"));
         g.setCustomerId(rs.getInt("customerId"));
         g.setSupplierId(rs.getInt("supplierId"));
         return g;

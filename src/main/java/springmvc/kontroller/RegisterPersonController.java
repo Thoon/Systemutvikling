@@ -51,13 +51,13 @@ public class RegisterPersonController {
         return mav;
     }
        
-    @RequestMapping(value = "registerPerson" , method=RequestMethod.GET)
+    @RequestMapping(value = "/registerPerson" , method=RequestMethod.GET)
     public String person(@ModelAttribute Person person) {
         System.out.println(" ******   RegisterPerson.controller.person() ");
         return "registerPerson";
     }
 
-    @RequestMapping(value = "RegisterPerson" , method=RequestMethod.POST)
+    @RequestMapping(value = "registerPerson" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("person") Person person, BindingResult error, Model modell) {
         
         if(error.hasErrors()){

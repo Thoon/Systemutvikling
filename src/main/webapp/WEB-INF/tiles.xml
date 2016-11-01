@@ -45,12 +45,12 @@
     </definition>
     
     <definition name="registerGasMonitor" extends="baseLayout">
-        <put-attribute name="title"  value="Registrer Gasmonitor"/>
+        <put-attribute name="title"  value="Registrer Gassmonitor"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/registerGasMonitor.jsp"/>      
     </definition>
     
     <definition name="editGasMonitor" extends="baseLayout">
-        <put-attribute name="title"  value="Oversikt over Gassmonitorer"/>
+        <put-attribute name="title"  value="Rediger Gassmonitor"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/editGasMonitor.jsp"/>      
     </definition>
 </tiles-definitions>

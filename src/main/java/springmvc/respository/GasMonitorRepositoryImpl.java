@@ -6,8 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import springmvc.domene.GasMonitor;
 
 public class GasMonitorRepositoryImpl implements GasMonitorRepository{
-    private final String sqlInsertGasMonitor = "insert into gasmonitor (max_weight, current_weight, battery, supp_id, cust_id) values('?','?','?','?','?');";
-    private final String sqlSelectGasMonitor = "Select * from gasmonitor where id = ?";
+    private final String sqlInsertGasMonitor = "insert into gas_monitor (max_weight, current_weight, battery, supp_id, cust_id) values('?','?','?','?','?');";
+    private final String sqlSelectGasMonitor = "Select * from gas_monitor where id = ?";
     
     private DataSource dataSource;
     static JdbcTemplate jdbcTemplateObject;
