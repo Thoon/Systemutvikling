@@ -90,7 +90,7 @@ public class HovedKontroller {
         // Oppdater (alle) personer valgt. Endringer gjort i tekstfelt.
         // Valg i checkbox'er er uten betydning her.
         } else { 
-            
+            System.out.println("*** Oppdater Person ***");
             if (error.hasErrors()){ //ikke oppdater grunnet valideringsfeil
                 return "editPerson";
             }

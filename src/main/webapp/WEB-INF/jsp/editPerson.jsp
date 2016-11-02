@@ -43,6 +43,8 @@
             </tr>
         </c:forEach>
     </table>
-    <input type="submit" value="Hent Personer" name="hentPersoner" />  <input type="submit" value="Oppdater Personer" name="oppdaterPersoner" />    <input type="submit" value="Slett valgte personer" name="slettPersoner" />
+    <input type="submit" value="Hent Personer" name="hentPersoner" />  
+    <input type="submit" value="Oppdater Personer" name="updatePersons" />    
+    <input type="submit" value="Slett valgte personer" name="slettPersoner" />
 </form:form>
 <hr>
