@@ -15,6 +15,7 @@ import springmvc.domene.Person;
  */
 public interface GasMonitorService {
     
+    public List<GasMonitor> getAllGasMonitors();
     
     public boolean registerGasMonitor(GasMonitor g);
    
