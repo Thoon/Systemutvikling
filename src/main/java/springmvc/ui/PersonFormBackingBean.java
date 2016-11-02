@@ -22,9 +22,9 @@ public class PersonFormBackingBean {
         return everyone;
     }
     
-    public Person getPerson(int fnr){
+    public Person getPerson(String email){
         for (Person p : selectedPersons){
-            if(p.getEmail().equals(fnr)) return p;
+            if(p.getEmail().equals(email)) return p;
         }
         return null;
     }

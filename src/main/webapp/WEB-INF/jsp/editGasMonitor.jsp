@@ -3,7 +3,7 @@
 
 <h2>Registrer ny gassmonitor</h2>
 
-<form:form action="editGasMonitor.htm" method="post" modelAttribute="gasMonitor">
+<form:form action="editGasMonitor" method="post" modelAttribute="gasMonitor">
     <table>
         <tr>
             <th>Gassmonitor ID</th>

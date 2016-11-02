@@ -1,5 +1,6 @@
 package springmvc.respository;
 
+import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,6 +9,8 @@ import springmvc.domene.GasMonitor;
 public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     private final String sqlInsertGasMonitor = "insert into gas_monitor (max_weight, current_weight, battery, supp_id, cust_id) values('?','?','?','?','?');";
     private final String sqlSelectGasMonitor = "Select * from gas_monitor where id = ?";
+    private final String sqlDeleteGasMonitor = "Delete from gas_monitor where id = ?";
+    private final String sqlSelectAllGasMonitors = "Select * from gas_monitor";
     
     private DataSource dataSource;
     static JdbcTemplate jdbcTemplateObject;
@@ -35,5 +38,16 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     public GasMonitor getGasMonitor(int id) {
         GasMonitor g = (GasMonitor) jdbcTemplateObject.queryForObject(sqlSelectGasMonitor, new Object[]{id}, new GasMonitorMapper());
         return g;
+    }
+    
+    @Override
+    public boolean deleteGasMonitor(GasMonitor gasMonitor){
+        jdbcTemplateObject.update(sqlDeleteGasMonitor, gasMonitor.getId() );
+        return true;
+    }
+    
+    @Override
+    public List<GasMonitor> getAllGasMonitors(){
+        return jdbcTemplateObject.query(sqlSelectAllGasMonitors, new GasMonitorMapper());
     }
 }

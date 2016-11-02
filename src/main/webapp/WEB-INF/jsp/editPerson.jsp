@@ -8,8 +8,8 @@
 <h2>Administrer personer</h2>
 <p>
 
-    <form:form action="endrePersoner" method="post" modelAttribute="personFormBackingBean"> 
-    <h5>Checkboxene trengs kun å brukes ved sletting og henting, ikke ved oppdatering av personer</h5>
+    <form:form action="updatePerson" method="post" modelAttribute="personFormBackingBean"> 
+    <h5>Checkboxene trengs kun å brukes ved sletting, ikke ved oppdatering av personer</h5>
     <table border="1" width="100%">
         <tr>
             <th>Epost</th>
@@ -43,8 +43,7 @@
             </tr>
         </c:forEach>
     </table>
-    <input type="submit" value="Hent Personer" name="hentPersoner" />  
-    <input type="submit" value="Oppdater Personer" name="updatePersons" />    
+    <input type="submit" value="Oppdater Personer" name="editPerson" />    
     <input type="submit" value="Slett valgte personer" name="slettPersoner" />
 </form:form>
 <hr>

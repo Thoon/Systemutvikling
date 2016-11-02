@@ -58,22 +58,14 @@ public class HovedKontroller {
     }
 
     @RequestMapping(value = "/editPerson")
-    public String endrePersoner(@Valid @ModelAttribute PersonFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
+    public String editPerson(@Valid @ModelAttribute PersonFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
         System.out.println("****************Start oversikt***********************");
            
-        String slettPersoner = request.getParameter("slettPersoner");
-        String hentPersoner = request.getParameter("hentPersoner");
-               
-        //Hent personer valgt i checkbox'er
-        if (hentPersoner != null) { 
-            if (backingBean.getSelectedPersons() != null && backingBean.getSelectedPersons().size() > 0) {
-                return "utskrift";
-            }else { //ingen valgt
-                return "editPerson";
-            }
+        String deletePersons = request.getParameter("deletePersons");
+      
             
         //Slett personer valgt i checkbox'er
-        } else if (slettPersoner != null) { 
+        if (deletePersons != null) { 
             List<Person> valgtePersoner = backingBean.getSelectedPersons();
             
             System.out.println("*** slett person **** ");
@@ -90,13 +82,13 @@ public class HovedKontroller {
         // Oppdater (alle) personer valgt. Endringer gjort i tekstfelt.
         // Valg i checkbox'er er uten betydning her.
         } else { 
-            System.out.println("*** Oppdater Person ***");
             if (error.hasErrors()){ //ikke oppdater grunnet valideringsfeil
                 return "editPerson";
             }
                     
             if (personService.updatePersons(backingBean.getEveryone())){
                 backingBean.setEveryone(personService.getEveryone());
+                System.out.println("TEST");
                 return "editPerson";
             }else{ //feil ved oppdatering
                 modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
@@ -106,9 +98,45 @@ public class HovedKontroller {
         return "editPerson";
     }
     
-    @RequestMapping(value = "/editGasMonitor", method = RequestMethod.POST)
-    public String sokResultat(@ModelAttribute("gasMonitor") GasMonitor gasM, GasMonitorFormBackingBean gasMonitor){
-        gasMonitor.getAllGasMonitors();
+    @RequestMapping(value = "/editGasMonitor")
+    public String editGasMonitor(@Valid @ModelAttribute GasMonitorFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
+        System.out.println("****************Start oversikt***********************");
+           
+        String deleteGasMonitors = request.getParameter("deleteGasMonitors");
+      
+            
+        //Slett personer valgt i checkbox'er
+        if (deleteGasMonitors != null) { 
+            List<GasMonitor> selectGasMonitor = backingBean.getSelectedGasMonitors();
+            
+            System.out.println("*** slett gasmonitor **** ");
+            if (selectGasMonitor != null) {
+                if (gasMonitorService.deleteGasMonitors(selectGasMonitor)){
+                    backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());//oppdaterer verdiene i backingBean
+                    return "editGasMonitor";
+                }else{ //feil ved sletting
+                    modell.addAttribute("melding","feilside.slett");//feilside.slett er kode. Tekst hentes fra message.properties.
+                    return "error";
+                }
+            }
+            
+        // Oppdater (alle) personer valgt. Endringer gjort i tekstfelt.
+        // Valg i checkbox'er er uten betydning her.
+        } else { 
+            if (error.hasErrors()){ //ikke oppdater grunnet valideringsfeil
+                return "editGasMonitor";
+            }
+                    
+            if (gasMonitorService.updateGasMonitor(backingBean.getAllGasMonitors())){
+                backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());
+                System.out.println("TEST");
+                return "editGasMonitor";
+            }else{ //feil ved oppdatering
+                modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
+                return "error";
+            }  
+        }
         return "editGasMonitor";
     }
+
 }

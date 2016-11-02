@@ -5,7 +5,9 @@
  */
 package springmvc.service;
 
+import java.util.List;
 import springmvc.domene.GasMonitor;
+import springmvc.domene.Person;
 
 /**
  *
@@ -13,7 +15,10 @@ import springmvc.domene.GasMonitor;
  */
 public interface GasMonitorService {
     
-   public boolean registerGasMonitor(GasMonitor g);
+    
+    public boolean registerGasMonitor(GasMonitor g);
    
-   public GasMonitor getGasMonitor(int id);
+    public GasMonitor getGasMonitor(int id);
+   
+     public boolean deleteGasMonitors(List<GasMonitor> gasMonitorList);
 }

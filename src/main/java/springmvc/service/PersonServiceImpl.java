@@ -27,12 +27,12 @@ public class PersonServiceImpl implements PersonService{
         return repo.getEveryone();
     }
     
-    public boolean updatePersons(List<Person> personListe){
+    public boolean updatePersons(List<Person> personList){
         System.out.println("**** PersonServiceImpl.updatePerson()  *** ");
-        if (personListe == null || personListe.size() == 0) return true;
+        if (personList == null || personList.size() == 0) return true;
             
         boolean isUpdateOK = true;
-        for (Person p : personListe){
+        for (Person p : personList){
             if (!repo.updatePerson(p)) isUpdateOK=false;
         }
         return isUpdateOK;
