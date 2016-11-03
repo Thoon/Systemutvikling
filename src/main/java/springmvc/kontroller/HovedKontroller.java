@@ -127,7 +127,7 @@ public class HovedKontroller {
                 return "editGasMonitor";
             }
                     
-            if (gasMonitorService.updateGasMonitor(backingBean.getAllGasMonitors())){
+            if (gasMonitorService.updateGasMonitors(backingBean.getAllGasMonitors())){
                 backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());
                 System.out.println("TEST");
                 return "editGasMonitor";

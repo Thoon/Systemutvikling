@@ -46,4 +46,20 @@ public class GasMonitorServiceImpl implements GasMonitorService {
         return repo.getAllGasMonitors();
     }
     
+    
+    public boolean updateGasMonitors(List<GasMonitor> gasMonitorList){
+        System.out.println("**** GasMonitorServiceImpl.updateGasMonitors()  *** ");
+        if (gasMonitorList == null || gasMonitorList.size() == 0) return true;
+            
+        boolean isUpdateOK = true;
+        for (GasMonitor g : gasMonitorList){
+            if (!repo.updateGasMonitor(g)) isUpdateOK=false;
+        }
+        return isUpdateOK;
+    }
+    
+    public boolean updateGasMonitor(GasMonitor g){
+        System.out.println("**** GasMonitorServiceImpl.updateGasMonitor()  *** ");
+        return repo.updateGasMonitor(g);
+    }
 }

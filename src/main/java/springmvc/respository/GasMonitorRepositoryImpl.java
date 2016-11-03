@@ -8,9 +8,10 @@ import springmvc.domene.GasMonitor;
 
 public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     private final String sqlInsertGasMonitor = "insert into gas_monitor (max_weight, current_weight, battery, supp_id, cust_id) values('?','?','?','?','?');";
-    private final String sqlSelectGasMonitor = "Select * from gas_monitor where id = ?";
-    private final String sqlDeleteGasMonitor = "Delete from gas_monitor where id = ?";
+    private final String sqlSelectGasMonitor = "Select * from gas_monitor where gm_id = ?";
+    private final String sqlDeleteGasMonitor = "Delete from gas_monitor where gm_id = ?";
     private final String sqlSelectAllGasMonitors = "Select * from gas_monitor";
+    private final String sqlUpdateGasMonitor = "update gas_monitor set maxweight = ?, cust_id where gm_id = ?";
     
     private DataSource dataSource;
     static JdbcTemplate jdbcTemplateObject;
@@ -49,5 +50,17 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     @Override
     public List<GasMonitor> getAllGasMonitors(){
         return jdbcTemplateObject.query(sqlSelectAllGasMonitors, new GasMonitorMapper());
+    }
+    
+    @Override
+    public boolean updateGasMonitor(GasMonitor gasMonitor){
+        System.out.println("** Repository ** " + gasMonitor);
+        jdbcTemplateObject.update(sqlUpdateGasMonitor, new Object[]{
+            gasMonitor.getMaxWeight(),
+            gasMonitor.getCurrentWeight(),
+            gasMonitor.getBattery(),
+            gasMonitor.getCustomerId()
+        });
+        return true;
     }
 }

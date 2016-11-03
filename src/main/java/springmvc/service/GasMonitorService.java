@@ -21,5 +21,9 @@ public interface GasMonitorService {
    
     public GasMonitor getGasMonitor(int id);
    
-     public boolean deleteGasMonitors(List<GasMonitor> gasMonitorList);
+    public boolean deleteGasMonitors(List<GasMonitor> gasMonitorList);
+     
+    public boolean updateGasMonitor(GasMonitor g);
+     
+    public boolean updateGasMonitors(List<GasMonitor> gasMonitorList);
 }

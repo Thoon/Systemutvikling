@@ -15,4 +15,6 @@ public interface GasMonitorRepository {
     
     public List<GasMonitor> getAllGasMonitors();
     
+    public boolean updateGasMonitor(GasMonitor gasMonitor);
+    
 }
