@@ -8,7 +8,7 @@
 <h2>Administrer personer</h2>
 <p>
 
-    <form:form action="updatePerson" method="post" modelAttribute="personFormBackingBean"> 
+    <form:form action="editPerson.htm" method="post" modelAttribute="personFormBackingBean"> 
     <h5>Checkboxene trengs kun å brukes ved sletting, ikke ved oppdatering av personer</h5>
     <table border="1" width="100%">
         <tr>
@@ -39,11 +39,11 @@
                 <td> <form:input path="everyone[${status.index}].permission" /> 
                      <form:errors path="everyone[${status.index}].permission" />
                 </td>
-                <td> <form:checkbox path="selectedPersons" value="${person}" /> </td>
+                <td> <form:checkbox path="selectedPersons" value="${person.email}" /> </td>
             </tr>
         </c:forEach>
     </table>
-    <input type="submit" value="Oppdater Personer" name="editPerson" />    
+    <input type="submit" value="Oppdater Personer" name="updatePersons" />    
     <input type="submit" value="Slett valgte personer" name="slettPersoner" />
 </form:form>
 <hr>

@@ -66,11 +66,11 @@ public class HovedKontroller {
             
         //Slett personer valgt i checkbox'er
         if (deletePersons != null) { 
-            List<Person> valgtePersoner = backingBean.getSelectedPersons();
+            List<Person> selectedPersons = backingBean.getSelectedPersons();
             
             System.out.println("*** slett person **** ");
-            if (valgtePersoner != null) {
-                if (personService.deletePersons(valgtePersoner)){
+            if (selectedPersons != null) {
+                if (personService.deletePersons(selectedPersons)){
                     backingBean.setEveryone(personService.getEveryone());//oppdaterer verdiene i backingBean
                     return "editPerson";
                 }else{ //feil ved sletting
@@ -93,6 +93,7 @@ public class HovedKontroller {
             }else{ //feil ved oppdatering
                 modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
                 return "error";
+                
             }  
         }
         return "editPerson";
@@ -100,7 +101,7 @@ public class HovedKontroller {
     
     @RequestMapping(value = "/editGasMonitor")
     public String editGasMonitor(@Valid @ModelAttribute GasMonitorFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
-        System.out.println("****************Start oversikt***********************");
+        System.out.println("****************Start oversikt2***********************");
            
         String deleteGasMonitors = request.getParameter("deleteGasMonitors");
       
@@ -129,7 +130,7 @@ public class HovedKontroller {
                     
             if (gasMonitorService.updateGasMonitors(backingBean.getAllGasMonitors())){
                 backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());
-                System.out.println("TEST");
+               // System.out.println("TEST");
                 return "editGasMonitor";
             }else{ //feil ved oppdatering
                 modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
