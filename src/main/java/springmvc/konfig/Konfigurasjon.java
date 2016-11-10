@@ -93,7 +93,6 @@ public class Konfigurasjon extends WebMvcConfigurationSupport {
     @Bean 
     public PersonRepository repository(){
         return new PersonDatabaseJdbcTemplateRepositoryImpl();
-        //return new PersonDatabaseRepositoryImpl();
     } 
     
     @Bean

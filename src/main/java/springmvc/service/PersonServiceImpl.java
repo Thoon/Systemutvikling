@@ -2,7 +2,6 @@ package springmvc.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import springmvc.domene.Person;
 import springmvc.respository.PersonRepository;
 
@@ -17,35 +16,42 @@ public class PersonServiceImpl implements PersonService{
          this.repo = repo;
      }
    
+    @Override
     public Person getPerson(String personNr){
         System.out.println("**** PersonServiceImpl.getPerson()  *** ");
         return repo.getPerson(personNr);
     }
      
+    @Override
     public List<Person> getEveryone(){
         System.out.println("**** PersonServiceImpl.getEveryone()  *** ");
         return repo.getEveryone();
     }
     
-    public boolean updatePersons(List<Person> personListe){
-        System.out.println("**** PersonServiceImpl.updatePerson()  *** ");
-        if (personListe == null || personListe.size() == 0) return true;
+    @Override
+    public boolean updatePersons(List<Person> personList){
+        System.out.println("**** PersonServiceImpl.updatePersons()  *** ");
+        if (personList == null || personList.size() == 0){
+            return true;
+        }
             
         boolean isUpdateOK = true;
-        for (Person p : personListe){
+        for (Person p : personList){
             if (!repo.updatePerson(p)) isUpdateOK=false;
         }
         return isUpdateOK;
     }
     
+    @Override
     public boolean registerPerson(Person p){
         System.out.println("**** PersonServiceImpl.registerPerson()  *** ");
         return repo.registerPerson(p);
     }
     
+    @Override
     public boolean deletePersons(List<Person> personList){
         System.out.println("**** PersonServiceImpl.deletePersons()  *** ");
-        if (personList == null || personList.size() == 0) return true;
+        if (personList == null || personList.isEmpty()) return true;
                
         boolean isDeleteOK = true;
         for (Person p : personList){
@@ -54,6 +60,7 @@ public class PersonServiceImpl implements PersonService{
         return isDeleteOK;
     }
     
+    @Override
     public boolean updatePerson(Person p){
         System.out.println("**** PersonServiceImpl.updatePerson()  *** ");
         return repo.updatePerson(p);

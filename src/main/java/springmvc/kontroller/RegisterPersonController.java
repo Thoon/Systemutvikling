@@ -51,13 +51,13 @@ public class RegisterPersonController {
         return mav;
     }
        
-    @RequestMapping(value = "registerPerson" , method=RequestMethod.GET)
+    @RequestMapping(value = "/registerPerson" , method=RequestMethod.GET)
     public String person(@ModelAttribute Person person) {
         System.out.println(" ******   RegisterPerson.controller.person() ");
         return "registerPerson";
     }
 
-    @RequestMapping(value = "RegisterPerson" , method=RequestMethod.POST)
+    @RequestMapping(value = "registerPerson" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("person") Person person, BindingResult error, Model modell) {
         
         if(error.hasErrors()){
@@ -69,7 +69,7 @@ public class RegisterPersonController {
         System.out.println(" **** Person verdi i RegisterPersonController " + person);
         
         if (personService.registerPerson(person)) {
-            modell.addAttribute("melding","Person " + person + " er registrert");
+            modell.addAttribute("melding","Person " + person.toString() + " er registrert");
             return "svarside";
         } else {
             modell.addAttribute("melding","feilmelding.reg.person");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
