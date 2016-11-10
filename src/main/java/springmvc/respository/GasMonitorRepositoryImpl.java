@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import springmvc.domene.GasMonitor;
 
 public class GasMonitorRepositoryImpl implements GasMonitorRepository{
-    private final String sqlInsertGasMonitor = "insert into gasmonitor(maxweight, currentweight, battery, customerid, supplierid) values(?,?,?,?,?)";
+    private final String sqlInsertGasMonitor = "insert into gasmonitor (max_weight, current_weight, battery, supp_id, cust_id) values('?','?','?','?','?');";
     private final String sqlSelectGasMonitor = "Select * from gasmonitor where id = ?";
     
     private DataSource dataSource;
@@ -17,8 +17,9 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
         System.out.println(" Database.setDataSource " + dataSource);
         this.dataSource = dataSource;
     }
-    
+    @Override
     public boolean registerGasMonitor(GasMonitor g){
+        System.out.println("*** GAS MONITOR REPOSITORY *** " + g);
         jdbcTemplateObject.update(sqlInsertGasMonitor,
                 new Object []{
                     g.getMaxWeight(),
