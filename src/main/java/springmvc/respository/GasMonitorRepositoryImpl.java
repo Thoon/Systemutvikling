@@ -1,13 +1,17 @@
 package springmvc.respository;
 
+import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import springmvc.domene.GasMonitor;
 
 public class GasMonitorRepositoryImpl implements GasMonitorRepository{
-    private final String sqlInsertGasMonitor = "insert into gasmonitor (max_weight, current_weight, battery, supp_id, cust_id) values('?','?','?','?','?');";
-    private final String sqlSelectGasMonitor = "Select * from gasmonitor where id = ?";
+    private final String sqlInsertGasMonitor = "insert into gas_monitor (max_weight, current_weight, battery, supp_id, cust_id) values('?','?','?','?','?');";
+    private final String sqlSelectGasMonitor = "Select * from gas_monitor where gm_id = ?";
+    private final String sqlDeleteGasMonitor = "Delete from gas_monitor where gm_id = ?";
+    private final String sqlSelectAllGasMonitors = "Select * from gas_monitor";
+    private final String sqlUpdateGasMonitor = "update gas_monitor set maxweight = ?, cust_id where gm_id = ?";
     
     private DataSource dataSource;
     static JdbcTemplate jdbcTemplateObject;
@@ -17,6 +21,7 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
         System.out.println(" Database.setDataSource " + dataSource);
         this.dataSource = dataSource;
     }
+    
     @Override
     public boolean registerGasMonitor(GasMonitor g){
         System.out.println("*** GAS MONITOR REPOSITORY *** " + g);
@@ -34,5 +39,28 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     public GasMonitor getGasMonitor(int id) {
         GasMonitor g = (GasMonitor) jdbcTemplateObject.queryForObject(sqlSelectGasMonitor, new Object[]{id}, new GasMonitorMapper());
         return g;
+    }
+    
+    @Override
+    public boolean deleteGasMonitor(GasMonitor gasMonitor){
+        jdbcTemplateObject.update(sqlDeleteGasMonitor, gasMonitor.getId() );
+        return true;
+    }
+    
+    @Override
+    public List<GasMonitor> getAllGasMonitors(){
+        return jdbcTemplateObject.query(sqlSelectAllGasMonitors, new GasMonitorMapper());
+    }
+    
+    @Override
+    public boolean updateGasMonitor(GasMonitor gasMonitor){
+        System.out.println("** Repository ** " + gasMonitor);
+        jdbcTemplateObject.update(sqlUpdateGasMonitor, new Object[]{
+            gasMonitor.getMaxWeight(),
+            gasMonitor.getCurrentWeight(),
+            gasMonitor.getBattery(),
+            gasMonitor.getCustomerId()
+        });
+        return true;
     }
 }

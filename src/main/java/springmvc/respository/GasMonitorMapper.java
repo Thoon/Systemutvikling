@@ -15,13 +15,12 @@ import springmvc.domene.GasMonitor;
  * @author ander
  */
 public class GasMonitorMapper implements RowMapper<GasMonitor> {
-        @Override
+    @Override
     public GasMonitor mapRow(ResultSet rs, int i) throws SQLException {
         GasMonitor g = new GasMonitor();
-        g.setId(rs.getInt("id"));
         g.setMaxWeight(rs.getInt("maxWeight"));
         g.setCurrentWeight(rs.getInt("currentWeight"));
-        g.setBattery(rs.getInt("battery"));
+        g.setBattery(rs.getDouble("battery"));
         g.setCustomerId(rs.getInt("customerId"));
         g.setSupplierId(rs.getInt("supplierId"));
         return g;
