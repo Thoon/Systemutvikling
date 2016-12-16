@@ -16,4 +16,6 @@ public interface PersonService {
     public boolean registerPerson(Person p);
     
     public boolean deletePersons(List<Person> personList);
+    
+    public int checkLogin(Person p);
 }
