@@ -20,13 +20,15 @@ public class GasMonitor {
     private int customerId;
     @NotNull
     private int supplierId;
+    @NotNull
+    private int gasTanks;
     
     public GasMonitor(){
                 System.out.println("--------------------------------hei1");
 
     }
     
-    public GasMonitor(int id,int maxWeight, int currentWeight, double battery, int customerId, int supplierId){
+    public GasMonitor(int id,int maxWeight, int currentWeight, double battery, int customerId, int supplierId, int gasTanks){
                 System.out.println("--------------------------------hei2");
 
         this.id = id;
@@ -35,15 +37,17 @@ public class GasMonitor {
         this.battery = battery;
         this.customerId = customerId;
         this.supplierId = supplierId;
+        this.gasTanks = gasTanks;
     }
     
-    public GasMonitor(int maxWeight, int currentWeight, double battery, int customerId, int supplierId){
+    public GasMonitor(int maxWeight, int currentWeight, double battery, int customerId, int supplierId, int gasTanks){
         System.out.println("--------------------------------hei3");
         this.maxWeight = maxWeight;
         this.currentWeight = currentWeight;
         this.battery = battery;
         this.customerId = customerId;
         this.supplierId = supplierId;
+        this.gasTanks = gasTanks;
     }
 
     public int getId() {
@@ -93,13 +97,21 @@ public class GasMonitor {
     public void setSupplierId(int supplierId) {
         this.supplierId = supplierId;
     }
+    
+    public int getGasTanks(){
+        return gasTanks;
+    }
+    
+    public void setGasTanks(int gasTanks){
+        this.gasTanks = gasTanks;
+    }
 
     @Override
     public String toString() {
         if(id == 0){
-            return "GasMonitor{maxWeight=" + maxWeight + ", currentWeight=" + currentWeight + ", battery=" + battery + ", customerId=" + customerId + ", supplierId=" + supplierId + '}';
+            return "GasMonitor{maxWeight=" + maxWeight + ", currentWeight=" + currentWeight + ", battery=" + battery + ", customerId=" + customerId + ", supplierId=" + supplierId + ", gastanks= " + gasTanks + '}';
         }else{
-            return "GasMonitor{" + "id=" + id + ", maxWeight=" + maxWeight + ", currentWeight=" + currentWeight + ", battery=" + battery + ", customerId=" + customerId + ", supplierId=" + supplierId + '}';
+            return "GasMonitor{" + "id=" + id + ", maxWeight=" + maxWeight + ", currentWeight=" + currentWeight + ", battery=" + battery + ", customerId=" + customerId + ", supplierId=" + supplierId +", gastanks= " + gasTanks + '}';
         }
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import springmvc.domene.GasMonitor;
 
 public class GasMonitorRepositoryImpl implements GasMonitorRepository{
-    private final String sqlInsertGasMonitor = "insert into gas_monitor (max_weight, current_weight, battery, supp_id, cust_id) values('?','?','?','?','?');";
+    private final String sqlInsertGasMonitor = "insert into gas_monitor (gm_id, max_weight, current_weight, battery, supp_id, cust_id, number_gastanks) values(?,?,?,?,?,?,?);";
     private final String sqlSelectGasMonitor = "Select * from gas_monitor where gm_id = ?";
     private final String sqlDeleteGasMonitor = "Delete from gas_monitor where gm_id = ?";
     private final String sqlSelectAllGasMonitors = "Select * from gas_monitor";
@@ -27,11 +27,13 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
         System.out.println("*** GAS MONITOR REPOSITORY *** " + g);
         jdbcTemplateObject.update(sqlInsertGasMonitor,
                 new Object []{
+                    g.getId(),
                     g.getMaxWeight(),
                     g.getCurrentWeight(),
                     g.getBattery(),
                     g.getCustomerId(),
-                    g.getSupplierId()
+                    g.getSupplierId(),
+                    g.getGasTanks()
                 });
         return true;
     }

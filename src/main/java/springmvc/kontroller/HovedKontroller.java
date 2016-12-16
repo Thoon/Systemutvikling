@@ -126,11 +126,10 @@ public class HovedKontroller {
         } else { 
             if (error.hasErrors()){ //ikke oppdater grunnet valideringsfeil
                 return "editGasMonitor";
-            }
-                    
+            }  
             if (gasMonitorService.updateGasMonitors(backingBean.getAllGasMonitors())){
                 backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());
-               // System.out.println("TEST");
+                System.out.println("TEST");
                 return "editGasMonitor";
             }else{ //feil ved oppdatering
                 modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.

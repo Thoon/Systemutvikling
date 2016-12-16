@@ -65,4 +65,32 @@ public class PersonServiceImpl implements PersonService{
         System.out.println("**** PersonServiceImpl.updatePerson()  *** ");
         return repo.updatePerson(p);
     }
+    @Override
+    public int checkLogin(Person p) {
+        // 0: begge er tomme felter
+        // 1: Epost er tom
+        // 2: passord er tom
+        // 3: passord samsvarer ikke
+        // 4: Epost er ikke registrert
+        // 5: Godkjent
+
+        if (p.getEmail() == "" && p.getPassword() == "") {
+            return 0;
+        } else if (p.getEmail() == "") {
+            return 1;
+        } else if (p.getPassword() == "") {
+            return 2;
+        }
+
+        try {
+            Person personToCheck = repo.getPerson(p.getEmail());
+            if (!Passord.checkPassword(p.getPassord(), personToCheck.getPassord())) {
+                return 3;
+            }
+            return 5;
+        } catch (Exception e) {
+            return 4;
+        }
+
+    }
 }
