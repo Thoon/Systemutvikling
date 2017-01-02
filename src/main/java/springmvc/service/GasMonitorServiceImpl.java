@@ -23,8 +23,7 @@ public class GasMonitorServiceImpl implements GasMonitorService {
     }
     @Override
     public boolean registerGasMonitor(GasMonitor g){
-        System.out.println(g);
-        System.out.println("******* GasMonitorServiceImpl.registerGasMonitor() ***** ");
+        System.out.println("******* GasMonitorServiceImpl.registerGasMonitor() ***** " + g);
         return repo.registerGasMonitor(g);
     }
     
@@ -53,6 +52,7 @@ public class GasMonitorServiceImpl implements GasMonitorService {
             
         boolean isUpdateOK = true;
         for (GasMonitor g : gasMonitorList){
+            System.out.println("test");
             if (!repo.updateGasMonitor(g)) isUpdateOK=false;
         }
         return isUpdateOK;

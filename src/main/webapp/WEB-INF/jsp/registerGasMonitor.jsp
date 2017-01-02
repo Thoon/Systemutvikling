@@ -5,6 +5,12 @@
 <form:form action="RegisterGasMonitor.htm" method="post" modelAttribute="gasMonitor" >
     <table>
         <tr>  
+            <td> Serienummer: </td>
+            <td> <form:input path="id" />
+                 <form:errors path="id" />
+            </td> 
+        </tr>
+        <tr>  
             <td> Maksvekt i kg: </td>
             <td> <form:input path="maxWeight" />
                  <form:errors path="maxWeight" />
@@ -32,6 +38,12 @@
             <td> Leverandør ID: </td>
             <td> <form:input path="supplierId" />
                  <form:errors path="supplierId" />
+            </td>
+        </tr>
+        <tr>
+            <td> Antall gasstanker: </td>
+            <td> <form:input path="gasTanks" />
+                 <form:errors path="gasTanks" />
             </td>
         </tr>
         <tr><td colspan="2"><input type="submit" value="Registrer Gassmonitor"</td></tr>

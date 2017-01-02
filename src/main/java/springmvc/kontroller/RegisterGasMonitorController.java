@@ -68,6 +68,7 @@ public class RegisterGasMonitorController {
         System.out.println(" **** GasMonitor verdi i RegisterGasMonitorController " + gasMonitor);
         
         if (gasMonitorService.registerGasMonitor(gasMonitor)) {
+            System.out.println("TEST");
             modell.addAttribute("melding","GasMonitor" + gasMonitor + " er registrert");
             return "svarside";
         } else {
