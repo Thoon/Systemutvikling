@@ -19,4 +19,6 @@ public interface PersonRepository {
     public boolean updatePerson(Person p) ;
 
     public boolean deletePerson(Person p) ;
+    
+    public boolean updatePassword(Person p) ;
 }

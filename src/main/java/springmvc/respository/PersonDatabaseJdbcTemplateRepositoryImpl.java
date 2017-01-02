@@ -23,6 +23,7 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     private final String sqlInsertPerson = "insert into person (firstName, lastname, password, email, phone, permissions, active) values(?,?,?,?,?,?,?)";
     private final String sqlUpdatePerson = "update person set firstName=?, lastname = ?, password = ?, phone = ?, permission = ? where email = ?";
 
+    private final String sqlUpdatePersonPassword = "update Person set password=?, active=? where email = ?";
 
     
     private DataSource dataSource;
@@ -72,6 +73,15 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
                 person.getPhoneNumber(),
                 person.getPermission(),
                 person.isIsActive()
+        });
+        return true;
+    }
+    
+        public boolean updatePassword(Person person){
+        jdbcTemplateObject.update(sqlUpdatePersonPassword, new Object[]{
+            person.getPassword(),
+            person.isIsActive(),
+            person.getEmail()
         });
         return true;
     }
