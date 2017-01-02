@@ -1,6 +1,7 @@
 package springmvc.respository;
 
 import java.sql.Connection;
+import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
 import springmvc.domene.Person;
@@ -24,6 +25,7 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     private final String sqlUpdatePerson = "update person set firstName=?, lastname = ?, password = ?, phone = ?, permission = ? where email = ?";
 
     private final String sqlUpdatePersonPassword = "update Person set password=?, active=? where email = ?";
+    private final String sqlInsertForgottenPassword = "insert into forgottenPassword (token, email, date) values(?,?,?)";
 
     
     private DataSource dataSource;
@@ -77,11 +79,22 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
         return true;
     }
     
-        public boolean updatePassword(Person person){
+    public boolean updatePassword(Person person){
         jdbcTemplateObject.update(sqlUpdatePersonPassword, new Object[]{
             person.getPassword(),
             person.isIsActive(),
             person.getEmail()
+        });
+        return true;
+    }
+    
+    
+     public boolean forgotPassword(String token, String email, Date stopdate){
+        jdbcTemplateObject.update(sqlInsertForgottenPassword, 
+            new Object[]{
+                token,
+                email, 
+                stopdate
         });
         return true;
     }

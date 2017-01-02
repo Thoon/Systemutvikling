@@ -4,7 +4,7 @@
 
 <h1>Glemt passord</h1>
 
-    <form:form action="forgotPassword" method="post" modelAttribute="person"> 
+    <form:form action="forgotpassword" method="post" modelAttribute="person"> 
         <table>
             <tr>
                 <td>E-post:</td>

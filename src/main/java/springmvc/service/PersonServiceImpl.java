@@ -1,5 +1,6 @@
 package springmvc.service;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import springmvc.domene.Person;
@@ -131,4 +132,26 @@ public class PersonServiceImpl implements PersonService{
             return 1;
         }
     }
+    
+    @Override
+    public int sendForgotPasswordInstructions(Person p) {
+        // 0: ingen email skrevet
+        // 1: Email eksisterer ikke
+        // 2: Godkjent
+        if (p.getEmail() == "") {
+            return 0;
+        }
+        try {
+            repo.getPerson(p.getEmail());
+            Email email = new Email();
+            String token = getNewToken();
+            Date avsluttDato = new Date();
+            repo.forgotPassword(token, p.getEmail(), avsluttDato);
+            email.createAndSendEmail(p.getEmail(), "Glemt passord hos SmartCylinders", "Følg disse instruksjonene for å endre ditt passord hos SmartCylinders.<br><br>Følg denne linken: www.testtesttest.com/" + token + "<br>Skriv inn det nye passordet.");
+            return 2;
+        } catch (Exception e) {
+            return 1;
+        }
+    }
+    
 }
