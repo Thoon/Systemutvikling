@@ -102,7 +102,31 @@ public class LoginController {
         return "newuser";
     }
     
-    
+    @RequestMapping(value = "/forgotpassword", method = RequestMethod.GET)
+    public String forgotPassword(@ModelAttribute Person person) {
+        return "forgotPassword";
+    }
+
+    @RequestMapping(value = "forgotpassword", method = RequestMethod.POST)
+    public String sendForgotPasswordInstructions(@Valid @ModelAttribute("person") Person person, BindingResult error, Model modell) {
+        int returnValue = personService.sendForgotPasswordInstructions(person);
+
+        if (returnValue == 2) {
+            modell.addAttribute("melding", "Epost med instruksjoner er sendt");
+            return "login";
+        }
+        switch (returnValue) {
+            case 0:
+                modell.addAttribute("melding", "E-post er ikke fylt ut.");
+                break;
+            case 1:
+                modell.addAttribute("melding", "Epost eksisterer ikke.");
+                break;
+            default:
+                break;
+        }
+        return "newuser";
+    }
     
     public static boolean checkLogin(HttpSession session){
         return session.getAttribute("email") != null;
