@@ -18,4 +18,10 @@ public interface PersonService {
     public boolean deletePersons(List<Person> personList);
     
     public int checkLogin(Person p);
+    
+    public int checkNewUser(Person p);
+    
+    public boolean updatePassword(Person p);
+    
+    public int sendForgotPasswordInstructions(Person p);
 }

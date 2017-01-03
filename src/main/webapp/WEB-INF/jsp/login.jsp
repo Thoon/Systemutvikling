@@ -13,7 +13,7 @@
             <td>Passord:</td>
         </tr>
         <tr>
-            <td colspan="2"><form:password path="passord"/></td>
+            <td colspan="2"><form:password path="password"/></td>
         </tr>
         <tr>
             <td><a href="newuser">Ny bruker</a></td>

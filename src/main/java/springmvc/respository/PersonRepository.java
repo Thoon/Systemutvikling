@@ -5,6 +5,7 @@
  */
 package springmvc.respository;
 
+import java.util.Date;
 import java.util.List;
 import springmvc.domene.Person;
 
@@ -19,4 +20,8 @@ public interface PersonRepository {
     public boolean updatePerson(Person p) ;
 
     public boolean deletePerson(Person p) ;
+    
+    public boolean updatePassword(Person p) ;
+    
+    public boolean forgotPassword(String token, String email, Date stopdate);
 }
