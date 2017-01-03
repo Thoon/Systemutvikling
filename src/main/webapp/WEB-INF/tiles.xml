@@ -63,4 +63,9 @@
         <put-attribute name="title"  value="login"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/login.jsp"/>      
     </definition>
+    
+    <definition name="newuser" extends="loginLayout">
+        <put-attribute name="title"  value="newUser"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/newUser.jsp"/>      
+    </definition>
 </tiles-definitions>
