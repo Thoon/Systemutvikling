@@ -1,6 +1,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
+<h1>Logg inn</h1>
 <form:form action="login.htm" method="post" modelAttribute="person" >
     <table>
         <tr>
@@ -24,3 +26,8 @@
         </tr>
     </table>
 </form:form>
+
+<div class="error">
+    <h4>${melding}</h4>
+    
+</div>

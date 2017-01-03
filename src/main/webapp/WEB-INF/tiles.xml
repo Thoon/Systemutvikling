@@ -15,7 +15,7 @@
     </definition>
     
     <definition name="loginLayout" template="/WEB-INF/tiles/loginLayout.jsp">
-        <put-attribute name="title"  value="LoginLayout"/>
+        <put-attribute name="title"  value="loginLayout"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/login.jsp"/>
     </definition>
   
@@ -60,7 +60,7 @@
     </definition>
     
     <definition name="login" extends="loginLayout">
-        <put-attribute name="title"  value="login"/>
+        <put-attribute name="title"  value="Login"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/login.jsp"/>      
     </definition>
     
