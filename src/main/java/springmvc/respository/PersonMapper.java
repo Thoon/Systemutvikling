@@ -20,6 +20,7 @@ public class PersonMapper implements RowMapper<Person> {
         person.setFirstName(rs.getString("firstName"));
         person.setLastName(rs.getString("lastName"));
         person.setPhoneNumber(rs.getInt("phone"));
+        person.setPassword(rs.getString("password"));
         person.setPermission(rs.getInt("permissions"));
         person.setIsActive(rs.getBoolean("active"));
         return person;
