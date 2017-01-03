@@ -72,6 +72,7 @@ public class PersonServiceImpl implements PersonService{
     
     @Override
     public boolean updatePassword(Person p) {
+        System.out.println(p);
         return repo.updatePassword(p);
     }
     
@@ -121,8 +122,9 @@ public class PersonServiceImpl implements PersonService{
 
                 Email email = new Email();
                 String newPassword = getNewPassword();
-
-                email.createAndSendEmail(personToCheck.getEmail(), "Aktivering av bruker hos StudyEasy", "Gratulerer med aktivert bruker hos StudyEasy.\n\nDin epost: " + personToCheck.getEmail() + "\nDitt passord: " + newPassword + "\n\n* Du vil få muligheten til å bytte passord på innstillinger.");
+                email.createAndSendEmail(personToCheck.getEmail(), "Aktivering av bruker hos StudyEasy", 
+                        "Gratulerer med aktivert bruker hos StudyEasy.\n\nDin epost: " + personToCheck.getEmail() + 
+                        "\nDitt passord: " + newPassword + "\n\n* Du vil få muligheten til å bytte passord på innstillinger.");
                 personToCheck.setIsActive(true);
                 personToCheck.setPassword(Password.hashPassword(newPassword));
                 updatePassword(personToCheck);

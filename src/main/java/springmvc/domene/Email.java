@@ -55,7 +55,6 @@ public class Email{
             message.setContent(msgText, "text/html"); //set content type of the email
 
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailAddressTo)); //Set email recipient
-
             message.setSubject(msgSubject); //Set email message subject
             Transport.send(message); //Send email message
 

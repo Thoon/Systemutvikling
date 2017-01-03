@@ -24,7 +24,7 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     private final String sqlInsertPerson = "insert into person (firstName, lastname, password, email, phone, permissions, active) values(?,?,?,?,?,?,?)";
     private final String sqlUpdatePerson = "update person set firstName=?, lastname = ?, password = ?, phone = ?, permission = ? where email = ?";
 
-    private final String sqlUpdatePersonPassword = "update Person set password=?, active=? where email = ?";
+    private final String sqlUpdatePersonPassword = "update person set password=?, active=? where email = ?";
     private final String sqlInsertForgottenPassword = "insert into forgottenPassword (token, email, date) values(?,?,?)";
 
     
