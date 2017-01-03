@@ -18,3 +18,8 @@
         </tr>
     </table>
 </form:form>
+
+<div class="error">
+    <h4>${melding}</h4>
+    
+</div>

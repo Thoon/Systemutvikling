@@ -4,7 +4,7 @@
 
 <h1>Glemt passord</h1>
 
-    <form:form action="forgotpassword" method="post" modelAttribute="person"> 
+<form:form action="forgotpassword" method="post" modelAttribute="person"> 
         <table>
             <tr>
                 <td>E-post:</td>
@@ -17,4 +17,9 @@
                 <td><input type="submit" value="Send instrukser" id="submit"> </td>
             </tr>
         </table>
-    </form:form>
+</form:form>
+
+<div class="error">
+    <h4>${melding}</h4>
+    
+</div>
