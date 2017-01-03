@@ -40,8 +40,8 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
     
-    public Person getPerson(String personnr ){
-        return (Person)jdbcTemplateObject.queryForObject(sqlSelectPerson, new Object[]{personnr}, new PersonMapper());
+    public Person getPerson(String email ){
+        return (Person)jdbcTemplateObject.queryForObject(sqlSelectPerson, new Object[]{email}, new PersonMapper());
     }
     
     public List<Person> getEveryone(){
