@@ -22,7 +22,7 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     private final String sqlSelectEveryone = "Select * from person";
     
     private final String sqlInsertPerson = "insert into person (firstName, lastname, password, email, phone, permissions, active) values(?,?,?,?,?,?,?)";
-    private final String sqlUpdatePerson = "update person set firstName=?, lastname = ?, password = ?, phone = ?, permission = ? where email = ?";
+    private final String sqlUpdatePerson = "update person set firstName=?, lastname = ?, password = ?, phone = ?, permissions = ? where email = ?";
 
     private final String sqlUpdatePersonPassword = "update person set password=?, active=? where email = ?";
     private final String sqlInsertForgottenPassword = "insert into forgottenPassword (token, email, date) values(?,?,?)";
@@ -40,31 +40,37 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
     
+    @Override
     public Person getPerson(String personnr ){
         return (Person)jdbcTemplateObject.queryForObject(sqlSelectPerson, new Object[]{personnr}, new PersonMapper());
     }
     
+    @Override
     public List<Person> getEveryone(){
         return jdbcTemplateObject.query(sqlSelectEveryone, new PersonMapper());
     }
 
+    @Override
     public boolean deletePerson(Person person) {
         jdbcTemplateObject.update(sqlDeletePerson, person.getEmail() );
         return true;
     }
     
+    @Override
     public boolean updatePerson(Person person){
         System.out.println("** Repository ** " + person);
         jdbcTemplateObject.update(sqlUpdatePerson, new Object[]{
             person.getFirstName(),
             person.getLastName(),
-            person.getEmail(),
+            person.getPassword(),
             person.getPhoneNumber(),
-            person.getPermission()
+            person.getPermission(),
+            person.getEmail()
         });
         return true;
     }
     
+    @Override
     public boolean registerPerson(Person person){
         jdbcTemplateObject.update(sqlInsertPerson, 
             new Object[]{
@@ -79,6 +85,7 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
         return true;
     }
     
+    @Override
     public boolean updatePassword(Person person){
         jdbcTemplateObject.update(sqlUpdatePersonPassword, new Object[]{
             person.getPassword(),
@@ -88,7 +95,7 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
         return true;
     }
     
-    
+    @Override
      public boolean forgotPassword(String token, String email, Date stopdate){
         jdbcTemplateObject.update(sqlInsertForgottenPassword, 
             new Object[]{

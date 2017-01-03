@@ -16,12 +16,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.handler.AbstractHandlerMapping;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import springmvc.respository.CustomerDatabaseJdbcTemplateRepositoryImpl;
+import springmvc.respository.CustomerRepository;
 import springmvc.respository.GasMonitorRepository;
 import springmvc.respository.GasMonitorRepositoryImpl;
 
 
 import springmvc.respository.PersonDatabaseJdbcTemplateRepositoryImpl;
 import springmvc.respository.PersonRepository;
+import springmvc.service.CustomerService;
+import springmvc.service.CustomerServiceImpl;
 import springmvc.service.GasMonitorService;
 import springmvc.service.GasMonitorServiceImpl;
 import springmvc.service.PersonService;
@@ -109,4 +113,14 @@ public class Konfigurasjon extends WebMvcConfigurationSupport {
     public GasMonitorRepository gasMonitorRepository(){
         return new GasMonitorRepositoryImpl();
     }    
+    
+    @Bean
+    public CustomerService customerService(){
+        return new CustomerServiceImpl();
+    }
+    
+    @Bean
+    public CustomerRepository customerRepository(){
+        return new CustomerDatabaseJdbcTemplateRepositoryImpl();
+    }
 }
