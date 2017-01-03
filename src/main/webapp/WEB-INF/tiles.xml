@@ -15,7 +15,7 @@
     </definition>
     
     <definition name="loginLayout" template="/WEB-INF/tiles/loginLayout.jsp">
-        <put-attribute name="title"  value="LoginLayout"/>
+        <put-attribute name="title"  value="loginLayout"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/login.jsp"/>
     </definition>
   
@@ -37,6 +37,11 @@
     <definition name="registerPerson" extends="baseLayout">
         <put-attribute name="title"  value="Registrer Person"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/registerPerson.jsp"/>      
+    </definition>
+    
+    <definition name="editCustomer" extends="baseLayout">
+        <put-attribute name="title" value="Velg kunde"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/editCustomer.jsp"/>
     </definition>
     
     <definition name="svarside" extends="baseLayout">

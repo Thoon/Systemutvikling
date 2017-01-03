@@ -7,6 +7,7 @@
 <a href="<c:url value="registerPerson"/>">         <spring:message code="menyvalg3" />  </a><br>
 <a href="<c:url value="registerGasMonitor"/>">         <spring:message code="menyvalg4" />  </a><br>
 <a href="<c:url value="editGasMonitor"/>">         <spring:message code="menyvalg5" />  </a><br>
+<a href="<c:url value="editCustomer"/>">          <spring:message code="menyvalg6" /> </a><br>
 
 
 
