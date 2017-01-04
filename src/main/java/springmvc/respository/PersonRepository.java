@@ -22,12 +22,4 @@ public interface PersonRepository {
     public boolean deletePerson(Person p) ;
     
     public boolean updatePassword(Person p) ;
-    
-    public boolean forgotPassword(String token, String email, Date stopdate);
-    
-    public boolean checkForgotPassword(String token);
-    
-    public String tokenForgotPasswordEmail(String token);
-    
-    public void deleteForgotPassword(String token);
 }

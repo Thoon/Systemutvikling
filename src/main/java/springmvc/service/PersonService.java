@@ -22,12 +22,4 @@ public interface PersonService {
     public int checkNewUser(Person p);
     
     public boolean updatePassword(Person p);
-    
-    public int sendForgotPasswordInstructions(Person p);
-    
-    public boolean checkForgotPassword(String token);
-    
-    public boolean newForgotPassword(String newPassword, String token);
-    
-    public void deleteForgotPassword(String token);
 }
