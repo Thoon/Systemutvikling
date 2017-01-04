@@ -150,11 +150,41 @@ public class PersonServiceImpl implements PersonService{
             String token = getNewToken();
             Date avsluttDato = new Date();
             repo.forgotPassword(token, p.getEmail(), avsluttDato);
-            email.createAndSendEmail(p.getEmail(), "Glemt passord hos SmartCylinders", "Følg disse instruksjonene for å endre ditt passord hos SmartCylinders.<br><br>Følg denne linken: www.testtesttest.com/" + token + "<br>Skriv inn det nye passordet.");
+            email.createAndSendEmail(p.getEmail(), "Glemt passord hos SmartCylinders", 
+                    "Følg disse instruksjonene for å endre ditt passord hos SmartCylinders.<br>"
+                            + "<br>Følg denne linken: http://www.localhost:8084/forgotpassword/newpassword/" + token + 
+                            "<br>Skriv inn det nye passordet.");
             return 2;
         } catch (Exception e) {
             return 1;
         }
+    }
+    
+    @Override
+    public boolean checkForgotPassword(String token) {
+        if (repo.checkForgotPassword(token)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    @Override
+    public boolean newForgotPassword(String newPassword, String token) {
+        String epost = repo.tokenForgotPasswordEmail(token);
+        if (epost == "") {
+            return false;
+        } else {
+            Person pers = repo.getPerson(epost);
+            pers.setPassword(Password.hashPassword(newPassword));
+            repo.updatePassword(pers);
+            return true;
+        }
+    }
+
+    @Override
+    public void deleteForgotPassword(String token) {
+        repo.deleteForgotPassword(token);
     }
     
 }
