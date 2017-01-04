@@ -78,4 +78,9 @@
         <put-attribute name="title"  value="forgotPassword"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/forgotPassword.jsp"/>      
     </definition>
+    
+    <definition name="newpassword" extends="loginLayout">
+        <put-attribute name="title"  value="newPassword"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/newPassword"/>      
+    </definition>
 </tiles-definitions>
