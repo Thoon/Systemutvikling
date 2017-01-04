@@ -118,6 +118,12 @@ public class PersonServiceImpl implements PersonService{
         try {
             Person personToCheck = repo.getPerson(p.getEmail());
             if (personToCheck.isIsActive()) {
+                Email email = new Email();
+                String newPassword = getNewPassword();
+                email.createAndSendEmail(personToCheck.getEmail(), "Nytt passord til SmartCylinders", "Ditt nye passord er: " + newPassword + "\n\n* "
+                        + "Du vil få muligheten til å bytte passord på innstillinger");
+                personToCheck.setPassword(Password.hashPassword(newPassword));
+                updatePassword(personToCheck);
                 return 2;
             } else {
 
@@ -135,56 +141,4 @@ public class PersonServiceImpl implements PersonService{
             return 1;
         }
     }
-    
-    @Override
-    public int sendForgotPasswordInstructions(Person p) {
-        // 0: ingen email skrevet
-        // 1: Email eksisterer ikke
-        // 2: Godkjent
-        if (p.getEmail() == "") {
-            return 0;
-        }
-        try {
-            repo.getPerson(p.getEmail());
-            Email email = new Email();
-            String token = getNewToken();
-            Date avsluttDato = new Date();
-            repo.forgotPassword(token, p.getEmail(), avsluttDato);
-            email.createAndSendEmail(p.getEmail(), "Glemt passord hos SmartCylinders", 
-                    "Følg disse instruksjonene for å endre ditt passord hos SmartCylinders.<br>"
-                            + "<br>Følg denne linken: http://www.localhost:8084/forgotpassword/newpassword/" + token + 
-                            "<br>Skriv inn det nye passordet.");
-            return 2;
-        } catch (Exception e) {
-            return 1;
-        }
-    }
-    
-    @Override
-    public boolean checkForgotPassword(String token) {
-        if (repo.checkForgotPassword(token)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    @Override
-    public boolean newForgotPassword(String newPassword, String token) {
-        String epost = repo.tokenForgotPasswordEmail(token);
-        if (epost == "") {
-            return false;
-        } else {
-            Person pers = repo.getPerson(epost);
-            pers.setPassword(Password.hashPassword(newPassword));
-            repo.updatePassword(pers);
-            return true;
-        }
-    }
-
-    @Override
-    public void deleteForgotPassword(String token) {
-        repo.deleteForgotPassword(token);
-    }
-    
 }
