@@ -5,17 +5,18 @@
  */
 package springmvc.domene;
 
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Customer {
     
-    @NotEmpty
+    @NotNull
     private Integer customerId;
     @NotEmpty
     private String customerName;
     @NotEmpty
     private String address;
-    @NotEmpty
+    @NotNull
     private int supplierId;
     
 
