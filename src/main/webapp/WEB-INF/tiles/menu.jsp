@@ -9,4 +9,5 @@
     <li><a href="<c:url value="registerGasMonitor"/>">         <spring:message code="menyvalg5" />  </a></li>
     <li><a href="<c:url value="editCustomer"/>">          <spring:message code="menyvalg6" /> </a></li>
     <li><a href="<c:url value="registerCustomer"/>">      <spring:message code="menyvalg7" /> </a></li>
+    <li><a href="<c:url value="settings"/>">      <spring:message code="menyvalg20" /> </a></li>
 </ul>

@@ -190,13 +190,59 @@ public class HovedKontroller {
     }
     
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
-    public String endrepassord(ModelMap model, @ModelAttribute Person person, PersonFormBackingBean personBean, HttpSession session) {
+    public String changepassword(ModelMap model, @ModelAttribute Person person, PersonFormBackingBean personBean, HttpSession session) {
         if (LoginController.checkLogin(session)) {
-            return "innstillinger";
+            return "settings";
         } else {
             model.addAttribute("melding", "Du ble logget av");
             return "login";
         }
+    }
+    
+    @RequestMapping(value = "changepassword", method = RequestMethod.POST)
+    public String endrePassord(@ModelAttribute("person") Person person, ModelMap model, HttpSession session) {
+        if (LoginController.checkLogin(session)) {
+        String pass2 = person.getPassword();
+        String pass1 = person.getEmail();
+        String epost = session.getAttribute("email").toString();
+
+        if (pass1.length() < 8) {
+            model.addAttribute("melding", "Passordet må minimum være 8 tegn langt");
+            return "settings";
+        }
+        int letters = 0, numbers = 0, specialChars = 0;
+        for (char c : pass1.toCharArray()) {
+            if (c == ' ') {
+                model.addAttribute("melding", "Ikke lov med mellomrom i passord");
+                return "settings";
+            } else if (Character.isUpperCase(c)) {
+                ++letters;
+            } else if (Character.isDigit(c)) {
+                ++numbers;
+            } else {
+                ++specialChars;
+            }
+
+        }
+        if (letters < 1 || numbers < 1 || specialChars < 1) {
+            model.addAttribute("melding", "Passordet må minimum ha en store bokstav, ett spesialtegn og ett tall");
+            return "settings";
+        }
+
+        if (pass1.equals(pass2) && !pass1.equals("")) {
+            personService.changePassword(pass1, epost);
+            model.addAttribute("melding", "Passordet ble endret");
+            return "settings";
+        } else {
+            model.addAttribute("melding", "Passordene samsvarer ikke");
+            return "settings";
+
+        }
+        } else {
+            model.addAttribute("melding", "Du ble logget av");
+            return "login";
+        }
+
     }
 
 }

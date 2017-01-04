@@ -11,16 +11,16 @@
                 <td>Nytt passord:</td>
             </tr>
             <tr>
-                <td colspan="2"><form:password path="passord"/></td>
+                <td colspan="2"><form:password path="password"/></td>
             </tr>
             <tr>
                 <td>Gjenta passord:</td>
             </tr>
             <tr>
-                <td colspan="2"><form:password path="epost"/></td>
+                <td colspan="2"><form:password path="email"/></td>
             </tr>
             <tr>
-                <td colspan="2"><form:hidden path="etternavn" value="${token}"/></td>
+                <td colspan="2"><form:hidden path="lastName" value="${token}"/></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Fullfør" id="submit"> </td>
