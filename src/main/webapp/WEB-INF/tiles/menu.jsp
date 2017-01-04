@@ -5,7 +5,8 @@
     <li><a href="<c:url value="index"/>" >           <spring:message code="menyvalg1" />  </a></li>
     <li><a href="<c:url value="editPerson"/>" >   <spring:message code="menyvalg2" />  </a></li>
     <li><a href="<c:url value="registerPerson"/>">         <spring:message code="menyvalg3" />  </a></li>
-    <li><a href="<c:url value="registerGasMonitor"/>">         <spring:message code="menyvalg4" />  </a></li>
-    <li><a href="<c:url value="editGasMonitor"/>">         <spring:message code="menyvalg5" />  </a></li>
+    <li><a href="<c:url value="editGasMonitor"/>">         <spring:message code="menyvalg4" />  </a></li>
+    <li><a href="<c:url value="registerGasMonitor"/>">         <spring:message code="menyvalg5" />  </a></li>
     <li><a href="<c:url value="editCustomer"/>">          <spring:message code="menyvalg6" /> </a></li>
+    <li><a href="<c:url value="registerCustomer"/>">      <spring:message code="menyvalg7" /> </a></li>
 </ul>

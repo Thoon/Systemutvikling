@@ -30,7 +30,7 @@
     </definition>
   
     <definition name="editPerson" extends="baseLayout">
-        <put-attribute name="title"  value="Velg Person"/>
+        <put-attribute name="title"  value="Rediger Person"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/editPerson.jsp"/>      
     </definition>
   
@@ -44,6 +44,11 @@
         <put-attribute name="body" value="/WEB-INF/jsp/editCustomer.jsp"/>
     </definition>
     
+    <definition name="registerCustomer" extends="baseLayout">
+        <put-attribute name="title"  value="Registrer kunde"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/registerCustomer.jsp"/>      
+    </definition>
+        
     <definition name="svarside" extends="baseLayout">
         <put-attribute name="title"  value="Tilbakemelding"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/svarside.jsp"/>      
