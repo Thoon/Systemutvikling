@@ -24,11 +24,7 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     private final String sqlInsertPerson = "INSERT INTO person (firstName, lastname, password, email, phone, permissions, active) VALUES(?,?,?,?,?,?,?)";
     private final String sqlUpdatePerson = "UPDATE person SET firstName=?, lastname = ?, password = ?, phone = ?, permissions = ? WHERE email = ?";
 
-    private final String sqlUpdatePersonPassword = "UPDATE person SET password=?, active=? WHERE email = ?";
-    private final String sqlInsertForgottenPassword = "INSERT INTO forgottenPassword (token, email, date) VALUES(?,?,?)";
-    private final String sqlSelectForgotPassword = "SELECT epost FROM forgottenPassword WHERE token = ?";
-    private final String sqlDeleteForgotPassword = "DELETE FROM forgottenPassword WHERE token = ?";
-
+    private final String sqlUpdatePersonPassword = "update person set password=?, active=? where email = ?";
     
     private DataSource dataSource;
     JdbcTemplate jdbcTemplateObject;
@@ -96,40 +92,5 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
             person.getEmail()
         });
         return true;
-    }
-    
-    @Override
-     public boolean forgotPassword(String token, String email, Date stopdate){
-        jdbcTemplateObject.update(sqlInsertForgottenPassword, 
-            new Object[]{
-                token,
-                email, 
-                stopdate
-        });
-        return true;
-    }
-     
-    @Override
-    public boolean checkForgotPassword(String token) {
-       try{
-           jdbcTemplateObject.queryForObject(sqlSelectForgotPassword, new Object[]{token}, String.class);
-           return true;
-       }catch(Exception e){
-           return false;
-       }
-    }
-    
-    @Override
-    public String tokenForgotPasswordEmail(String token){
-        try{
-            return jdbcTemplateObject.queryForObject(sqlSelectForgotPassword, new Object[]{token}, String.class);
-        }catch(Exception e){
-            return "";
-        }
-    }
-    
-    @Override
-    public void deleteForgotPassword(String token){
-          jdbcTemplateObject.update(sqlDeleteForgotPassword, token );
     }
 }

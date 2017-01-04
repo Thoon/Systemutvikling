@@ -18,11 +18,8 @@
             <td colspan="2"><form:password path="password"/></td>
         </tr>
         <tr>
-            <td><a href="newuser">Ny bruker</a></td>
+            <td><a href="newuser">Ny bruker/Glemt passord</a></td>
             <td><input type="submit" value="Logg inn" id="submit"> </td>
-        </tr>
-        <tr>
-            <td><a href="forgotpassword">Glemt passord</a></td>
         </tr>
     </table>
 </form:form>
