@@ -95,7 +95,7 @@ public class PersonServiceImpl implements PersonService{
 
         try {
             Person personToCheck = repo.getPerson(p.getEmail());
-            if (Password.checkPassword(p.getPassword(), personToCheck.getPassword())) {
+            if (!Password.checkPassword(p.getPassword(), personToCheck.getPassword())) {
                 System.out.println(p.getPassword()+ " " + personToCheck.getPassword());
                 return 3;
             }
