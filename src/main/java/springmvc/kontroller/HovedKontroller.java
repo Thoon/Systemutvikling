@@ -112,7 +112,7 @@ public class HovedKontroller {
         String deleteGasMonitors = request.getParameter("deleteGasMonitors");
       
             
-        //Slett personer valgt i checkbox'er
+        //Slett gassmonitorer valgt i checkbox'er
         if (deleteGasMonitors != null) { 
             List<GasMonitor> selectGasMonitor = backingBean.getSelectedGasMonitors();
             
@@ -127,7 +127,7 @@ public class HovedKontroller {
                 }
             }
             
-        // Oppdater (alle) personer valgt. Endringer gjort i tekstfelt.
+        // Oppdater (alle) monitorer valgt. Endringer gjort i tekstfelt.
         // Valg i checkbox'er er uten betydning her.
         } else { 
             if (error.hasErrors()){ //ikke oppdater grunnet valideringsfeil
@@ -167,7 +167,7 @@ public class HovedKontroller {
                 }
             }
             
-        // Oppdater (alle) personer valgt. Endringer gjort i tekstfelt.
+        // Oppdater (alle) kunder valgt. Endringer gjort i tekstfelt.
         // Valg i checkbox'er er uten betydning her.
         } else { 
             if (error.hasErrors()){ //ikke oppdater grunnet valideringsfeil

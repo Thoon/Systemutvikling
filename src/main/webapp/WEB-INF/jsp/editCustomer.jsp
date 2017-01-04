@@ -11,8 +11,7 @@
     <table border="1" width="100%">
         <tr>
             <th>Kunde-ID</th>
-            <th>Fornavn</th>
-            <th>Etternavn</th>
+            <th>Kundenavn</th>
             <th>Adresse</th>
             <th>Velg</th>
         </tr>
@@ -24,11 +23,8 @@
                     <form:hidden path="everyone[${status.index}].customerId" />
                 </td> 
                                     
-                <td> <form:input path="everyone[${status.index}].firstName" /> 
-                     <form:errors path="everyone[${status.index}].firstName" />
-                </td>
-                <td> <form:input path="everyone[${status.index}].lastName" /> 
-                     <form:errors path="everyone[${status.index}].lastName" />
+                <td> <form:input path="everyone[${status.index}].customerName" /> 
+                     <form:errors path="everyone[${status.index}].customerName" />
                 </td>
                 <td> <form:input path="everyone[${status.index}].address" /> 
                      <form:errors path="everyone[${status.index}].address" />

@@ -11,9 +11,6 @@ public class Person {
     private String firstName;
     @NotEmpty
     private String lastName;
-    @Pattern(regexp = "^(?=.*[a-zæøå])(?=.*[A-ZÆØÅ])(?=.*[^a-zA-ZæøåÆØÅ0-9 ].*[^a-zA-ZæøåÆØÅ0-9 ])(?!\\s)\\S{8,}",
-            message = "Passordet må inneholde 8 tegn bestående av store og små bokstaver, og minst 2 spesialtegn")
-    @NotEmpty
     private String password;
     @Email
     private String email;

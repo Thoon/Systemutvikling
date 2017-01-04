@@ -123,8 +123,8 @@ public class PersonServiceImpl implements PersonService{
 
                 Email email = new Email();
                 String newPassword = getNewPassword();
-                email.createAndSendEmail(personToCheck.getEmail(), "Aktivering av bruker hos StudyEasy", 
-                        "Gratulerer med aktivert bruker hos StudyEasy.\n\nDin epost: " + personToCheck.getEmail() + 
+                email.createAndSendEmail(personToCheck.getEmail(), "Aktivering av bruker hos SmartCylinders", 
+                        "Gratulerer med aktivert bruker hos SmartCylinders.\n\nDin epost: " + personToCheck.getEmail() + 
                         "\nDitt passord: " + newPassword + "\n\n* Du vil få muligheten til å bytte passord på innstillinger.");
                 personToCheck.setIsActive(true);
                 personToCheck.setPassword(Password.hashPassword(newPassword));

@@ -12,17 +12,18 @@ public class Customer {
     @NotEmpty
     private Integer customerId;
     @NotEmpty
-    private String firstName;
-    @NotEmpty
-    private String lastName;
+    private String customerName;
     @NotEmpty
     private String address;
+    @NotEmpty
+    private int supplierId;
+    
 
-    public Customer(Integer customerId, String firstName, String lastName, String address) {
+    public Customer(Integer customerId, String cn, String address, int supplierId) {
         this.customerId = customerId;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.customerName = cn;
         this.address = address;
+        this.supplierId = supplierId;
     }
     
     public Customer(){};
@@ -35,27 +36,27 @@ public class Customer {
         this.customerId = cId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setFirstName(String fn) {
-        this.firstName = fn;
+    public void setCustomerName(String cn) {
+        this.customerName = cn;
     }
     
-    public String getLastName(){
-        return lastName;
-    }
-    
-    public void setLastName(String ln){
-        this.lastName = ln;
-    }
-
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String add) {
         this.address = add;
-    }   
+    }
+    
+    public int getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
+    }
 }
