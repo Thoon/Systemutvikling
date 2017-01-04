@@ -40,7 +40,7 @@
     </definition>
     
     <definition name="editCustomer" extends="baseLayout">
-        <put-attribute name="title" value="Velg kunde"/>
+        <put-attribute name="title" value="Rediger mine kunder"/>
         <put-attribute name="body" value="/WEB-INF/jsp/editCustomer.jsp"/>
     </definition>
     
