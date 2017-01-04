@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
-<h2>Mine kunder</h2>
+<h1>Mine kunder</h1>
 <p>
 
     <form:form action="editCustomer.htm" method="post" modelAttribute="customerFormBackingBean"> 
