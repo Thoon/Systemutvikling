@@ -31,7 +31,7 @@ public class LoginController {
         if (checkLogin(session)) {
             return "index";
         } else {
-            return "index";
+            return "login";
         }
     }
     

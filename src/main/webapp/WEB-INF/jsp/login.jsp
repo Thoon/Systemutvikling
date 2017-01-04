@@ -22,7 +22,7 @@
             <td><input type="submit" value="Logg inn" id="submit"> </td>
         </tr>
         <tr>
-            <td><a href="resetPassword">Glemt passord</a></td>
+            <td><a href="forgotpassword">Glemt passord</a></td>
         </tr>
     </table>
 </form:form>
