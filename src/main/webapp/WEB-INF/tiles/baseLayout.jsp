@@ -6,19 +6,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title><tiles:insertAttribute name="title" ignore="true" /></title>
+            <link rel="stylesheet" type="text/css" href="resources/css/baseStyle.css"/>
     </head>
     <body>
-        <table border="1" cellpadding="2" cellspacing="2" width="800" align="center">
+        <table border="1" cellpadding="2" cellspacing="2" width="1200" align="center">
             <tr>
                 <td height="30" colspan="2">
                     <tiles:insertAttribute name="header" />
                 </td>
             </tr>
             <tr>
-                <td width="180" valign="top">
+                <td valign="top">
                      <tiles:insertAttribute name="menu" />
                 </td>
-                <td width="590" height="600" valign="top">
+                <td width="990" height="600" valign="top">
                     <tiles:insertAttribute name="body" />
                 </td>
             </tr>

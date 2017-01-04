@@ -1,7 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<h2>  <spring:message code="velkomsthilsen"/>  </h2>
+<h2> Administrasjonssentral for gasstankmålere og kundebehandling ved SmartCylinders</h2>
 <p>
-    Her kan hente ut oversikt over alle kunder og utføre transaksjoner. Velg i menyen til venstre.
+    Velg ønsket funksjon i menyen til venstre.
 </p>
-    
