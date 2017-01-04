@@ -195,7 +195,7 @@ public class HovedKontroller {
         return "editCustomer";
     }
     
-<<<<<<< HEAD
+
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
     public String changepassword(ModelMap model, @ModelAttribute Person person, PersonFormBackingBean personBean, HttpSession session) {
         if (LoginController.checkLogin(session)) {
@@ -252,7 +252,6 @@ public class HovedKontroller {
 
     }
 
-=======
     @RequestMapping(value = "/editSupplier")
     public String editSupplier(@Valid @ModelAttribute SupplierFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
         System.out.println("****************Start oversikt***********************");
@@ -294,5 +293,5 @@ public class HovedKontroller {
         }
         return "editSupplier";
     }
->>>>>>> refs/remotes/origin/master
+
 }
