@@ -143,9 +143,9 @@ public class PersonServiceImpl implements PersonService{
     }
     
     @Override
-    public void changePassword(String p, String email) {
+    public void changePassword(String pass, String email) {
         Person pers = repo.getPerson(email);
-        pers.setPassword(Password.hashPassword(p));
+        pers.setPassword(Password.hashPassword(pass));
         repo.updatePassword(pers);
     }
 }
