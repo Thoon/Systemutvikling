@@ -24,12 +24,16 @@ import springmvc.respository.GasMonitorRepositoryImpl;
 
 import springmvc.respository.PersonDatabaseJdbcTemplateRepositoryImpl;
 import springmvc.respository.PersonRepository;
+import springmvc.respository.SupplierDatabaseJdbcTemplateRepositoryImpl;
+import springmvc.respository.SupplierRepository;
 import springmvc.service.CustomerService;
 import springmvc.service.CustomerServiceImpl;
 import springmvc.service.GasMonitorService;
 import springmvc.service.GasMonitorServiceImpl;
 import springmvc.service.PersonService;
 import springmvc.service.PersonServiceImpl;
+import springmvc.service.SupplierService;
+import springmvc.service.SupplierServiceImpl;
 
 @Configuration
 @EnableWebMvc  // mvc annotation
@@ -122,5 +126,15 @@ public class Konfigurasjon extends WebMvcConfigurationSupport {
     @Bean
     public CustomerRepository customerRepository(){
         return new CustomerDatabaseJdbcTemplateRepositoryImpl();
+    }
+    
+    @Bean
+    public SupplierService supplierService(){
+        return new SupplierServiceImpl();
+    }
+    
+    @Bean
+    public SupplierRepository supplierRepository(){
+        return new SupplierDatabaseJdbcTemplateRepositoryImpl();
     }
 }

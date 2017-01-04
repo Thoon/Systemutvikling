@@ -17,12 +17,15 @@ import org.springframework.web.servlet.ModelAndView;
 import springmvc.domene.Customer;
 import springmvc.domene.GasMonitor;
 import springmvc.domene.Person;
+import springmvc.domene.Supplier;
 import springmvc.service.CustomerService;
 import springmvc.service.GasMonitorService;
 import springmvc.service.PersonService;
+import springmvc.service.SupplierService;
 import springmvc.ui.CustomerFormBackingBean;
 import springmvc.ui.GasMonitorFormBackingBean;
 import springmvc.ui.PersonFormBackingBean;
+import springmvc.ui.SupplierFormBackingBean;
 
 @Controller
 public class HovedKontroller {
@@ -35,6 +38,9 @@ public class HovedKontroller {
     
     @Autowired
     private CustomerService customerService;
+    
+    @Autowired
+    private SupplierService supplierService;
     
     // brukes for å gjøre om de valgte personene fra tekst til Person-objekt
     @InitBinder
@@ -186,5 +192,46 @@ public class HovedKontroller {
         }
         return "editCustomer";
     }
-
+    
+    @RequestMapping(value = "/editSupplier")
+    public String editSupplier(@Valid @ModelAttribute SupplierFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
+        System.out.println("****************Start oversikt***********************");
+           
+        String deleteSuppliers = request.getParameter("deleteSuppliers");
+      
+            
+        //Slett forhandlere valgt i checkbox'er
+        if (deleteSuppliers != null) { 
+            List<Supplier> selectedSuppliers = backingBean.getSelectedSuppliers();
+            
+            System.out.println("*** slett forhandlers **** ");
+            if (selectedSuppliers != null) {
+                if (supplierService.deleteSuppliers(selectedSuppliers)){
+                    backingBean.setEveryone(supplierService.getEveryone());//oppdaterer verdiene i backingBean
+                    return "editSupplier";
+                }else{ //feil ved sletting
+                    modell.addAttribute("melding","feilside.slett");//feilside.slett er kode. Tekst hentes fra message.properties.
+                    return "error";
+                }
+            }
+            
+        // Oppdater (alle) forhandlere valgt. Endringer gjort i tekstfelt.
+        // Valg i checkbox'er er uten betydning her.
+        } else { 
+            if (error.hasErrors()){ //ikke oppdater grunnet valideringsfeil
+                return "editSupplier";
+            }
+                    
+            if (supplierService.updateSuppliers(backingBean.getEveryone())){
+                backingBean.setEveryone(supplierService.getEveryone());
+                System.out.println("TEST");
+                return "editSupplier";
+            }else{ //feil ved oppdatering
+                modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
+                return "error";
+                
+            }  
+        }
+        return "editSupplier";
+    }
 }
