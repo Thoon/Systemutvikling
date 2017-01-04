@@ -9,7 +9,14 @@
 <p>
 
     <form:form action="editPerson.htm" method="post" modelAttribute="personFormBackingBean"> 
-    <h5>Checkboxene trengs kun å brukes ved sletting, ikke ved oppdatering av personer</h5>
+    <p>
+        Checkboxene under "Velg" trengs kun å brukes ved sletting, ikke ved oppdatering av kunder.<br><br>
+        Tilgangsnivåene tilsvarer følgende brukertyper: <br><br>
+        0 = Admin <br>
+        1 = Forhandlerkjede<br>
+        2 = Forhandler<br>
+        3 = Kunde
+    </p>
     <table border="1" width="100%">
         <tr>
             <th>Epost</th>

@@ -22,8 +22,8 @@ public class CustomerDatabaseJdbcTemplateRepositoryImpl implements CustomerRepos
     private final String sqlDeleteCustomer = "DELETE FROM customer WHERE cust_id = ?";
     private final String sqlSelectCustomer = "SELECT * FROM customer WHERE cust_id = ?";
     private final String sqlSelectEveryone = "SELECT * FROM customer";
-    private final String sqlInsertCustomer = "INSERT INTO person (firstName, lastname, password, email, phone, permissions, active) VALUES(?,?,?,?,?,?,?)";
-    private final String sqlUpdateCustomer = "UPDATE person SET firstName=?, lastname = ?, address = ? WHERE email = ?";
+    private final String sqlRegisterCustomer = "INSERT INTO customer (customerName, address, supp_id) VALUES(?,?,?)";
+    private final String sqlUpdateCustomer = "UPDATE customer SET customerName=?, address = ?, supp_id = ? WHERE cust_id = ?";
     
     private DataSource dataSource;
     JdbcTemplate jdbcTemplateObject;
@@ -57,9 +57,9 @@ public class CustomerDatabaseJdbcTemplateRepositoryImpl implements CustomerRepos
     public boolean updateCustomer(Customer c){
         System.out.println("** Repository ** " + c);
         jdbcTemplateObject.update(sqlUpdateCustomer, new Object[]{
-            c.getFirstName(),
-            c.getLastName(),
+            c.getCustomerName(),
             c.getAddress(),
+            c.getSupplierId(),
             c.getCustomerId()
         });
         return true;
@@ -67,12 +67,11 @@ public class CustomerDatabaseJdbcTemplateRepositoryImpl implements CustomerRepos
     
     @Override
     public boolean registerCustomer(Customer c){
-        jdbcTemplateObject.update(sqlInsertCustomer, 
+        jdbcTemplateObject.update(sqlRegisterCustomer, 
             new Object[]{
-                c.getFirstName(), 
-                c.getLastName(),
+                c.getCustomerName(),
                 c.getAddress(),
-                c.getCustomerId()
+                c.getSupplierId()
         });
         return true;
     }
