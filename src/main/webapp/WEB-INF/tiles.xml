@@ -89,4 +89,9 @@
         <put-attribute name="body"   value="/WEB-INF/jsp/newUser.jsp"/>      
     </definition>
     
+    <definition name="settings" extends="baseLayout">
+        <put-attribute name="title"  value="Innstillinger"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/settings.jsp"/>      
+    </definition>
+    
 </tiles-definitions>

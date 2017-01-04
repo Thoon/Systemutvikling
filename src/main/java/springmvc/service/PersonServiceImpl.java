@@ -95,7 +95,7 @@ public class PersonServiceImpl implements PersonService{
 
         try {
             Person personToCheck = repo.getPerson(p.getEmail());
-            if (Password.checkPassword(p.getPassword(), personToCheck.getPassword())) {
+            if (!Password.checkPassword(p.getPassword(), personToCheck.getPassword())) {
                 System.out.println(p.getPassword()+ " " + personToCheck.getPassword());
                 return 3;
             }
@@ -140,5 +140,12 @@ public class PersonServiceImpl implements PersonService{
         } catch (Exception e) {
             return 1;
         }
+    }
+    
+    @Override
+    public void changePassword(String pass, String email) {
+        Person pers = repo.getPerson(email);
+        pers.setPassword(Password.hashPassword(pass));
+        repo.updatePassword(pers);
     }
 }
