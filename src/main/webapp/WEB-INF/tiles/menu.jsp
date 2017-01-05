@@ -11,5 +11,6 @@
     <li><a href="<c:url value="registerCustomer"/>">      <spring:message code="menyvalg7" /> </a></li>
     <li><a href="<c:url value="editSupplier"/>">      <spring:message code="menyvalg8" /> </a></li>
     <li><a href="<c:url value="registerSupplier"/>">      <spring:message code="menyvalg9" /> </a></li>
-
+    <li><a href="<c:url value="editSupplierChain"/>">      <spring:message code="menyvalg10" /> </a></li>
+    <li><a href="<c:url value="registerSupplierChain"/>">      <spring:message code="menyvalg11" /> </a></li>
 </ul>
