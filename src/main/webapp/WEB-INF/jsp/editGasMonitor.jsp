@@ -23,9 +23,6 @@
                 <td> <c:out value="${gasMonitor.currentWeight}"/>
                     <form:hidden path="allGasMonitors[${status.index}].currentWeight" value="${gasMonitor.currentWeight}"/></td>
                 
-                <td> <c:out value="${gasMonitor.battery}"/>
-                    <form:hidden path="allGasMonitors[${status.index}].battery" value="${gasMonitor.battery}"/></td>
-                
                 <td> <c:out value="${gasMonitor.customerId}"/>
                     <form:hidden path="allGasMonitors[${status.index}].customerId" value="${gasMonitor.customerId}"/></td>
                 

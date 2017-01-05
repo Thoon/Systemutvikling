@@ -23,12 +23,6 @@
             </td>
         </tr>
         <tr>
-            <td>Batteri: </td>
-            <td> <form:input path="battery" />
-                 <form:errors path="battery" />
-            </td>
-        </tr>
-        <tr>
             <td> Kunde ID: </td>
             <td> <form:input path="customerId" />
                  <form:errors path="customerId" />

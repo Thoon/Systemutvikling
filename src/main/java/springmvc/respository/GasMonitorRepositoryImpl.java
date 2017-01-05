@@ -30,7 +30,6 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
                     g.getId(),
                     g.getMaxWeight(),
                     g.getCurrentWeight(),
-                    g.getBattery(),
                     g.getCustomerId(),
                     g.getSupplierId(),
                     g.getGasTanks()
@@ -60,7 +59,6 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
         jdbcTemplateObject.update(sqlUpdateGasMonitor, new Object[]{
             gasMonitor.getMaxWeight(),
             gasMonitor.getCurrentWeight(),
-            gasMonitor.getBattery(),
             gasMonitor.getCustomerId()
         });
         return true;
