@@ -22,4 +22,6 @@ public interface PersonService {
     public int checkNewUser(Person p);
     
     public boolean updatePassword(Person p);
+    
+    public void changePassword(String p, String email);
 }
