@@ -24,6 +24,10 @@ public class SupplierChain {
     }
     
     public SupplierChain(){};
+    
+    public SupplierChain(String name){
+        this.name = name;
+    }
 
     public Integer getScId() {
         return scId;
@@ -39,5 +43,10 @@ public class SupplierChain {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "SupplierChain{" + "scId=" + scId + ", name=" + name + '}';
     }
 }
