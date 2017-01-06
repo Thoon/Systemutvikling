@@ -66,8 +66,7 @@ public class SupplierChainDatabaseJdbcTemplateRepositoryImpl implements Supplier
     public boolean registerSupplierChain(SupplierChain sc){
         jdbcTemplateObject.update(sqlRegisterSupplierChain, 
             new Object[]{
-                sc.getName(),
-                sc.getScId()
+                sc.getName()
         });
         return true;
     }

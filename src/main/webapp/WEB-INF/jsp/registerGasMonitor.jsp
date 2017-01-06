@@ -23,15 +23,15 @@
             </td>
         </tr>
         <tr>
-            <td> Kunde ID: </td>
-            <td> <form:input path="customerId" />
-                 <form:errors path="customerId" />
-            </td>
-        </tr>
-        <tr>
             <td> Leverandør ID: </td>
             <td> <form:input path="supplierId" />
                  <form:errors path="supplierId" />
+            </td>
+        </tr>
+        <tr>
+            <td> Kunde ID: </td>
+            <td> <form:input path="customerId" />
+                 <form:errors path="customerId" />
             </td>
         </tr>
         <tr>

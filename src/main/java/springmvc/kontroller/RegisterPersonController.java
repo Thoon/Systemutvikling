@@ -62,7 +62,6 @@ public class RegisterPersonController {
         
         if(error.hasErrors()){
             System.out.println(" Validering feilet **** ");
-            //modell.addAttribute("melding", "Personnr ikke fylt ut riktig"); // kun ibruk v return svarside
             return "registerPerson";
         }
         
@@ -72,7 +71,7 @@ public class RegisterPersonController {
             modell.addAttribute("melding","Person " + person.toString() + " er registrert");
             return "svarside";
         } else {
-            modell.addAttribute("melding","feilmelding.reg.person");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
+            modell.addAttribute("melding","feilmelding.reg.person");
             return "error";
         }
     }

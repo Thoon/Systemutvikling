@@ -62,27 +62,26 @@ public class RegisterSupplierChainController {
     }
        
     @RequestMapping(value = "/registerSupplierChain" , method=RequestMethod.GET)
-    public String supplierChain(@ModelAttribute SupplierChain supplier) {
+    public String supplierChain(@ModelAttribute SupplierChain supplierChain) {
         System.out.println(" ******   RegisterSupplierChain.controller.supplier() ");
         return "registerSupplierChain";
     }
 
-    @RequestMapping(value = "registerSupplierChain" , method=RequestMethod.POST)
-    public String svarside(@Valid @ModelAttribute("supplier") SupplierChain supplier, BindingResult error, Model modell) {
-        
+    @RequestMapping(value = "RegisterSupplierChain" , method=RequestMethod.POST)
+    public String svarside(@Valid @ModelAttribute("supplier") SupplierChain supplierChain, BindingResult error, Model modell) {
+        System.out.println(supplierChain.getName());
         if(error.hasErrors()){
             System.out.println(" Validering feilet **** ");
-            //modell.addAttribute("melding", "Forhandlerkjede-Id ikke fylt ut riktig"); // kun ibruk v return svarside
             return "registerSupplierChain";
         }
         
-        System.out.println(" **** SupplierChain verdi i RegisterSupplierChainController " + supplier);
+        System.out.println(" **** SupplierChain verdi i RegisterSupplierChainController " + supplierChain);
         
-        if (scService.registerSupplierChain(supplier)) {
-            modell.addAttribute("melding","SupplierChain " + supplier.getName() + " er registrert");
+        if (scService.registerSupplierChain(supplierChain)) {
+            modell.addAttribute("melding","SupplierChain " + supplierChain.getName() + " er registrert");
             return "svarside";
         } else {
-            modell.addAttribute("melding","feilmelding.reg.supplierChain");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
+            modell.addAttribute("melding","feilmelding.reg.supplierChain");
             return "error";
         }
     }

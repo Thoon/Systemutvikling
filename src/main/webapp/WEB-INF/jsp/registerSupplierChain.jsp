@@ -1,8 +1,4 @@
-<%-- 
-    Document   : registerSupplier
-    Created on : 04.jan.2017, 11:47:50
-    Author     : ganon
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,7 +6,7 @@
 
 <h2>Registreringsskjema for ny forhandlerkjede</h2>
 
-<form:form action="registerSupplierChain.htm" method="post" modelAttribute="supplierChain" >
+<form:form action="RegisterSupplierChain.htm" method="post" modelAttribute="supplierChain" >
     <table>
         <tr>  
             <td> Navn på forhandlerkjede </td>
