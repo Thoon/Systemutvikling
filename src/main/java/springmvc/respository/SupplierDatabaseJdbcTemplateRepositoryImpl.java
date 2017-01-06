@@ -38,8 +38,8 @@ public class SupplierDatabaseJdbcTemplateRepositoryImpl implements SupplierRepos
     }
     
     @Override
-    public Supplier getSupplier(int customerId){
-        return (Supplier)jdbcTemplateObject.queryForObject(sqlSelectSupplier, new Object[]{customerId}, new SupplierMapper());
+    public Supplier getSupplier(int suppId){
+        return (Supplier)jdbcTemplateObject.queryForObject(sqlSelectSupplier, new Object[]{suppId}, new SupplierMapper());
     }
     
     @Override

@@ -20,13 +20,16 @@ import springmvc.domene.Customer;
 import springmvc.domene.GasMonitor;
 import springmvc.domene.Person;
 import springmvc.domene.Supplier;
+import springmvc.domene.SupplierChain;
 import springmvc.service.CustomerService;
 import springmvc.service.GasMonitorService;
 import springmvc.service.PersonService;
+import springmvc.service.SupplierChainService;
 import springmvc.service.SupplierService;
 import springmvc.ui.CustomerFormBackingBean;
 import springmvc.ui.GasMonitorFormBackingBean;
 import springmvc.ui.PersonFormBackingBean;
+import springmvc.ui.SupplierChainFormBackingBean;
 import springmvc.ui.SupplierFormBackingBean;
 
 @Controller
@@ -44,10 +47,14 @@ public class HovedKontroller {
     @Autowired
     private SupplierService supplierService;
     
+    @Autowired
+    private SupplierChainService scService;
+    
     // brukes for å gjøre om de valgte personene fra tekst til Person-objekt
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
         binder.registerCustomEditor(Person.class, new PersonEditor(personService));
+        binder.registerCustomEditor(GasMonitor.class, new GasMonitorEditor(gasMonitorService));
     }
     
     //Sørger for å gi en feilside når feil oppstår, merk at vi godt kunne hatt
@@ -62,6 +69,11 @@ public class HovedKontroller {
         mav.addObject("unntak",exception);
         mav.setViewName("error");
         return mav;
+    }
+    
+    @RequestMapping(value= "/*")
+    public String redirect(){
+        return "index";
     }
     
     @RequestMapping(value = "/manipulerPersoner")
@@ -294,4 +306,45 @@ public class HovedKontroller {
         return "editSupplier";
     }
 
+    @RequestMapping(value = "/editSupplierChain")
+    public String editSupplierChain(@Valid @ModelAttribute SupplierChainFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
+        System.out.println("****************Start oversikt***********************");
+           
+        String deleteSupplierChains = request.getParameter("deleteSupplierChains");
+      
+            
+        //Slett forhandlere valgt i checkbox'er
+        if (deleteSupplierChains != null) { 
+            List<SupplierChain> selectedSupplierChains = backingBean.getSelectedSupplierChains();
+            
+            System.out.println("*** slett forhandlerkjeder **** ");
+            if (selectedSupplierChains != null) {
+                if (scService.deleteSupplierChains(selectedSupplierChains)){
+                    backingBean.setEveryone(scService.getEveryone());//oppdaterer verdiene i backingBean
+                    return "editSupplierChain";
+                }else{ //feil ved sletting
+                    modell.addAttribute("melding","feilside.slett");//feilside.slett er kode. Tekst hentes fra message.properties.
+                    return "error";
+                }
+            }
+            
+        // Oppdater (alle) forhandlerkjeder valgt. Endringer gjort i tekstfelt.
+        // Valg i checkbox'er er uten betydning her.
+        } else { 
+            if (error.hasErrors()){ //ikke oppdater grunnet valideringsfeil
+                return "editSupplierChain";
+            }
+                    
+            if (scService.updateSupplierChains(backingBean.getEveryone())){
+                backingBean.setEveryone(scService.getEveryone());
+                System.out.println("TEST");
+                return "editSupplierChain";
+            }else{ //feil ved oppdatering
+                modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
+                return "error";
+                
+            }  
+        }
+        return "editSupplierChain";
+    }
 }

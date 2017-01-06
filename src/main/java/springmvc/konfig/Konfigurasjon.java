@@ -24,6 +24,8 @@ import springmvc.respository.GasMonitorRepositoryImpl;
 
 import springmvc.respository.PersonDatabaseJdbcTemplateRepositoryImpl;
 import springmvc.respository.PersonRepository;
+import springmvc.respository.SupplierChainDatabaseJdbcTemplateRepositoryImpl;
+import springmvc.respository.SupplierChainRepository;
 import springmvc.respository.SupplierDatabaseJdbcTemplateRepositoryImpl;
 import springmvc.respository.SupplierRepository;
 import springmvc.service.CustomerService;
@@ -32,6 +34,8 @@ import springmvc.service.GasMonitorService;
 import springmvc.service.GasMonitorServiceImpl;
 import springmvc.service.PersonService;
 import springmvc.service.PersonServiceImpl;
+import springmvc.service.SupplierChainService;
+import springmvc.service.SupplierChainServiceImpl;
 import springmvc.service.SupplierService;
 import springmvc.service.SupplierServiceImpl;
 
@@ -136,5 +140,15 @@ public class Konfigurasjon extends WebMvcConfigurationSupport {
     @Bean
     public SupplierRepository supplierRepository(){
         return new SupplierDatabaseJdbcTemplateRepositoryImpl();
+    }
+    
+    @Bean
+    public SupplierChainService scService(){
+        return new SupplierChainServiceImpl();
+    }
+    
+    @Bean
+    public SupplierChainRepository scRepository(){
+        return new SupplierChainDatabaseJdbcTemplateRepositoryImpl();
     }
 }
