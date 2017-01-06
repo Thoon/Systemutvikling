@@ -25,6 +25,7 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     public void setDataSource(DataSource dataSource){
         System.out.println(" Database.setDataSource " + dataSource);
         this.dataSource = dataSource;
+        this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
     
     @Override
