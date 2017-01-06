@@ -52,6 +52,7 @@ public class HovedKontroller {
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
         binder.registerCustomEditor(Person.class, new PersonEditor(personService));
+        binder.registerCustomEditor(GasMonitor.class, new GasMonitorEditor(gasMonitorService));
     }
     
     //Sørger for å gi en feilside når feil oppstår, merk at vi godt kunne hatt
@@ -66,6 +67,11 @@ public class HovedKontroller {
         mav.addObject("unntak",exception);
         mav.setViewName("error");
         return mav;
+    }
+    
+    @RequestMapping(value= "/*")
+    public String redirect(){
+        return "index";
     }
     
     @RequestMapping(value = "/manipulerPersoner")

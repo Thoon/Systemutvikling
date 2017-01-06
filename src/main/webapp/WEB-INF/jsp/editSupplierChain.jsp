@@ -18,14 +18,14 @@
         <c:forEach var="supplierChain" items="${supplierChainFormBackingBean.everyone}" varStatus="status">
           
             <tr>
-                <td><c:out value="${supplierChain.supplierChainId}"/>
-                    <form:hidden path="everyone[${status.index}].supplierChainId" />
+                <td><c:out value="${supplierChain.scId}"/>
+                    <form:hidden path="everyone[${status.index}].scId" />
                 </td> 
                                     
                 <td> <form:input path="everyone[${status.index}].name" /> 
                      <form:errors path="everyone[${status.index}].name" />
                 </td>
-                <td> <form:checkbox path="selectedSupplierChains" value="${supplierChain.supplierChainId}" /> </td>
+                <td> <form:checkbox path="selectedSupplierChains" value="${supplierChain.scId}" /> </td>
             </tr>
         </c:forEach>
     </table>
