@@ -10,7 +10,7 @@
 
 <h2>Registreringsskjema for ny forhandler</h2>
 
-<form:form action="registerSupplier.htm" method="post" modelAttribute="supplier" >
+<form:form action="RegisterSupplier.htm" method="post" modelAttribute="supplier" >
     <table>
         <tr>  
             <td> Navn på forhandler </td>

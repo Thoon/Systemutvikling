@@ -70,10 +70,6 @@ public class RegisterSupplierChainController {
     @RequestMapping(value = "RegisterSupplierChain" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("supplier") SupplierChain supplierChain, BindingResult error, Model modell) {
         System.out.println(supplierChain.getName());
-        if(error.hasErrors()){
-            System.out.println(" Validering feilet **** ");
-            return "registerSupplierChain";
-        }
         
         System.out.println(" **** SupplierChain verdi i RegisterSupplierChainController " + supplierChain);
         

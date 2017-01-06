@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Customer {
     
     @NotNull
-    private Integer customerId;
+    private int customerId;
     @NotEmpty
     private String customerName;
     @NotEmpty
@@ -20,7 +20,7 @@ public class Customer {
     private int supplierId;
     
 
-    public Customer(Integer customerId, String cn, String address, int supplierId) {
+    public Customer(int customerId, String cn, String address, int supplierId) {
         this.customerId = customerId;
         this.customerName = cn;
         this.address = address;
@@ -29,11 +29,11 @@ public class Customer {
     
     public Customer(){};
     
-    public Integer getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer cId) {
+    public void setCustomerId(int cId) {
         this.customerId = cId;
     }
 

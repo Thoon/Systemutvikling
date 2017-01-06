@@ -54,6 +54,7 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public boolean registerSupplier(Supplier s){
         System.out.println("**** SupplierServiceImpl.registerSupplier()  *** ");
+        System.out.println(s.toString());
         return repo.registerSupplier(s);
     }
     
