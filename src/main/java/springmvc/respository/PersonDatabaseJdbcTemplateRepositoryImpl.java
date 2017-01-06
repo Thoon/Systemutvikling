@@ -21,10 +21,10 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     private final String sqlSelectPerson = "SELECT * FROM person WHERE email = ?";
     private final String sqlSelectEveryone = "SELECT * FROM person";
     
-    private final String sqlInsertPerson = "INSERT INTO person (firstName, lastname, password, email, phone, permissions, active) VALUES(?,?,?,?,?,?,?)";
-    private final String sqlUpdatePerson = "UPDATE person SET firstName=?, lastname = ?, password = ?, phone = ?, permissions = ? WHERE email = ?";
+    private final String sqlRegisterPerson = "INSERT INTO person (firstName, lastname, email, phone, permissions, active) VALUES(?,?,?,?,?,?)";
+    private final String sqlUpdatePerson = "UPDATE person SET firstName=?, lastname = ?, phone = ?, permissions = ? WHERE email = ?";
 
-    private final String sqlUpdatePersonPassword = "update person set password=?, active=? where email = ?";
+    private final String sqlUpdatePersonPassword = "UPDATE person SET password=?, active=? where email = ?";
     
     private DataSource dataSource;
     JdbcTemplate jdbcTemplateObject;
@@ -61,7 +61,6 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
         jdbcTemplateObject.update(sqlUpdatePerson, new Object[]{
             person.getFirstName(),
             person.getLastName(),
-            person.getPassword(),
             person.getPhoneNumber(),
             person.getPermission(),
             person.getEmail()
@@ -71,11 +70,10 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     
     @Override
     public boolean registerPerson(Person person){
-        jdbcTemplateObject.update(sqlInsertPerson, 
+        jdbcTemplateObject.update(sqlRegisterPerson, 
             new Object[]{
                 person.getFirstName(), 
                 person.getLastName(),
-                person.getPassword(),
                 person.getEmail(),
                 person.getPhoneNumber(),
                 person.getPermission(),

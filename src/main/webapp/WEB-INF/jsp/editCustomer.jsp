@@ -23,11 +23,17 @@
                     <form:hidden path="everyone[${status.index}].customerId" />
                 </td> 
                                     
-                <td> <form:input path="everyone[${status.index}].customerName" /> 
-                     <form:errors path="everyone[${status.index}].customerName" />
+                <td> 
+                    <form:input path="everyone[${status.index}].customerName" /> 
+                    <form:errors path="everyone[${status.index}].customerName" />
                 </td>
-                <td> <form:input path="everyone[${status.index}].address" /> 
-                     <form:errors path="everyone[${status.index}].address" />
+                <td> 
+                    <form:input path="everyone[${status.index}].address" /> 
+                    <form:errors path="everyone[${status.index}].address" />
+                </td>
+                <td>
+                    <form:input path="everyone[${status.index}].supplierId" /> 
+                    <form:errors path="everyone[${status.index}].supplierId" />
                 </td>
                 <td> <form:checkbox path="selectedCustomers" value="${customer.customerId}" /> </td>
             </tr>
