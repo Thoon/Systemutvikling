@@ -22,7 +22,7 @@ public class SupplierDatabaseJdbcTemplateRepositoryImpl implements SupplierRepos
     private final String sqlDeleteSupplier = "DELETE FROM supplier WHERE supp_id = ?";
     private final String sqlSelectSupplier = "SELECT * FROM supplier WHERE supp_id = ?";
     private final String sqlSelectEveryone = "SELECT * FROM supplier";
-    private final String sqlRegisterSupplier = "INSERT INTO supplier (supplierName, address, sc_id) VALUES(?,?,?)";
+    private final String sqlRegisterSupplier = "INSERT INTO supplier (suppliername, address, sc_id) VALUES(?,?,?)";
     private final String sqlUpdateSupplier = "UPDATE supplier SET supplierName=?, address = ?, sc_id = ? WHERE supp_id = ?";
     
     private DataSource dataSource;
@@ -71,7 +71,7 @@ public class SupplierDatabaseJdbcTemplateRepositoryImpl implements SupplierRepos
             new Object[]{
                 s.getSupplierName(),
                 s.getAddress(),
-                s.getSupplierId()
+                s.getSupplierChainId()
         });
         return true;
     }

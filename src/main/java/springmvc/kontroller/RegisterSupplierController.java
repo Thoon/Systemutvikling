@@ -67,14 +67,8 @@ public class RegisterSupplierController {
         return "registerSupplier";
     }
 
-    @RequestMapping(value = "registerSupplier" , method=RequestMethod.POST)
+    @RequestMapping(value = "RegisterSupplier" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("supplier") Supplier supplier, BindingResult error, Model modell) {
-        
-        if(error.hasErrors()){
-            System.out.println(" Validering feilet **** ");
-            //modell.addAttribute("melding", "Kunde-Id ikke fylt ut riktig"); // kun ibruk v return svarside
-            return "registerSupplier";
-        }
         
         System.out.println(" **** Supplier verdi i RegisterSupplierController " + supplier);
         

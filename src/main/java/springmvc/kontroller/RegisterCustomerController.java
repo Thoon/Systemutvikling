@@ -70,12 +70,12 @@ public class RegisterCustomerController {
     @RequestMapping(value = "registerCustomer" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("customer") Customer customer, BindingResult error, Model modell) {
         
-        if(error.hasErrors()){
+        /*if(error.hasErrors()){
             System.out.println(" Validering feilet **** ");
             //modell.addAttribute("melding", "Kunde-Id ikke fylt ut riktig"); // kun ibruk v return svarside
             return "registerCustomer";
         }
-        
+        */
         System.out.println(" **** Customer verdi i RegisterCustomerController " + customer);
         
         if (customerService.registerCustomer(customer)) {

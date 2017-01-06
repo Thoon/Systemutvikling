@@ -5,15 +5,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class Supplier {
     @NotNull
-    private Integer supplierId;
+    private int supplierId;
     @NotEmpty
     private String supplierName;
     @NotEmpty 
     private String address;
     @NotNull
-    private Integer supplierChainId;
+    private int supplierChainId;
 
-    public Supplier(Integer supplierId, String supplierName, String address, Integer supplierChainId) {
+    public Supplier(int supplierId, String supplierName, String address, int supplierChainId) {
         this.supplierId = supplierId;
         this.supplierName = supplierName.trim().toUpperCase();
         this.address = address;
@@ -22,11 +22,11 @@ public class Supplier {
     
     public Supplier(){};
 
-    public Integer getSupplierId() {
+    public int getSupplierId() {
         return supplierId;
     }
 
-    public void setSupplierId(Integer sId) {
+    public void setSupplierId(int sId) {
         this.supplierId = sId;
     }
 
@@ -46,11 +46,17 @@ public class Supplier {
         this.address = add;
     }
     
-    public Integer getSupplierChainId() {
+    public int getSupplierChainId() {
         return supplierChainId;
     }
 
-    public void setSupplierChainId(Integer supplierChainId) {
+    public void setSupplierChainId(int supplierChainId) {
         this.supplierChainId = supplierChainId;
     }
+    
+    @Override
+    public String toString() {
+        return "Supplier{" + "supplierId=" + supplierId + ", supplierName=" + supplierName + ", address=" + address + ", supplierChainId=" + supplierChainId + '}';
+    }
+
 }
