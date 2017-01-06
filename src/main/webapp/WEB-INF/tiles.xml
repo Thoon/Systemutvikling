@@ -79,6 +79,16 @@
         <put-attribute name="body"   value="/WEB-INF/jsp/editSupplier.jsp"/>      
     </definition>
     
+    <definition name="registerSupplierChain" extends="baseLayout">
+        <put-attribute name="title"  value="Registrer Forhandlerkjede"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/registerSupplierChain.jsp"/>      
+    </definition>
+    
+    <definition name="editSupplierChain" extends="baseLayout">
+        <put-attribute name="title"  value="Rediger Forhandlerkjede"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/editSupplierChain.jsp"/>      
+    </definition>
+    
     <definition name="login" extends="loginLayout">
         <put-attribute name="title"  value="Login"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/login.jsp"/>      
