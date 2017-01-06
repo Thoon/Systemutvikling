@@ -14,7 +14,7 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     private final String sqlSelectGasMonitor = "Select * from gas_monitor where gm_id = ?";
     private final String sqlDeleteGasMonitor = "Delete from gas_monitor where gm_id = ?";
     private final String sqlSelectAllGasMonitors = "Select * from gas_monitor";
-    private final String sqlUpdateGasMonitor = "update gas_monitor set maxweight = ?, cust_id where gm_id = ?";
+    private final String sqlUpdateGasMonitor = "update gas_monitor set max_weight = ?, cust_id where serialnumber = ?";
     
     private DataSource dataSource;
     static JdbcTemplate jdbcTemplateObject;
