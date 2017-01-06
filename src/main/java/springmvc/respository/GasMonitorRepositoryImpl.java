@@ -1,5 +1,6 @@
 package springmvc.respository;
 
+import java.sql.Connection;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import springmvc.domene.GasMonitor;
 
 public class GasMonitorRepositoryImpl implements GasMonitorRepository{
-    private final String sqlInsertGasMonitor = "insert into gas_monitor (serialnumber, max_weight, current_weight, supp_id, cust_id, number_gastanks) values(?,?,?,?,?,?,?);";
+    
+    private Connection connection;
+    private final String sqlInsertGasMonitor = "insert into gas_monitor (serialnumber, max_weight, current_weight, supp_id, cust_id, number_gastanks) values(?,?,?,?,?,?);";
     private final String sqlSelectGasMonitor = "Select * from gas_monitor where gm_id = ?";
     private final String sqlDeleteGasMonitor = "Delete from gas_monitor where gm_id = ?";
     private final String sqlSelectAllGasMonitors = "Select * from gas_monitor";
@@ -15,6 +18,8 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     
     private DataSource dataSource;
     static JdbcTemplate jdbcTemplateObject;
+    
+    public GasMonitorRepositoryImpl(){}
     
     @Autowired
     public void setDataSource(DataSource dataSource){
