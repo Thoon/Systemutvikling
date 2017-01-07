@@ -50,6 +50,7 @@ public class CustomerFormBackingBean {
         return custPers;
     }
     
+    public void setCustPers(List<CustomerPerson> cp){
         this.custPers = cp;
         setCustPersEmail();
     }
