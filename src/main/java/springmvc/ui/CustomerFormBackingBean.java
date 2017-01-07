@@ -5,9 +5,11 @@
  */
 package springmvc.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import springmvc.domene.Customer;
+import springmvc.domene.CustomerPerson;
 
 /**
  *
@@ -17,6 +19,8 @@ public class CustomerFormBackingBean {
     @Valid
     private List<Customer> everyone = null;
     private List<Customer> selectedCustomers = null;
+    private List<CustomerPerson> custPers = null;
+    private List<String> custPersEmail = null;
     
     public List<Customer> getSelectedCustomers() {
         return selectedCustomers;
@@ -40,5 +44,31 @@ public class CustomerFormBackingBean {
     public void setEveryone(List<Customer> everyone){
         System.out.println(" CustomerFormBackingBean.setEveryone()  "  + everyone);
         this.everyone = everyone;
+    }
+    
+    public List<CustomerPerson> getCustomerPerson(){
+        return custPers;
+    }
+    
+        this.custPers = cp;
+        setCustPersEmail();
+    }
+    
+    public List<String> getCustPersEmail(){
+        return custPersEmail;
+    }
+    
+    public void setCustPersEmail(){
+        List<String> ls = new ArrayList<>();
+            
+            for(Customer c: everyone){
+                String s = "";
+                for(CustomerPerson cp: custPers){
+                    s+=cp.getPerson() + "\n";
+                }   
+                ls.add(s);;
+            }
+            
+        custPersEmail=ls;
     }
 }

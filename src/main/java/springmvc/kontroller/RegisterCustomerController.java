@@ -10,6 +10,8 @@ package springmvc.kontroller;
  * @author ganon
  */
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import springmvc.domene.Customer;
 import org.springframework.dao.DuplicateKeyException;
+import springmvc.domene.CustomerPerson;
 import springmvc.service.CustomerService;
+import springmvc.service.PersonService;
+import springmvc.ui.CustomerFormBackingBean;
+import springmvc.ui.PersonFormBackingBean;
 //import org.springframework.dao.
 
 @Controller
@@ -31,6 +37,7 @@ public class RegisterCustomerController {
     
     @Autowired
     private CustomerService customerService;
+    private PersonService personService;
     
     //Sørger for å gi en feilside når feil oppstår, merk at vi godt kunne hatt
     //flere slike feilhåndterere og håndtert ulike feil mer spesifikt
@@ -66,7 +73,14 @@ public class RegisterCustomerController {
         * @return Register Customer form
         */
     @RequestMapping(value = "/registerCustomer" , method=RequestMethod.GET)
-    public String customer(@ModelAttribute Customer customer) {
+    public String customer(@ModelAttribute Customer customer,
+            @ModelAttribute("customerPerson") CustomerPerson customerPerson,
+            @ModelAttribute CustomerFormBackingBean customerFormBackingBean,
+            @ModelAttribute PersonFormBackingBean personFormBackingBean){
+        
+        customerFormBackingBean.setEveryone(customerService.getEveryone());
+        personFormBackingBean.setEveryone(personService.getEveryone());
+        
         System.out.println(" ******   RegisterCustomer.controller.customer() ");
         return "registerCustomer";
     }
@@ -89,5 +103,19 @@ public class RegisterCustomerController {
             modell.addAttribute("melding","feilmelding.reg.customer");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
             return "error";
         }
+    }
+    
+    @RequestMapping(value = "registerCustomerPerson" , method=RequestMethod.POST)
+    public String svarside(@Valid @ModelAttribute("customerPerson") CustomerPerson custPers, BindingResult err, Model modell){
+        System.out.println(" **** Customer verdi i RegisterCustomerController " + custPers);
+        
+        if(customerService.registerCustomerPerson(custPers)){
+            modell.addAttribute("melding","CustomerPerson " + custPers.getCustomer() + " er registrert");
+            return "svarside";
+        } else {
+            modell.addAttribute("melding","feilmelding.reg.customer");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
+            return "error";
+        }
+        
     }
 }
