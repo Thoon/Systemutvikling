@@ -34,5 +34,9 @@
     </table>
 </form:form>
 
+<form:form action="registerCustomerPerson.htm" method="post" modelAttribute="customer" >
+    <table>
+        
+    </table>
 
-
+</form:form>

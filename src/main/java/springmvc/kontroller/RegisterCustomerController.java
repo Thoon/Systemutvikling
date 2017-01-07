@@ -60,7 +60,11 @@ public class RegisterCustomerController {
         mav.setViewName("error");
         return mav;
     }
-       
+       /**
+        * When clicking "Register Kunde"
+        * @param customer
+        * @return Register Customer form
+        */
     @RequestMapping(value = "/registerCustomer" , method=RequestMethod.GET)
     public String customer(@ModelAttribute Customer customer) {
         System.out.println(" ******   RegisterCustomer.controller.customer() ");
