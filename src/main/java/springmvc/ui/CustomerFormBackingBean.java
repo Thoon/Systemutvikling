@@ -32,7 +32,7 @@ public class CustomerFormBackingBean {
     
     public Customer getCustomer(int custId){
         for (Customer c : selectedCustomers){
-            if(c.getCustomerId()== custId) return c;
+            if(c.getCustomerId() == custId) return c;
         }
         return null;
     }
