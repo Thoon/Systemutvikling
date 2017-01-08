@@ -7,6 +7,7 @@ package springmvc.service;
 
 import java.util.List;
 import springmvc.domene.GasMonitor;
+import springmvc.domene.MonitorResults;
 import springmvc.domene.Person;
 
 /**

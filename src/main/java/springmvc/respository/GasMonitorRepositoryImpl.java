@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import springmvc.domene.GasMonitor;
 
+/**
+ * Repository for communication between repository and database
+ * @author NTNU
+ */
+
 public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     
     private Connection connection;

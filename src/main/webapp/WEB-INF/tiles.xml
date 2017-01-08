@@ -89,6 +89,11 @@
         <put-attribute name="body"   value="/WEB-INF/jsp/editSupplierChain.jsp"/>      
     </definition>
     
+    <definition name="myMonitors" extends="baseLayout">
+        <put-attribute name="title"  value="Mine målere"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/myMonitors.jsp"/>      
+    </definition>
+    
     <definition name="login" extends="loginLayout">
         <put-attribute name="title"  value="Login"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/login.jsp"/>      

@@ -29,5 +29,4 @@ public class GasMonitorMapper implements RowMapper<GasMonitor> {
         
         return g;
     }
-    
 }
