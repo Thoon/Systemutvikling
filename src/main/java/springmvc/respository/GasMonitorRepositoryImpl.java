@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import springmvc.domene.GasMonitor;
 
+/**
+ * Repository for communication between repository and database
+ * @author NTNU
+ */
+
 public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     private final String sqlInsertGasMonitor = "insert into gas_monitor (gm_id, max_weight, current_weight, battery, supp_id, cust_id, number_gastanks) values(?,?,?,?,?,?,?);";
     private final String sqlSelectGasMonitor = "Select * from gas_monitor where gm_id = ?";
