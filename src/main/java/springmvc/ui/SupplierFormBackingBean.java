@@ -32,7 +32,7 @@ public class SupplierFormBackingBean {
     
     public Supplier getSupplier(int suppId){
         for (Supplier s : selectedSuppliers){
-            if(s.getSupplierId().equals(suppId)) return s;
+            if(s.getSupplierId() == suppId) return s;
         }
         return null;
     }

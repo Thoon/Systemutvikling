@@ -7,6 +7,7 @@ package springmvc.respository;
 
 import java.util.List;
 import springmvc.domene.Customer;
+import springmvc.domene.CustomerPerson;
 
 /**
  *
@@ -23,4 +24,6 @@ public interface CustomerRepository {
     public boolean updateCustomer(Customer c) ;
 
     public boolean deleteCustomer(Customer c) ;
+    
+    public boolean registerCustomerPerson(CustomerPerson cp);
 }

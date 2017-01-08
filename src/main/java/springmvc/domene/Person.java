@@ -86,6 +86,10 @@ public class Person {
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
+    
+    public String getFullname(){
+        return firstName + " " + lastName;
+    }
 
     @Override
     public String toString() {

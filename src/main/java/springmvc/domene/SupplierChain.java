@@ -14,11 +14,11 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class SupplierChain {
     @NotNull
-    private Integer scId;
+    private int scId;
     @NotEmpty
     private String name;
 
-    public SupplierChain(Integer scId, String name) {
+    public SupplierChain(int scId, String name) {
         this.scId = scId;
         this.name = name;
     }
@@ -29,11 +29,11 @@ public class SupplierChain {
         this.name = name;
     }
 
-    public Integer getScId() {
+    public int getScId() {
         return scId;
     }
 
-    public void setScId(Integer scId) {
+    public void setScId(int scId) {
         this.scId = scId;
     }
 

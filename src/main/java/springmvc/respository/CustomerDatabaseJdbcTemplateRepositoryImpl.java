@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import springmvc.domene.Customer;
+import springmvc.domene.CustomerPerson;
 
 /**
  *
@@ -24,6 +25,7 @@ public class CustomerDatabaseJdbcTemplateRepositoryImpl implements CustomerRepos
     private final String sqlSelectEveryone = "SELECT * FROM customer";
     private final String sqlRegisterCustomer = "INSERT INTO customer (customerName, address, supp_id) VALUES(?,?,?)";
     private final String sqlUpdateCustomer = "UPDATE customer SET customerName=?, address = ?, supp_id = ? WHERE cust_id = ?";
+    private final String sqlRegisterCustomerPerson = "insert into cust_pers values (?,?)";
     
     private DataSource dataSource;
     JdbcTemplate jdbcTemplateObject;
@@ -74,5 +76,15 @@ public class CustomerDatabaseJdbcTemplateRepositoryImpl implements CustomerRepos
                 c.getSupplierId()
         });
         return true;
+    }
+    
+    @Override
+    public boolean registerCustomerPerson(CustomerPerson cp){
+        jdbcTemplateObject.update(sqlRegisterCustomerPerson, 
+            new Object[]{
+                cp.getCustomer(),
+                cp.getPerson()
+            });
+        return true;        
     }
 }

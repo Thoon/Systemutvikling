@@ -1,8 +1,4 @@
-<%-- 
-    Document   : registerCustomer
-    Created on : 04.jan.2017, 11:47:50
-    Author     : ganon
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,4 +31,26 @@
 </form:form>
 
 
+<h2>Registrer Person</h2>
+<form:form action="registerCustomerPerson.htm" method="post" modelAttribute="customerPerson" >
+    <table>
+        <tr>  
+            <td> Kundenavn </td>
+            <td>
+                    <form:select path="customer.customerName">         
+                    <form:options items="${customerFormBackingBean.getEveryone}" itemValue="customerId" itemLabel="customerName"/>
+                    </form:select>  
+            </td> 
+        </tr>
+        <tr>  
+            <td> Person </td>
+            <td>
+                    <form:select path="person">         
+                    <form:options items="${personFormBackingBean.getEveryone}" itemValue="email" itemLabel="fullName"/>
+                    </form:select>  
+            </td> 
+        </tr>
+        <tr><td colspan="2"><input type="submit" value="Registrer kundeforhold"></td></tr>
+    </table>
 
+</form:form>

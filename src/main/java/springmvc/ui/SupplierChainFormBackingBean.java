@@ -32,7 +32,7 @@ public class SupplierChainFormBackingBean {
     
     public SupplierChain getSupplierChain(int scId){
         for (SupplierChain sc : selectedSupplierChains){
-            if(sc.getScId().equals(scId)) return sc;
+            if(sc.getScId() == scId) return sc;
         }
         return null;
     }

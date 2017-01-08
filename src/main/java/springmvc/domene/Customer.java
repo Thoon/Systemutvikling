@@ -60,4 +60,9 @@ public class Customer {
     public void setSupplierId(int supplierId) {
         this.supplierId = supplierId;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" + "customerId=" + customerId + ", customerName=" + customerName + ", address=" + address + ", supplierId=" + supplierId + '}';
+    }
 }
