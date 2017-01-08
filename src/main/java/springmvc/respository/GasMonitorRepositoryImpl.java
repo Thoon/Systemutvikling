@@ -19,7 +19,7 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     private final String sqlSelectGasMonitor = "Select * from gas_monitor where serialnumber = ?";
     private final String sqlDeleteGasMonitor = "Delete from gas_monitor where serialnumber = ?";
     private final String sqlSelectAllGasMonitors = "Select * from gas_monitor";
-    private final String sqlUpdateGasMonitor = "update gas_monitor set max_weight = ?, cust_id where serialnumber = ?";
+    private final String sqlUpdateGasMonitor = "update gas_monitor set max_weight = ?, cust_id = ? where serialnumber = ?";
     
     private DataSource dataSource;
     static JdbcTemplate jdbcTemplateObject;
@@ -69,7 +69,6 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
         System.out.println("** Repository ** " + gasMonitor);
         jdbcTemplateObject.update(sqlUpdateGasMonitor, new Object[]{
             gasMonitor.getMaxWeight(),
-            gasMonitor.getCurrentWeight(),
             gasMonitor.getCustomerId()
         });
         return true;
