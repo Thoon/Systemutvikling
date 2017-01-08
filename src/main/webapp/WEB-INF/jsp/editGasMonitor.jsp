@@ -7,10 +7,10 @@
     <table>
         <tr>
             <th>Gassmonitor ID</th>
-            <th>Maks Vekt</th>
-            <th>Målt Vekt</th>
+            <th>Maks Vekt</th>>
             <th>Batteri</th>
             <th>Kunde</th>
+            <th>Antall gasstanker<th>
         </tr>
         <c:forEach var="gasMonitor" items="${gasMonitorFormBackingBean.allGasMonitors}" varStatus="status">
             <tr>
@@ -18,10 +18,7 @@
                     <form:hidden path="allGasMonitors[${status.index}].id" value="${gasMonitor.id}"/></td>
                 
                  <td> <form:input path="allGasMonitors[${status.index}].maxWeight" /> 
-                    <form:errors path="allGasMonitors[${status.index}].maxWeight" />
-                
-                <td> <c:out value="${gasMonitor.currentWeight}"/>
-                    <form:hidden path="allGasMonitors[${status.index}].currentWeight" value="${gasMonitor.currentWeight}"/></td>
+                     <form:errors path="allGasMonitors[${status.index}].maxWeight" /></td>
                 
                 <td> <c:out value="${gasMonitor.supplierId}"/>
                     <form:hidden path="allGasMonitors[${status.index}].supplierId" value="${gasMonitor.supplierId}"/></td>
@@ -30,7 +27,7 @@
                     <form:hidden path="allGasMonitors[${status.index}].customerId" value="${gasMonitor.customerId}"/></td>
                                 
                 <td> <c:out value="${gasMonitor.gasTanks}"/>
-                    <form:hidden path="allGasMonitors[${status.index}].customerId" value="${gasMonitor.gasTanks}"/></td>
+                    <form:hidden path="allGasMonitors[${status.index}].gasTanks" value="${gasMonitor.gasTanks}"/></td>
             </tr>
     </table>
 </form:form>
