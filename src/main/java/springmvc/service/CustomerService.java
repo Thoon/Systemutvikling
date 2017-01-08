@@ -7,6 +7,7 @@ package springmvc.service;
 
 import java.util.List;
 import springmvc.domene.Customer;
+import springmvc.domene.CustomerPerson;
 
 /**
  *
@@ -25,5 +26,7 @@ public interface CustomerService {
     public boolean registerCustomer(Customer c);
     
     public boolean deleteCustomers(List<Customer> customerList);
+    
+    public boolean registerCustomerPerson(CustomerPerson c);
     
 }
