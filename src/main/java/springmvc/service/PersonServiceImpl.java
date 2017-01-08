@@ -119,7 +119,7 @@ public class PersonServiceImpl implements PersonService{
             if (personToCheck.isIsActive()) {
                 Email email = new Email();
                 String newPassword = getNewPassword();
-                email.createAndSendEmail(personToCheck.getEmail(), "Nytt passord til SmartCylinders", "Ditt nye passord er: " + newPassword + "\n\n* "
+                email.createAndSendEmail(personToCheck.getEmail(), "Nytt passord til SmartCylinders", "Ditt nye passord er: " + newPassword + "\n\n "
                         + "Du vil få muligheten til å bytte passord på innstillinger");
                 personToCheck.setPassword(Password.hashPassword(newPassword));
                 updatePassword(personToCheck);
