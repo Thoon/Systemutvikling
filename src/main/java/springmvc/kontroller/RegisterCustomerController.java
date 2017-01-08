@@ -30,7 +30,7 @@ import springmvc.service.CustomerService;
 import springmvc.service.PersonService;
 import springmvc.ui.CustomerFormBackingBean;
 import springmvc.ui.PersonFormBackingBean;
-//import org.springframework.dao.
+
 
 @Controller
 public class RegisterCustomerController {
@@ -74,12 +74,12 @@ public class RegisterCustomerController {
         */
     @RequestMapping(value = "/registerCustomer" , method=RequestMethod.GET)
     public String customer(@ModelAttribute Customer customer,
-            @ModelAttribute("customerPerson") CustomerPerson customerPerson,
+            @ModelAttribute("customerPerson") CustomerPerson customerPerson/*,
             @ModelAttribute CustomerFormBackingBean customerFormBackingBean,
-            @ModelAttribute PersonFormBackingBean personFormBackingBean){
+            @ModelAttribute PersonFormBackingBean personFormBackingBean*/){
         
-        customerFormBackingBean.setEveryone(customerService.getEveryone());
-        personFormBackingBean.setEveryone(personService.getEveryone());
+       /* customerFormBackingBean.setEveryone(customerService.getEveryone());
+        personFormBackingBean.setEveryone(personService.getEveryone());*/
         
         System.out.println(" ******   RegisterCustomer.controller.customer() ");
         return "registerCustomer";
