@@ -19,12 +19,9 @@ public class GasMonitor {
     @NotNull
     private int supplierId;
     @NotNull
-    private int gasTanks;
+    private int gasTanks;    
     
-    public GasMonitor(){
-                
-
-    }
+    public GasMonitor(){}
     
     public GasMonitor(int id,int maxWeight, int currentWeight, int customerId, int supplierId, int gasTanks){
         this.id = id;

@@ -23,11 +23,13 @@ import springmvc.domene.Supplier;
 import springmvc.domene.SupplierChain;
 import springmvc.service.CustomerService;
 import springmvc.service.GasMonitorService;
+import springmvc.service.MonitorResultsService;
 import springmvc.service.PersonService;
 import springmvc.service.SupplierChainService;
 import springmvc.service.SupplierService;
 import springmvc.ui.CustomerFormBackingBean;
 import springmvc.ui.GasMonitorFormBackingBean;
+import springmvc.ui.MonitorResultsBackingBean;
 import springmvc.ui.PersonFormBackingBean;
 import springmvc.ui.SupplierChainFormBackingBean;
 import springmvc.ui.SupplierFormBackingBean;
@@ -49,6 +51,9 @@ public class HovedKontroller {
     
     @Autowired
     private SupplierChainService scService;
+    
+    @Autowired
+    private MonitorResultsService mrService;
     
     // brukes for å gjøre om de valgte personene fra tekst til Person-objekt
     @InitBinder
@@ -75,13 +80,6 @@ public class HovedKontroller {
     @RequestMapping(value= "/*")
     public String redirect(){
         return "index";
-    }
-    
-    @RequestMapping(value = "/manipulerPersoner")
-    public String manipulerPersoner(@ModelAttribute PersonFormBackingBean backingBean) {
-        backingBean.setEveryone(personService.getEveryone());
-        System.out.println("** ControllerClass.person() ******");
-        return "manipulerPersoner";
     }
 
     @RequestMapping(value = "/editPerson")
@@ -347,5 +345,14 @@ public class HovedKontroller {
             }  
         }
         return "editSupplierChain";
+    }
+    
+    @RequestMapping(value = "/myMonitors")
+    public String myMonitors(@Valid @ModelAttribute MonitorResultsBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
+        System.out.println("****************Start oversikt***********************");
+        System.out.println("***Setter backingbeanverdier***");
+        backingBean.setAllResults(mrService.getCalculatedResults());
+        System.out.println("**** backingbeanverdier satt **** ");
+        return "myMonitors";
     }
 }
