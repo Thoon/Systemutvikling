@@ -19,6 +19,7 @@ public class SupplierChainMapper implements RowMapper<SupplierChain> {
     @Override
     public SupplierChain mapRow(ResultSet rs, int i) throws SQLException {
         SupplierChain sc = new SupplierChain();
+        sc.setScId(rs.getInt("sc_id"));
         sc.setName(rs.getString("name"));
         return sc;
     }

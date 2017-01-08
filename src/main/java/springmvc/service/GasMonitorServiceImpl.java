@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import springmvc.domene.GasMonitor;
-import springmvc.domene.MonitorResults;
 import springmvc.respository.GasMonitorRepository;
 
 
@@ -21,7 +20,7 @@ public class GasMonitorServiceImpl implements GasMonitorService {
     }
     @Override
     public GasMonitor getGasMonitor(int id){
-        System.out.println("**** PersonServiceImpl.getPerson()  *** ");
+        System.out.println("**** GasMonitorServiceImpl.getGasmonitor()  *** ");
         return repo.getGasMonitor(id);
     }
     @Override
@@ -48,7 +47,7 @@ public class GasMonitorServiceImpl implements GasMonitorService {
         return repo.getAllGasMonitors();
     }
     
-    
+    @Override
     public boolean updateGasMonitors(List<GasMonitor> gasMonitorList){
         System.out.println("**** GasMonitorServiceImpl.updateGasMonitors()  *** ");
         if (gasMonitorList == null || gasMonitorList.size() == 0) return true;
@@ -61,6 +60,7 @@ public class GasMonitorServiceImpl implements GasMonitorService {
         return isUpdateOK;
     }
     
+    @Override
     public boolean updateGasMonitor(GasMonitor g){
         System.out.println("**** GasMonitorServiceImpl.updateGasMonitor()  *** ");
         return repo.updateGasMonitor(g);

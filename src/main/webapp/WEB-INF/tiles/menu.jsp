@@ -2,18 +2,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <ul>
-    <li><a href="<c:url value="index"/>" >                  <spring:message code="menyvalg1" />  </a></li>
-    <li><a href="<c:url value="editPerson"/>" >             <spring:message code="menyvalg2" />  </a></li>
-    <li><a href="<c:url value="registerPerson"/>">          <spring:message code="menyvalg3" />  </a></li>
-    <li><a href="<c:url value="editGasMonitor"/>">          <spring:message code="menyvalg4" />  </a></li>
-    <li><a href="<c:url value="registerGasMonitor"/>">      <spring:message code="menyvalg5" />  </a></li>
-    <li><a href="<c:url value="editCustomer"/>">            <spring:message code="menyvalg6" /> </a></li>
-    <li><a href="<c:url value="registerCustomer"/>">        <spring:message code="menyvalg7" /> </a></li>
-    <li><a href="<c:url value="editSupplier"/>">            <spring:message code="menyvalg8" /> </a></li>
-    <li><a href="<c:url value="registerSupplier"/>">        <spring:message code="menyvalg9" /> </a></li>
-    <li><a href="<c:url value="editSupplierChain"/>">       <spring:message code="menyvalg10" /> </a></li>
-    <li><a href="<c:url value="registerSupplierChain"/>">   <spring:message code="menyvalg11" /> </a></li>
+    <li><a href="<c:url value="index"/>" >           <spring:message code="menyvalg1" />  </a></li>
+    <li><a href="<c:url value="editPerson"/>" >   <spring:message code="menyvalg2" />  </a></li>
+    <li><a href="<c:url value="registerPerson"/>">         <spring:message code="menyvalg3" />  </a></li>
+    <li><a href="<c:url value="editGasMonitor"/>">         <spring:message code="menyvalg4" />  </a></li>
+    <li><a href="<c:url value="registerGasMonitor"/>">         <spring:message code="menyvalg5" />  </a></li>
+    <li><a href="<c:url value="editCustomer"/>">          <spring:message code="menyvalg6" /> </a></li>
+    <li><a href="<c:url value="registerCustomer"/>">      <spring:message code="menyvalg7" /> </a></li>
+    <li><a href="<c:url value="editSupplier"/>">      <spring:message code="menyvalg8" /> </a></li>
+    <li><a href="<c:url value="registerSupplier"/>">      <spring:message code="menyvalg9" /> </a></li>
+    <li><a href="<c:url value="editSupplierChain"/>">      <spring:message code="menyvalg10" /> </a></li>
+    <li><a href="<c:url value="registerSupplierChain"/>">      <spring:message code="menyvalg11" /> </a></li>
     <li><a href="<c:url value="myMonitors"/>">              <spring:message code="menyvalg12" /> </a></li>
-
-     <li><a href="<c:url value="settings"/>">               <spring:message code="menyvalg20" /> </a></li>
 </ul>

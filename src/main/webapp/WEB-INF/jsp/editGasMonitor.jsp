@@ -23,11 +23,14 @@
                 <td> <c:out value="${gasMonitor.currentWeight}"/>
                     <form:hidden path="allGasMonitors[${status.index}].currentWeight" value="${gasMonitor.currentWeight}"/></td>
                 
-                <td> <c:out value="${gasMonitor.customerId}"/>
-                    <form:hidden path="allGasMonitors[${status.index}].customerId" value="${gasMonitor.customerId}"/></td>
-                
                 <td> <c:out value="${gasMonitor.supplierId}"/>
                     <form:hidden path="allGasMonitors[${status.index}].supplierId" value="${gasMonitor.supplierId}"/></td>
+                
+                <td> <c:out value="${gasMonitor.customerId}"/>
+                    <form:hidden path="allGasMonitors[${status.index}].customerId" value="${gasMonitor.customerId}"/></td>
+                                
+                <td> <c:out value="${gasMonitor.gasTanks}"/>
+                    <form:hidden path="allGasMonitors[${status.index}].customerId" value="${gasMonitor.gasTanks}"/></td>
             </tr>
     </table>
 </form:form>

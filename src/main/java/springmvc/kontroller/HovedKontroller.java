@@ -60,6 +60,7 @@ public class HovedKontroller {
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
         binder.registerCustomEditor(Person.class, new PersonEditor(personService));
         binder.registerCustomEditor(GasMonitor.class, new GasMonitorEditor(gasMonitorService));
+        binder.registerCustomEditor(SupplierChain.class, new SupplierChainEditor(scService));
     }
     
     //Sørger for å gi en feilside når feil oppstår, merk at vi godt kunne hatt
