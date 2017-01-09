@@ -11,9 +11,7 @@ import javax.validation.constraints.NotNull;
 public class GasMonitor {
     private int id;
     @NotNull
-    private int maxWeight;
-    @NotNull
-    private int currentWeight;    
+    private double maxWeight;  
     @NotNull
     private int customerId;
     @NotNull
@@ -23,18 +21,16 @@ public class GasMonitor {
     
     public GasMonitor(){}
     
-    public GasMonitor(int id,int maxWeight, int currentWeight, int customerId, int supplierId, int gasTanks){
+    public GasMonitor(int id, double maxWeight, int customerId, int supplierId, int gasTanks){
         this.id = id;
         this.maxWeight = maxWeight;
-        this.currentWeight = currentWeight;
         this.customerId = customerId;
         this.supplierId = supplierId;
         this.gasTanks = gasTanks;
     }
     
-    public GasMonitor(int maxWeight, int currentWeight, int customerId, int supplierId, int gasTanks){
+    public GasMonitor(double maxWeight, int customerId, int supplierId, int gasTanks){
         this.maxWeight = maxWeight;
-        this.currentWeight = currentWeight;
         this.customerId = customerId;
         this.supplierId = supplierId;
         this.gasTanks = gasTanks;
@@ -48,20 +44,12 @@ public class GasMonitor {
         this.id = id;
     }
 
-    public int getMaxWeight() {
+    public double getMaxWeight() {
         return maxWeight;
     }
 
-    public void setMaxWeight(int maxWeight) {
+    public void setMaxWeight(double maxWeight) {
         this.maxWeight = maxWeight;
-    }
-
-    public int getCurrentWeight() {
-        return currentWeight;
-    }
-
-    public void setCurrentWeight(int currentWeight) {
-        this.currentWeight = currentWeight;
     }
 
     public int getCustomerId() {
@@ -91,9 +79,9 @@ public class GasMonitor {
     @Override
     public String toString() {
         if(id == 0){
-            return "GasMonitor{maxWeight=" + maxWeight + ", currentWeight=" + currentWeight + ", customerId=" + customerId + ", supplierId=" + supplierId + ", gastanks= " + gasTanks + '}';
+            return "GasMonitor{maxWeight=" + maxWeight + ", customerId=" + customerId + ", supplierId=" + supplierId + ", gastanks= " + gasTanks + '}';
         }else{
-            return "GasMonitor{" + "id=" + id + ", maxWeight=" + maxWeight + ", currentWeight=" + currentWeight + ", customerId=" + customerId + ", supplierId=" + supplierId +", gastanks= " + gasTanks + '}';
+            return "GasMonitor{" + "id=" + id + ", maxWeight=" + maxWeight + ", customerId=" + customerId + ", supplierId=" + supplierId +", gastanks= " + gasTanks + '}';
         }
     }
 }

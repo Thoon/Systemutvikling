@@ -16,10 +16,10 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     
     private Connection connection;
     private final String sqlInsertGasMonitor = "insert into gas_monitor (serialnumber, max_weight, current_weight, supp_id, cust_id, number_gastanks) values(?,?,?,?,?,?);";
-    private final String sqlSelectGasMonitor = "Select * from gas_monitor where gm_id = ?";
-    private final String sqlDeleteGasMonitor = "Delete from gas_monitor where gm_id = ?";
+    private final String sqlSelectGasMonitor = "Select * from gas_monitor where serialnumber = ?";
+    private final String sqlDeleteGasMonitor = "Delete from gas_monitor where serialnumber = ?";
     private final String sqlSelectAllGasMonitors = "Select * from gas_monitor";
-    private final String sqlUpdateGasMonitor = "update gas_monitor set max_weight = ?, cust_id where serialnumber = ?";
+    private final String sqlUpdateGasMonitor = "UPDATE gas_monitor SET max_weight=?, supp_id = ?, cust_id = ?, number_gastanks=? WHERE serialnumber = ?";;
     
     private DataSource dataSource;
     static JdbcTemplate jdbcTemplateObject;
@@ -40,7 +40,6 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
                 new Object []{
                     g.getId(),
                     g.getMaxWeight(),
-                    g.getCurrentWeight(),
                     g.getCustomerId(),
                     g.getSupplierId(),
                     g.getGasTanks()
@@ -69,8 +68,9 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
         System.out.println("** Repository ** " + gasMonitor);
         jdbcTemplateObject.update(sqlUpdateGasMonitor, new Object[]{
             gasMonitor.getMaxWeight(),
-            gasMonitor.getCurrentWeight(),
-            gasMonitor.getCustomerId()
+            gasMonitor.getCustomerId(),
+            gasMonitor.getSupplierId(),
+            gasMonitor.getId()
         });
         return true;
     }

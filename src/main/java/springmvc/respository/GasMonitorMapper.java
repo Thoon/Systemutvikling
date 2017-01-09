@@ -21,10 +21,9 @@ public class GasMonitorMapper implements RowMapper<GasMonitor> {
     public GasMonitor mapRow(ResultSet rs, int i) throws SQLException {
         GasMonitor g = new GasMonitor();
         g.setId(rs.getInt("serialnumber"));
-        g.setMaxWeight(rs.getInt("maxWeight"));
-        g.setCurrentWeight(rs.getInt("currentWeight"));
-        g.setCustomerId(rs.getInt("customerId"));
-        g.setSupplierId(rs.getInt("supplierId"));
+        g.setMaxWeight(rs.getDouble("max_weight"));
+        g.setCustomerId(rs.getInt("cust_id"));
+        g.setSupplierId(rs.getInt("supp_id"));
         g.setGasTanks(rs.getInt("number_gastanks"));
         
         return g;
