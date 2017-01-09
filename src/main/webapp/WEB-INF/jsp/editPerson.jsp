@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
 
@@ -10,8 +11,8 @@
 
     <form:form action="editPerson.htm" method="post" modelAttribute="personFormBackingBean"> 
     <p>
-        Checkboxene under "Velg" trengs kun å brukes ved sletting, ikke ved oppdatering av kunder.<br><br>
-        Tilgangsnivåene tilsvarer følgende brukertyper: <br><br>
+        Checkboxene under "Velg" trengs kun Ã¥ brukes ved sletting, ikke ved oppdatering av kunder.<br><br>
+        TilgangsnivÃ¥ene tilsvarer fÃ¸lgende brukertyper: <br><br>
         0 = Admin <br>
         1 = Forhandlerkjede<br>
         2 = Forhandler<br>
@@ -23,7 +24,7 @@
             <th>Fornavn</th>
             <th>Etternavn</th>
             <th>Telefon</th>
-            <th>Tilgangs nivå</th>
+            <th>Tilgangs nivÃ¥</th>
             <th>Velg </th>
         </tr>
                      

@@ -16,7 +16,8 @@
             <th>Antall gasstanker</th>
             <th>Velg</th>
         </tr>
-        <c:forEach var="gasMonitor.htm" items="${gasMonitorFormBackingBean.allGasMonitors}" varStatus="status">
+        
+        <c:forEach var="gasMonitor" items="${gasMonitorFormBackingBean.allGasMonitors}" varStatus="status">
             <tr>
                 <td> <c:out value="${gasMonitor.id}"/>
                     <form:hidden path="allGasMonitors[${status.index}].id"/></td>
@@ -24,14 +25,14 @@
                  <td> <form:input path="allGasMonitors[${status.index}].maxWeight" /> 
                      <form:errors path="allGasMonitors[${status.index}].maxWeight" /></td>
                 
-                <td> <c:out value="${status.index}.supplierId"/>
+                <td> <c:out value="${gasMonitor.supplierId}"/>
                     <form:hidden path="allGasMonitors[${status.index}].supplierId"/></td>
                 
                 <td> <form:input path="${status.index}.customerId"/>
                     <form:errors path="allGasMonitors[${status.index}].customerId"/></td>
                                 
-                <td> <c:out value="${status.index}.gasTanks"/>
-                    <form:hidden path="allGasMonitors[${status.index}].gasTanks"/></td>
+                <td> <form:input path="${status.index}.gasTanks"/>
+                    <form:errors path="allGasMonitors[${status.index}].gasTanks"/></td>
                 
                 <td> <form:checkbox path="selectedGasMonitors" value="${gasMonitor.id}" /> </td>
             </tr>
