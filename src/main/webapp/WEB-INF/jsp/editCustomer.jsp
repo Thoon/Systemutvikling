@@ -14,6 +14,7 @@
             <th>Kunde-ID</th>
             <th>Kundenavn</th>
             <th>Adresse</th>
+            <th>Forhandler</th>
             <th>Velg</th>
         </tr>
                      
