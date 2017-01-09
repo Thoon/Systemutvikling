@@ -25,7 +25,6 @@ public class GasMonitorMapper implements RowMapper<GasMonitor> {
         g.setSupplierId(rs.getInt("supp_id"));
         g.setCustomerId(rs.getInt("cust_id"));
         g.setGasTanks(rs.getInt("number_gastanks"));
-        System.out.println(g);
         return g;
     }
 }
