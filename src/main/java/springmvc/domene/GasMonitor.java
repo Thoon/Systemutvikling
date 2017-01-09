@@ -20,7 +20,7 @@ public class GasMonitor {
     private int gasTanks;    
     
     public GasMonitor(){}
-    
+
     public GasMonitor(int id, double maxWeight, int customerId, int supplierId, int gasTanks){
         this.id = id;
         this.maxWeight = maxWeight;

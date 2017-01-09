@@ -17,9 +17,9 @@ public class MonitorResultsBackingBean {
     @Valid
     private List<MonitorResults> allResults = null;
     
-    public void setAllResults(List<MonitorResults> allResults){
+    public void setAllResults(List<MonitorResults> allresults){
         System.out.println("**** Bean.setAllResults ****");
-        this.allResults = allResults;
+        this.allResults = allresults;
     }
     
     public List<MonitorResults> getAllResults(){
