@@ -21,7 +21,7 @@ public class SupplierMapper implements RowMapper<Supplier> {
         Supplier s = new Supplier();
         s.setSupplierName(rs.getString("supplierName"));
         s.setAddress(rs.getString("address"));
-        s.setSupplierChainId(rs.getInt("supplierChainId"));
+        s.setSupplierChainId(rs.getInt("sc_id"));
         return s;
     }
 }
