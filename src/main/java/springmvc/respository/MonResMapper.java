@@ -21,12 +21,13 @@ public class MonResMapper implements RowMapper<MonitorResults> {
         System.out.println("**** MonitorResultsverdiene mappes ****");
         MonitorResults mr = new MonitorResults();
         mr.setSerialNumber(rs.getInt("serialnumber"));
-        mr.setMaxWeight(rs.getDouble("maxWeight"));
+        mr.setMaxWeight(rs.getDouble("max_weight"));
         mr.setCurrentWeight(rs.getDouble("currentWeight"));
         mr.setTimestamp(rs.getTimestamp("timestamp"));
-        mr.setCustomerId(rs.getInt("customerId"));
+        mr.setCustomerId(rs.getInt("cust_id"));
         mr.setCustomerName(rs.getString("customerName"));
-        mr.setCustomerAddress(rs.getString("customerAddress"));
+        mr.setCustomerAddress(rs.getString("address"));
+        
         return mr;
     }
 }
