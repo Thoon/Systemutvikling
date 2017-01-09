@@ -18,6 +18,7 @@ public class GasMonitorFormBackingBean {
         return allGasMonitors;
     }
     public void setAllGasMonitors(List<GasMonitor> allGasMonitors){
+        System.out.println(" GasMonitorFormBackingBean.setEveryone()  "  + allGasMonitors);
         this.allGasMonitors = allGasMonitors;
     }
     public List<GasMonitor> getFoundGasMonitors(){

@@ -22,10 +22,9 @@ public class GasMonitorMapper implements RowMapper<GasMonitor> {
         GasMonitor g = new GasMonitor();
         g.setId(rs.getInt("serialnumber"));
         g.setMaxWeight(rs.getDouble("max_weight"));
-        g.setCustomerId(rs.getInt("cust_id"));
         g.setSupplierId(rs.getInt("supp_id"));
+        g.setCustomerId(rs.getInt("cust_id"));
         g.setGasTanks(rs.getInt("number_gastanks"));
-        
         return g;
     }
 }

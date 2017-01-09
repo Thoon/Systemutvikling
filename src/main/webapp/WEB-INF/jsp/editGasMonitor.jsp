@@ -22,17 +22,18 @@
                 <td> <c:out value="${gasMonitor.id}"/>
                     <form:hidden path="allGasMonitors[${status.index}].id"/></td>
                 
-                 <td> <form:input path="allGasMonitors[${status.index}].maxWeight" /> 
-                     <form:errors path="allGasMonitors[${status.index}].maxWeight" /></td>
-                
-                <td> <c:out value="${gasMonitor.supplierId}"/>
-                    <form:hidden path="allGasMonitors[${status.index}].supplierId"/></td>
-                
-                <td> <form:input path="${status.index}.customerId"/>
-                    <form:errors path="allGasMonitors[${status.index}].customerId"/></td>
-                                
-                <td> <form:input path="${status.index}.gasTanks"/>
-                    <form:errors path="allGasMonitors[${status.index}].gasTanks"/></td>
+                <td> <form:input path="allGasMonitors[${status.index}].maxWeight" /> 
+                     <form:errors path="allGasMonitors[${status.index}].maxWeight" />
+                </td>
+                <td> <form:input path="allGasMonitors[${status.index}].supplierId" /> 
+                     <form:errors path="allGasMonitors[${status.index}].supplierId" />
+                </td>
+                <td> <form:input path="allGasMonitors[${status.index}].customerId" /> 
+                     <form:errors path="allGasMonitors[${status.index}].customerId" />
+                </td>
+                <td> <form:input path="allGasMonitors[${status.index}].gasTanks" /> 
+                     <form:errors path="allGasMonitors[${status.index}].gasTanks" />
+                </td>
                 
                 <td> <form:checkbox path="selectedGasMonitors" value="${gasMonitor.id}" /> </td>
             </tr>
