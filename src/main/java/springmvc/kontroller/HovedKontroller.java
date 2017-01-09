@@ -126,7 +126,7 @@ public class HovedKontroller {
     
     @RequestMapping(value = "/editGasMonitor")
     public String editGasMonitor(@Valid @ModelAttribute GasMonitorFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
-        System.out.println("****************Start oversikt2***********************");
+        System.out.println("****************Start oversikt***********************");
            
         String deleteGasMonitors = request.getParameter("deleteGasMonitors");
       
@@ -154,7 +154,7 @@ public class HovedKontroller {
             }  
             if (gasMonitorService.updateGasMonitors(backingBean.getAllGasMonitors())){
                 backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());
-                System.out.println("TEST");
+                System.out.println("TEST2");
                 return "editGasMonitor";
             }else{ //feil ved oppdatering
                 modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
