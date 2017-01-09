@@ -11,9 +11,9 @@ import javax.validation.constraints.NotNull;
 public class GasMonitor {
     private int id;
     @NotNull
-    private int maxWeight;
+    private double maxWeight;
     @NotNull
-    private int currentWeight;    
+    private double currentWeight;    
     @NotNull
     private int customerId;
     @NotNull
@@ -23,7 +23,7 @@ public class GasMonitor {
     
     public GasMonitor(){}
     
-    public GasMonitor(int id,int maxWeight, int currentWeight, int customerId, int supplierId, int gasTanks){
+    public GasMonitor(int id, double maxWeight, double currentWeight, int customerId, int supplierId, int gasTanks){
         this.id = id;
         this.maxWeight = maxWeight;
         this.currentWeight = currentWeight;
@@ -32,7 +32,7 @@ public class GasMonitor {
         this.gasTanks = gasTanks;
     }
     
-    public GasMonitor(int maxWeight, int currentWeight, int customerId, int supplierId, int gasTanks){
+    public GasMonitor(double maxWeight, double currentWeight, int customerId, int supplierId, int gasTanks){
         this.maxWeight = maxWeight;
         this.currentWeight = currentWeight;
         this.customerId = customerId;
@@ -48,19 +48,19 @@ public class GasMonitor {
         this.id = id;
     }
 
-    public int getMaxWeight() {
+    public double getMaxWeight() {
         return maxWeight;
     }
 
-    public void setMaxWeight(int maxWeight) {
+    public void setMaxWeight(double maxWeight) {
         this.maxWeight = maxWeight;
     }
 
-    public int getCurrentWeight() {
+    public double getCurrentWeight() {
         return currentWeight;
     }
 
-    public void setCurrentWeight(int currentWeight) {
+    public void setCurrentWeight(double currentWeight) {
         this.currentWeight = currentWeight;
     }
 

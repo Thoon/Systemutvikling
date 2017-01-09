@@ -20,13 +20,13 @@ public class MonResMapper implements RowMapper<MonitorResults> {
     public MonitorResults mapRow(ResultSet rs, int i) throws SQLException {
         System.out.println("**** MonitorResultsverdiene mappes ****");
         MonitorResults mr = new MonitorResults();
+        mr.setCustomerId(rs.getInt("cust_id"));
+        mr.setCustomerName(rs.getString("customerName"));
+        mr.setCustomerAddress(rs.getString("address"));
+        mr.setMaxWeight(rs.getDouble("max_weight"));
         mr.setSerialNumber(rs.getInt("serialnumber"));
-        mr.setMaxWeight(rs.getDouble("maxWeight"));
         mr.setCurrentWeight(rs.getDouble("currentWeight"));
         mr.setTimestamp(rs.getTimestamp("timestamp"));
-        mr.setCustomerId(rs.getInt("customerId"));
-        mr.setCustomerName(rs.getString("customerName"));
-        mr.setCustomerAddress(rs.getString("customerAddress"));
         return mr;
     }
 }

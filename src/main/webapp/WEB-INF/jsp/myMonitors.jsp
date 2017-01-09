@@ -21,21 +21,22 @@
             
             <c:forEach var="monitorResults" items="${monitorResultsBackingBean.allResults}" varStatus="status">
             
-            <h2><c:out value="${monitorResults.customerId}"/> <c:out value="${monitorResults.customerName}"/> <c:out value="${monitorResults.customerAddress}"/> </h2>
-            <tr>
-                <td><c:out value="${monitorResults.serialnumber}"/>
-                    <form:hidden path="allResults[${status.index}].serialnumber" />
-                </td>               
-                <td> 
-                    <form:input path="allResults[${status.index}].percentage" /> 
-                    <form:errors path="allResults[${status.index}].percentage" />
-                </td>
-                <td> 
-                    <form:input path="allResults[${status.index}].timestamp" /> 
-                    <form:errors path="allResults[${status.index}].timestamp" />
-                </td>
-            </tr>
-        </c:forEach>
+                <h2><c:out value="${monitorResults.customerId}"/> <c:out value="${monitorResults.customerName}"/> <c:out value="${monitorResults.customerAddress}"/> </h2>
+                <tr>
+                    <td><c:out value="${monitorResults.serialnumber}"/>
+                        <form:hidden path="allResults[${status.index}].serialnumber" />
+                    </td>               
+                    <td> 
+                        <c:out value="${monitorResults.percentage}"/>
+                        <form:hidden path="allResults[${status.index}].percentage" /> 
+                    </td>
+                    <td> 
+                        <c:out value="${monitorResults.timestamp}"/>
+                        <form:hidden path="allResults[${status.index}].timestamp" />
+                    </td>
+                </tr>
+            
+            </c:forEach>
         </table>
         </form:form>
     </body>
