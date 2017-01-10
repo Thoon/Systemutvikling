@@ -17,12 +17,6 @@
             </td> 
         </tr>
         <tr>
-            <td> Nåværende vekt </td>
-            <td> <form:input path="currentWeight" />
-                 <form:errors path="currentWeight" />
-            </td>
-        </tr>
-        <tr>
             <td> Leverandør ID: </td>
             <td> <form:input path="supplierId" />
                  <form:errors path="supplierId" />

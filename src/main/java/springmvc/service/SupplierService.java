@@ -7,6 +7,7 @@ package springmvc.service;
 
 import java.util.List;
 import springmvc.domene.Supplier;
+import springmvc.domene.SupplierPerson;
 
 /**
  *
@@ -25,5 +26,7 @@ public interface SupplierService {
     public boolean registerSupplier(Supplier s);
     
     public boolean deleteSuppliers(List<Supplier> supplierList);
+    
+    public boolean registerSupplierPerson(SupplierPerson c);
     
 }

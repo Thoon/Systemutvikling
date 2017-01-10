@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import springmvc.domene.Supplier;
 import org.springframework.dao.DuplicateKeyException;
+import springmvc.domene.SupplierPerson;
 import springmvc.service.SupplierService;
 //import org.springframework.dao.
 
@@ -62,7 +63,8 @@ public class RegisterSupplierController {
     }
        
     @RequestMapping(value = "/registerSupplier" , method=RequestMethod.GET)
-    public String supplier(@ModelAttribute Supplier supplier) {
+    public String supplier(@ModelAttribute Supplier supplier, 
+            @ModelAttribute("supplierPerson") SupplierPerson supplierPerson) {
         System.out.println(" ******   RegisterSupplier.controller.supplier() ");
         return "registerSupplier";
     }
@@ -79,5 +81,20 @@ public class RegisterSupplierController {
             modell.addAttribute("melding","feilmelding.reg.supplier");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
             return "error";
         }
+    }
+    
+    
+    @RequestMapping(value = "registerSupplierPerson" , method=RequestMethod.POST)
+    public String svarside(@Valid @ModelAttribute("supplierPerson") SupplierPerson suppPers, BindingResult err, Model modell){
+        System.out.println(" **** Supplier verdi i RegisterSupplierController " + suppPers);
+        
+        if(supplierService.registerSupplierPerson(suppPers)){
+            modell.addAttribute("melding","SupplierPerson " + suppPers.toString() + " er registrert");
+            return "svarside";
+        } else {
+            modell.addAttribute("melding","feilmelding.reg.customer");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
+            return "error";
+        }
+        
     }
 }

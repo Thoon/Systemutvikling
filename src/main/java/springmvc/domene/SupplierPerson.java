@@ -10,37 +10,37 @@ package springmvc.domene;
  * @author ander
  */
 public class SupplierPerson {
-    private Supplier supplier;
-    private Person person;
+    private int supplierId;
+    private String email;
     
     public SupplierPerson() {
         
     }
     
-    public SupplierPerson(Supplier supplier, Person person){
-        this.supplier = supplier;
-        this.person = person;
+    public SupplierPerson(int supplierId, String email){
+        this.supplierId = supplierId;
+        this.email = email;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public int getSupplierId() {
+        return supplierId;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
     }
 
-    public Person getPerson() {
-        return person;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return "SupplierPerson{" + "supplier=" + supplier + ", person=" + person + '}';
+        return "SupplierPerson{" + "supplier=" + supplierId + ", person=" + email + '}';
     }
     
 }

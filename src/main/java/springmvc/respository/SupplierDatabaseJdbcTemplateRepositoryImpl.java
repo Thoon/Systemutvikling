@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import springmvc.domene.Supplier;
+import springmvc.domene.SupplierPerson;
 
 /**
  *
@@ -24,6 +25,7 @@ public class SupplierDatabaseJdbcTemplateRepositoryImpl implements SupplierRepos
     private final String sqlSelectEveryone = "SELECT * FROM supplier";
     private final String sqlRegisterSupplier = "INSERT INTO supplier (suppliername, address, sc_id) VALUES(?,?,?)";
     private final String sqlUpdateSupplier = "UPDATE supplier SET supplierName=?, address = ?, sc_id = ? WHERE supp_id = ?";
+    private final String sqlRegisterSupplierPerson = "INSERT INTO supp_pers (supp_id, email) SELECT supp_id,email FROM supplier,person WHERE supp_id = ? AND email = ?";
     
     private DataSource dataSource;
     JdbcTemplate jdbcTemplateObject;
@@ -74,5 +76,15 @@ public class SupplierDatabaseJdbcTemplateRepositoryImpl implements SupplierRepos
                 s.getSupplierChainId()
         });
         return true;
+    }
+    
+    @Override
+    public boolean registerSupplierPerson(SupplierPerson sp){
+        jdbcTemplateObject.update(sqlRegisterSupplierPerson, 
+            new Object[]{
+                sp.getSupplierId(),
+                sp.getEmail()
+            });
+        return true;        
     }
 }

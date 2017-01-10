@@ -8,6 +8,7 @@ package springmvc.ui;
 import java.util.List;
 import javax.validation.Valid;
 import springmvc.domene.Supplier;
+import springmvc.domene.SupplierPerson;
 
 /**
  *
@@ -17,6 +18,7 @@ public class SupplierFormBackingBean {
     @Valid
     private List<Supplier> everyone = null;
     private List<Supplier> selectedSuppliers = null;
+    private List<SupplierPerson> suppPers = null;
     
     public List<Supplier> getSelectedSuppliers() {
         return selectedSuppliers;
@@ -40,5 +42,13 @@ public class SupplierFormBackingBean {
     public void setEveryone(List<Supplier> everyone){
         System.out.println(" SupplierFormBackingBean.setEveryone()  "  + everyone);
         this.everyone = everyone;
+    }
+    
+    public List<SupplierPerson> getSupplierPerson(){
+        return suppPers;
+    }
+    
+    public void setCustPers(List<SupplierPerson> sp){
+        this.suppPers = sp;
     }
 }

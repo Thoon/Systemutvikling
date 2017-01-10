@@ -35,4 +35,22 @@
 </form:form>
 
 
+<h2>Registrer Person</h2>
+<form:form action="registerSupplierPerson.htm" method="post" modelAttribute="supplierPerson" >
+    <table>
+        <td> Forhandler id </td>
+            <td> <form:input path="supplierId" />
+                 <form:errors path="supplierId" />
+            </td> 
+        </tr>
+        <tr>
+            <td> Epost </td>
+            <td> <form:input path="email" />
+                 <form:errors path="email" />
+            </td>
+        </tr>
+        
+        <tr><td colspan="2"><input type="submit" value="Registrer forhandler"></td></tr>
+    </table>
 
+</form:form>
