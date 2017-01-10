@@ -15,7 +15,7 @@ import springmvc.domene.GasMonitor;
 public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     
     private Connection connection;
-    private final String sqlInsertGasMonitor = "insert into gas_monitor (serialnumber, max_weight, current_weight, supp_id, cust_id, number_gastanks) values(?,?,?,?,?,?);";
+    private final String sqlInsertGasMonitor = "insert into gas_monitor (serialnumber, max_weight, supp_id, cust_id, number_gastanks) values(?,?,?,?,?);";
     private final String sqlSelectGasMonitor = "Select * from gas_monitor where serialnumber = ?";
     private final String sqlDeleteGasMonitor = "Delete from gas_monitor where serialnumber = ?";
     private final String sqlSelectAllGasMonitors = "Select * from gas_monitor";
