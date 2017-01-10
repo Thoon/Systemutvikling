@@ -347,7 +347,7 @@ public class HovedKontroller {
         return "editSupplierChain";
     }
     
-    @RequestMapping(value = "/myMonitors", method = RequestMethod.GET)
+    @RequestMapping(value = "/myMonitors")
     public String myMonitors(@Valid @ModelAttribute MonitorResultsBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
         System.out.println("****************Start oversikt***********************");
         System.out.println("***Setter backingbeanverdier***");

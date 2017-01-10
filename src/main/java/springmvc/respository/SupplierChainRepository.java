@@ -7,6 +7,7 @@ package springmvc.respository;
 
 import java.util.List;
 import springmvc.domene.SupplierChain;
+import springmvc.domene.SupplierChainPerson;
 
 /**
  *
@@ -23,4 +24,6 @@ public interface SupplierChainRepository {
     public boolean updateSupplierChain(SupplierChain sc) ;
 
     public boolean deleteSupplierChain(SupplierChain sc) ;
+    
+    public boolean registerSupplierChainPerson(SupplierChainPerson sp);
 }

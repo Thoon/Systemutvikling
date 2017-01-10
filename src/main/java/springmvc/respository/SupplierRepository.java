@@ -7,6 +7,7 @@ package springmvc.respository;
 
 import java.util.List;
 import springmvc.domene.Supplier;
+import springmvc.domene.SupplierPerson;
 
 /**
  *
@@ -22,4 +23,6 @@ public interface SupplierRepository {
     public boolean updateSupplier(Supplier s) ;
 
     public boolean deleteSupplier(Supplier s) ;
+    
+    public boolean registerSupplierPerson(SupplierPerson sp);
 }

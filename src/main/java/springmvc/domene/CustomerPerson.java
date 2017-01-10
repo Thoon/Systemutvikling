@@ -12,37 +12,36 @@ import java.util.List;
  * @author ander
  */
 public class CustomerPerson {
-    private Customer customer;
-    private Person person;
+    private String email;
+    private int customerId;
     
     public CustomerPerson(){
         
     }
     
-    public CustomerPerson(Customer customer, Person person){
-        this.customer = customer;
-        this.person = person;
+    public CustomerPerson(int customerId, String email){
+        this.customerId = customerId;
+        this.email = email;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerName(int customerId) {
+        this.customerId = customerId;
     }
 
-    public Person getPerson() {
-        return person;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return "CustomerPerson{" + "customer= " + customer + ", person= " + person + '}';
+        return "CustomerPerson{" + "email=" + email + ", customerName=" + customerId + '}';
     }
-    
 }

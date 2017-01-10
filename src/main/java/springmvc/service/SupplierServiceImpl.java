@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import springmvc.domene.Supplier;
+import springmvc.domene.SupplierPerson;
 import springmvc.respository.SupplierRepository;
 
 /**
@@ -74,5 +75,10 @@ public class SupplierServiceImpl implements SupplierService {
     public boolean updateSupplier(Supplier s){
         System.out.println("**** SupplierServiceImpl.updateSupplier()  *** ");
         return repo.updateSupplier(s);
+    }
+    @Override
+    public boolean registerSupplierPerson(SupplierPerson c){
+        System.out.println("**** CustomerServiceImpl.registerCustomerPerson()  *** ");
+        return repo.registerSupplierPerson(c);
     }
 }

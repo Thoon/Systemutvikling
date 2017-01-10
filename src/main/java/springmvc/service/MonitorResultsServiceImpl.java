@@ -22,7 +22,7 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
     
     @Autowired
     public void setRepository(MonitorResultsRepository repo){
-        System.out.println("GasMonitorServiceImpl.setDatabase2   " + repo);
+        System.out.println("MonitorResultsServiceImpl.setDatabase   " + repo);
         this.repo = repo;
     }
     @Override
@@ -36,7 +36,7 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
      * @param gasMonitorList
      * @return resultList after calculations
      */
-    
+    @Override
     public List<MonitorResults> getCalculatedResults (){
         System.out.println("**** MonitorResultsServiceImpl.getCalculatedResults ****");
         return sortByPercentage(getAllMonitorResults());
@@ -50,6 +50,9 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
     private List<MonitorResults> sortByPercentage(List<MonitorResults> gasMonitorList){
         System.out.println("**** MonitorResultsServiceImpl.sortByPercentage ****");
         Collections.sort(gasMonitorList, new ComparatorImpl());
+        for(int i = 0; i < gasMonitorList.size();i++){    
+            System.out.println(gasMonitorList.get(i));
+        }
         return gasMonitorList;
     }
     

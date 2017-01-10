@@ -20,7 +20,7 @@ public class CustomerFormBackingBean {
     private List<Customer> everyone = null;
     private List<Customer> selectedCustomers = null;
     private List<CustomerPerson> custPers = null;
-    private List<String> custPersEmail = null;
+
     
     public List<Customer> getSelectedCustomers() {
         return selectedCustomers;
@@ -52,24 +52,5 @@ public class CustomerFormBackingBean {
     
     public void setCustPers(List<CustomerPerson> cp){
         this.custPers = cp;
-        setCustPersEmail();
-    }
-    
-    public List<String> getCustPersEmail(){
-        return custPersEmail;
-    }
-    
-    public void setCustPersEmail(){
-        List<String> ls = new ArrayList<>();
-            
-            for(Customer c: everyone){
-                String s = "";
-                for(CustomerPerson cp: custPers){
-                    s+=cp.getPerson() + "\n";
-                }   
-                ls.add(s);;
-            }
-            
-        custPersEmail=ls;
     }
 }
