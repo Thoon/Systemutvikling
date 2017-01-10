@@ -20,9 +20,9 @@ public class PersonServiceImpl implements PersonService{
      }
    
     @Override
-    public Person getPerson(String personNr){
+    public Person getPerson(String email){
         System.out.println("**** PersonServiceImpl.getPerson()  *** ");
-        return repo.getPerson(personNr);
+        return repo.getPerson(email);
     }
      
     @Override
