@@ -1,6 +1,7 @@
 package springmvc.kontroller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,7 +53,10 @@ public class RegisterPersonController {
     }
        
     @RequestMapping(value = "/registerPerson" , method=RequestMethod.GET)
-    public String person(@ModelAttribute Person person) {
+    public String person(@ModelAttribute Person person, HttpSession session) {
+         if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
+            return "index";
+        }
         System.out.println(" ******   RegisterPerson.controller.person() ");
         return "registerPerson";
     }

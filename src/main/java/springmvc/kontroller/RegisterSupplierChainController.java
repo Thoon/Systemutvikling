@@ -11,6 +11,7 @@ package springmvc.kontroller;
  */
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import springmvc.domene.SupplierChain;
 import org.springframework.dao.DuplicateKeyException;
 import springmvc.domene.SupplierChainPerson;
+import springmvc.service.PersonService;
 import springmvc.service.SupplierChainService;
 //import org.springframework.dao.
 
@@ -32,6 +34,9 @@ public class RegisterSupplierChainController {
     
     @Autowired
     private SupplierChainService scService;
+    
+    @Autowired
+    private PersonService personService;
     
     //Sørger for å gi en feilside når feil oppstår, merk at vi godt kunne hatt
     //flere slike feilhåndterere og håndtert ulike feil mer spesifikt
@@ -64,8 +69,12 @@ public class RegisterSupplierChainController {
        
     @RequestMapping(value = "/registerSupplierChain" , method=RequestMethod.GET)
     public String supplierChain(@ModelAttribute SupplierChain supplierChain,
-            @ModelAttribute("supplierChainPerson") SupplierChainPerson supplierChainPerson) {
+            @ModelAttribute("supplierChainPerson") SupplierChainPerson supplierChainPerson, 
+            HttpSession session) {
         System.out.println(" ******   RegisterSupplierChain.controller.supplier() ");
+        if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
+            return "index";
+        }        
         return "registerSupplierChain";
     }
 
