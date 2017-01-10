@@ -26,6 +26,8 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
 
     private final String sqlUpdatePersonPassword = "UPDATE person SET password=?, active=? where email = ?";
     
+    private final String sqlGetPermission = "SELECT permissions FROM person WHERE email=?";
+    
     private DataSource dataSource;
     JdbcTemplate jdbcTemplateObject;
     
@@ -90,5 +92,10 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
             person.getEmail()
         });
         return true;
+    }
+    
+    @Override
+    public int getPermission(String email) {
+        return jdbcTemplateObject.queryForObject(sqlGetPermission, new Object[]{email}, new IntMapper());
     }
 }

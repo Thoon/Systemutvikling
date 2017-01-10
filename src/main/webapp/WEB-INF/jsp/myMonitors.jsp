@@ -16,6 +16,8 @@
         <title>Mine målere</title>
     </head>
     <body>
+        <h1>Mine Målere</h1>
+        
         <form:form action="myMonitors.htm" method="POST" modelAttribute="monitorResultsBackingBean">
         <table border="1" width="100%">
             

@@ -22,4 +22,6 @@ public interface PersonRepository {
     public boolean deletePerson(Person p) ;
     
     public boolean updatePassword(Person p) ;
+    
+    public int getPermission(String email);
 }
