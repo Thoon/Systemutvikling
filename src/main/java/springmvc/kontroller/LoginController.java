@@ -42,7 +42,7 @@ public class LoginController {
         if(returnValue == 5){
             Person pers = personService.getPerson(person.getEmail());
             session.setAttribute("email", pers.getEmail());
-            //session.setAttribute("permissions", pers.getPermission());
+            session.setAttribute("permissions", pers.getPermission());
             return "index";
         }
         switch (returnValue) {
