@@ -16,24 +16,35 @@
         <title>Mine målere</title>
     </head>
     <body>
-        <form:form action="myMonitors.htm" method="post" modelAttribute="MonitorResultsBackingBean">
+        <form:form action="myMonitors.htm" method="POST" modelAttribute="monitorResultsBackingBean">
         <table border="1" width="100%">
             
             <c:forEach var="monitorResults" items="${monitorResultsBackingBean.allResults}" varStatus="status">
-            
-            <h2><c:out value="${monitorResults.customerId}"/> <c:out value="${monitorResults.customerName}"/> <c:out value="${monitorResults.customerAddress}"/> </h2>
             <tr>
-                <td><c:out value="${monitorResults.serialnumber}"/>
-                    <form:hidden path="allResults[${status.index}].serialnumber" />
-                </td>               
-                <td> 
-                    <form:input path="allResults[${status.index}].percentage" /> 
-                    <form:errors path="allResults[${status.index}].percentage" />
+                <td>
+                <c:out value="${monitorResults.customerId}"/> 
+                    <form:hidden path="allResults[${status.index}].customerId" />
                 </td>
-                <td> 
-                    <form:input path="allResults[${status.index}].timestamp" /> 
-                    <form:errors path="allResults[${status.index}].timestamp" />
+                
+                <td> <form:input path="monitorResults[${status.index}].customerName" /> 
+                     <form:errors path="monitorResults[${status.index}].customerName" />
                 </td>
+                
+                <td> <form:input path="monitorResults[${status.index}].customerAddress" /> 
+                     <form:errors path="monitorResults[${status.index}].customerAddress" />
+                </td>
+                    
+                 <td> <form:input path="monitorResults[${status.index}].serialnumber" /> 
+                     <form:errors path="monitorResults[${status.index}].serialnumber" />
+                </td>                   
+ 
+                <td> <form:input path="monitorResults[${status.index}].percentage" /> 
+                     <form:errors path="monitorResults[${status.index}].percentage" />
+                </td>                    
+                    
+                <td> <form:input path="monitorResults[${status.index}].timestamp" /> 
+                     <form:errors path="monitorResults[${status.index}].timestamp" />
+                </td>                      
             </tr>
         </c:forEach>
         </table>

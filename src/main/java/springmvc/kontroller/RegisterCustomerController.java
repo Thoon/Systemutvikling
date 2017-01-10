@@ -110,7 +110,7 @@ public class RegisterCustomerController {
         System.out.println(" **** Customer verdi i RegisterCustomerController " + custPers);
         
         if(customerService.registerCustomerPerson(custPers)){
-            modell.addAttribute("melding","CustomerPerson " + custPers.getCustomer() + " er registrert");
+            modell.addAttribute("melding","CustomerPerson " + custPers.toString() + " er registrert");
             return "svarside";
         } else {
             modell.addAttribute("melding","feilmelding.reg.customer");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET
