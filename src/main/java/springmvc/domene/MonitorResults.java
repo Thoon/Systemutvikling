@@ -111,6 +111,6 @@ public class MonitorResults {
 
     @Override
     public String toString() {
-        return "serialnumber= " + serialnumber + ", customerName= " + customerName + ", customerAddress= " + customerAddress + ", maxWeight= " + maxWeight + ", percentage= " + percentage + ", timestamp= " + timestamp;
+        return "ID: " + serialnumber + ",  Navn: " + customerName + ",  Addresse: " + customerAddress + ",  Prosent igjen: " + percentage + "%,  Tidspunkt: " + timestamp;
     }
 }
