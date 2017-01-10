@@ -67,6 +67,7 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
             gasMonitor.getMaxWeight(),
             gasMonitor.getCustomerId(),
             gasMonitor.getSupplierId(),
+            gasMonitor.getGasTanks(),
             gasMonitor.getId()
         });
         return true;
