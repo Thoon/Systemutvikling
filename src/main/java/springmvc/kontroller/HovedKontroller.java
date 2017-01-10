@@ -83,8 +83,11 @@ public class HovedKontroller {
     }
 
     @RequestMapping(value = "/editPerson")
-    public String editPerson(@Valid @ModelAttribute PersonFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
+    public String editPerson(@Valid @ModelAttribute PersonFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request, HttpSession session) {
         System.out.println("****************Start oversikt***********************");
+        if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
+            return "index";
+        }
            
         String deletePersons = request.getParameter("deletePersons");
       
@@ -125,48 +128,58 @@ public class HovedKontroller {
     }
     
     @RequestMapping(value = "/editGasMonitor")
-    public String editGasMonitor(@Valid @ModelAttribute GasMonitorFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
+    public String editGasMonitor(@Valid @ModelAttribute GasMonitorFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request, HttpSession session) {
         System.out.println("****************Start oversikt***********************");
+       if (personService.getPermission(session.getAttribute("email").toString()) <= 2) {
+            
+        
            
-        String deleteGasMonitors = request.getParameter("deleteGasMonitors");
+            String deleteGasMonitors = request.getParameter("deleteGasMonitors");
       
             
-        //Slett gassmonitorer valgt i checkbox'er
-        if (deleteGasMonitors != null) { 
-            List<GasMonitor> selectGasMonitor = backingBean.getSelectedGasMonitors();
+            //Slett gassmonitorer valgt i checkbox'er
+            if (deleteGasMonitors != null) { 
+                List<GasMonitor> selectGasMonitor = backingBean.getSelectedGasMonitors();
             
-            System.out.println("*** slett gasmonitor **** ");
-            if (selectGasMonitor != null) {
-                if (gasMonitorService.deleteGasMonitors(selectGasMonitor)){
-                    backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());//oppdaterer verdiene i backingBean
+                System.out.println("*** slett gasmonitor **** ");
+                if (selectGasMonitor != null) {
+                    if (gasMonitorService.deleteGasMonitors(selectGasMonitor)){
+                        backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());//oppdaterer verdiene i backingBean
+                        return "editGasMonitor";
+                    }else{ //feil ved sletting
+                        modell.addAttribute("melding","feilside.slett");//feilside.slett er kode. Tekst hentes fra message.properties.
+                    return "error";
+                    }
+                }
+            
+            // Oppdater (alle) monitorer valgt. Endringer gjort i tekstfelt.
+            // Valg i checkbox'er er uten betydning her.
+            } else { 
+                if (error.hasErrors()){ //ikke oppdater grunnet valideringsfeil
                     return "editGasMonitor";
-                }else{ //feil ved sletting
-                    modell.addAttribute("melding","feilside.slett");//feilside.slett er kode. Tekst hentes fra message.properties.
+                }  
+                if (gasMonitorService.updateGasMonitors(backingBean.getAllGasMonitors())){
+                    backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());
+                    System.out.println("TEST2");
+                    return "editGasMonitor";
+                }else{ //feil ved oppdatering
+                    modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
                     return "error";
                 }
             }
-            
-        // Oppdater (alle) monitorer valgt. Endringer gjort i tekstfelt.
-        // Valg i checkbox'er er uten betydning her.
-        } else { 
-            if (error.hasErrors()){ //ikke oppdater grunnet valideringsfeil
-                return "editGasMonitor";
-            }  
-            if (gasMonitorService.updateGasMonitors(backingBean.getAllGasMonitors())){
-                backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());
-                System.out.println("TEST2");
-                return "editGasMonitor";
-            }else{ //feil ved oppdatering
-                modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
-                return "error";
-            }  
+        }else{
+            return "index";
         }
         return "editGasMonitor";
     }
     
     @RequestMapping(value = "/editCustomer")
-    public String editCustomer(@Valid @ModelAttribute CustomerFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
+    public String editCustomer(@Valid @ModelAttribute CustomerFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request, HttpSession session) {
         System.out.println("****************Start oversikt***********************");
+        
+        if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
+            return "index";
+        }
            
         String deleteCustomers = request.getParameter("deleteCustomers");
       
@@ -264,8 +277,11 @@ public class HovedKontroller {
     }
 
     @RequestMapping(value = "/editSupplier")
-    public String editSupplier(@Valid @ModelAttribute SupplierFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
+    public String editSupplier(@Valid @ModelAttribute SupplierFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request,HttpSession session) {
         System.out.println("****************Start oversikt***********************");
+        if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
+            return "index";
+        }
            
         String deleteSuppliers = request.getParameter("deleteSuppliers");
       
@@ -306,8 +322,12 @@ public class HovedKontroller {
     }
 
     @RequestMapping(value = "/editSupplierChain")
-    public String editSupplierChain(@Valid @ModelAttribute SupplierChainFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
+    public String editSupplierChain(@Valid @ModelAttribute SupplierChainFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request, HttpSession session) {
         System.out.println("****************Start oversikt***********************");
+        
+        if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
+            return "index";
+        }
            
         String deleteSupplierChains = request.getParameter("deleteSupplierChains");
       

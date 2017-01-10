@@ -147,4 +147,9 @@ public class PersonServiceImpl implements PersonService{
         pers.setPassword(Password.hashPassword(pass));
         repo.updatePassword(pers);
     }
+    
+    @Override
+    public int getPermission(String email) {
+        return repo.getPermission(email);
+    }
 }

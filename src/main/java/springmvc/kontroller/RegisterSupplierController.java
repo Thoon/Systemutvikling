@@ -11,6 +11,7 @@ package springmvc.kontroller;
  */
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import springmvc.domene.Supplier;
 import org.springframework.dao.DuplicateKeyException;
 import springmvc.domene.SupplierPerson;
+import springmvc.service.PersonService;
 import springmvc.service.SupplierService;
 //import org.springframework.dao.
 
@@ -32,6 +34,9 @@ public class RegisterSupplierController {
     
     @Autowired
     private SupplierService supplierService;
+    
+    @Autowired
+    private PersonService personService;
     
     //Sørger for å gi en feilside når feil oppstår, merk at vi godt kunne hatt
     //flere slike feilhåndterere og håndtert ulike feil mer spesifikt
@@ -64,7 +69,10 @@ public class RegisterSupplierController {
        
     @RequestMapping(value = "/registerSupplier" , method=RequestMethod.GET)
     public String supplier(@ModelAttribute Supplier supplier, 
-            @ModelAttribute("supplierPerson") SupplierPerson supplierPerson) {
+            @ModelAttribute("supplierPerson") SupplierPerson supplierPerson, HttpSession session) {
+        if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
+            return "index";
+        }
         System.out.println(" ******   RegisterSupplier.controller.supplier() ");
         return "registerSupplier";
     }

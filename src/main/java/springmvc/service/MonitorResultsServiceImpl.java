@@ -61,7 +61,16 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
     private List<MonitorResults> sortByPercentage(List<MonitorResults> gasMonitorList){
         System.out.println("**** MonitorResultsServiceImpl.sortByPercentage ****");
         Collections.sort(gasMonitorList, new ComparatorImpl());
-        for(int i = 0; i < gasMonitorList.size();i++){    
+        for(int i = 0; i < gasMonitorList.size();i++){  
+            double max = gasMonitorList.get(i).getMaxWeight();
+            double current = gasMonitorList.get(i).getCurrentWeight();
+            max /= 2;
+            current -= max;
+            double percent = (current/max)*100;
+  
+            percent = Math.round (percent * 100.0) / 100.0;
+            gasMonitorList.get(i).setPercentage(percent);
+            
             gasMonitorList.get(i).setStreng((gasMonitorList.get(i).toString()));
         }
         return gasMonitorList;
