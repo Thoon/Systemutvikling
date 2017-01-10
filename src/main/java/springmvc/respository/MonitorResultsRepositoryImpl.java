@@ -19,7 +19,14 @@ import springmvc.domene.MonitorResults;
 public class MonitorResultsRepositoryImpl implements MonitorResultsRepository{
     
     private Connection connection;
-    private final String sqlSelectResults = "SELECT gas_monitor.cust_id, customer.customerName, customer.address, gas_monitor.max_weight, monitor_results. * FROM customer INNER JOIN gas_monitor ON gas_monitor.cust_id = customer.cust_id INNER JOIN monitor_results ON monitor_results.serialnumber = gas_monitor.serialnumber";
+    
+    // Query to return wanted attributes from the tables Customer, Gas_monitor and Monitor_results.
+    // Returns only the latest registered timestamp for each gas monitor 
+    private final String sqlSelectResults = ""
+            + "SELECT gm.cust_id, c.customerName, c.address, gm.max_weight, mr. * FROM customer c "
+            + "INNER JOIN gas_monitor gm ON gm.cust_id = c.cust_id "
+            + "INNER JOIN monitor_results mr ON mr.serialnumber = gm.serialnumber "
+            + "WHERE mr.timestamp = (SELECT MAX( mr2.timestamp ) FROM monitor_results mr2 WHERE mr2.serialnumber = mr.serialnumber )";
     
     private DataSource dataSource;
     JdbcTemplate jdbcTemplateObject;
