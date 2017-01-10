@@ -20,25 +20,21 @@ public class SupplierChainServiceImpl implements SupplierChainService {
 
      @Autowired
      public void setRepository(SupplierChainRepository repo){
-         System.out.println("SupplierChainServiceImpl.setDatabase2   " + repo);
          this.repo = repo;
      }
    
     @Override
     public SupplierChain getSupplierChain(int scId){
-        System.out.println("**** SupplierChainServiceImpl.getSupplier()  *** ");
         return repo.getSupplierChain(scId);
     }
      
     @Override
     public List<SupplierChain> getEveryone(){
-        System.out.println("**** SupplierChainServiceImpl.getEveryone()  *** ");
         return repo.getEveryone();
     }
     
     @Override
     public boolean updateSupplierChains(List<SupplierChain> supplierChainList){
-        System.out.println("**** SupplierChainServiceImpl.updateSupplierChains()  *** ");
         if (supplierChainList == null || supplierChainList.size() == 0){
             return true;
         }
@@ -52,13 +48,11 @@ public class SupplierChainServiceImpl implements SupplierChainService {
     
     @Override
     public boolean registerSupplierChain(SupplierChain sc){
-        System.out.println("**** SupplierChainServiceImpl.registerSupplierChain()  *** ");
         return repo.registerSupplierChain(sc);
     }
     
     @Override
     public boolean deleteSupplierChains(List<SupplierChain> supplierChainList){
-        System.out.println("**** SupplierChainServiceImpl.deleteSupplierChains()  *** ");
         if (supplierChainList == null || supplierChainList.isEmpty()) return true;
                
         boolean isDeleteOK = true;
@@ -70,7 +64,6 @@ public class SupplierChainServiceImpl implements SupplierChainService {
     
     @Override
     public boolean updateSupplierChain(SupplierChain sc){
-        System.out.println("**** SupplierChainServiceImpl.updateSupplierChain()  *** ");
         return repo.updateSupplierChain(sc);
     }
     

@@ -54,8 +54,6 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
      */
     @Override
     public List<MonitorResults> getCalculatedResults (int userLevel){
-        System.out.println("**** MonitorResultsServiceImpl.getCalculatedResults ****");
-        
         return sortByPercentage(getAllMonitorResults(userLevel));
     }
     
@@ -65,7 +63,6 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
      * @return A sorted list of GasMonitorobjects by gaslevel-percentage
      */
     private List<MonitorResults> sortByPercentage(List<MonitorResults> gasMonitorList){
-        System.out.println("**** MonitorResultsServiceImpl.sortByPercentage ****");
         Collections.sort(gasMonitorList, new ComparatorImpl());
         for(int i = 0; i < gasMonitorList.size();i++){  
             double max = gasMonitorList.get(i).getMaxWeight();
@@ -90,7 +87,6 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
 
         @Override
         public int compare(MonitorResults mr1, MonitorResults mr2) {
-            System.out.println("**** comparator ****");
             return Double.compare(mr1.percentage, mr2.percentage);
         }
     }

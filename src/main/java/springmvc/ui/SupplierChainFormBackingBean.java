@@ -38,7 +38,6 @@ public class SupplierChainFormBackingBean {
     }
     
     public void setEveryone(List<SupplierChain> everyone){
-        System.out.println(" SupplierChainFormBackingBean.setEveryone()  "  + everyone);
         this.everyone = everyone;
     }
 }

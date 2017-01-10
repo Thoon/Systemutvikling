@@ -18,12 +18,10 @@ public class MonitorResultsBackingBean {
     private List<MonitorResults> allResults = null;
     
     public void setAllResults(List<MonitorResults> allresults){
-        System.out.println("**** Bean.setAllResults ****");
         this.allResults = allresults;
     }
     
     public List<MonitorResults> getAllResults(){
-        System.out.println("**** Bean.getAllResults ****");
         return allResults;
     }
 }

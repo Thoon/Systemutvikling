@@ -10,7 +10,6 @@ public class IntMapper implements RowMapper<Integer> {
     public Integer mapRow(ResultSet rs, int i) throws SQLException {
         Integer intete = 0;
         intete = rs.getInt("permissions");
-        System.out.println(intete);
         return intete;
     }
 }

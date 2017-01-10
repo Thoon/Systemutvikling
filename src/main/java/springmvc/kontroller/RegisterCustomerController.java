@@ -83,8 +83,6 @@ public class RegisterCustomerController {
     
     @RequestMapping(value = "registerCustomerPerson" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("customerPerson") CustomerPerson custPers, BindingResult err, Model modell){
-        System.out.println(" **** Customer verdi i RegisterCustomerController " + custPers);
-        
         if(customerService.registerCustomerPerson(custPers)){
             modell.addAttribute("melding","CustomerPerson " + custPers.toString() + " er registrert");
             return "svarside";

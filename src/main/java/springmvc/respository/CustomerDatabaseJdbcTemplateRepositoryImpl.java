@@ -35,7 +35,6 @@ public class CustomerDatabaseJdbcTemplateRepositoryImpl implements CustomerRepos
     
     @Autowired
     public void setDataSource(DataSource dataSource){
-        System.out.println(" Database.setDataSource " + dataSource);
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
@@ -58,7 +57,6 @@ public class CustomerDatabaseJdbcTemplateRepositoryImpl implements CustomerRepos
     
     @Override
     public boolean updateCustomer(Customer c){
-        System.out.println("** Repository ** " + c);
         jdbcTemplateObject.update(sqlUpdateCustomer, new Object[]{
             c.getCustomerName(),
             c.getAddress(),
