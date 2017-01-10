@@ -36,19 +36,15 @@ public class RegisterGasMonitorController {
     
     @ExceptionHandler({Exception.class})
     public ModelAndView handleError(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterGasMonitorController.handleError " + exception);
         ModelAndView mav = new ModelAndView();
         mav.addObject("melding", "feilmelding.generell");
         mav.addObject("unntak", exception);
         mav.setViewName("error");
-        System.out.println(exception);
         return mav;
     }
     
     @ExceptionHandler({DuplicateKeyException.class})
     public ModelAndView handleDuplicateKey(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterGasMonitorController.handleError2 " + exception);
-        
         ModelAndView mav = new ModelAndView();
         mav.addObject("melding", "feilmelding.prim.nokkel");
         mav.addObject("unntak", exception);
@@ -59,7 +55,6 @@ public class RegisterGasMonitorController {
     @RequestMapping(value = "/registerGasMonitor" , method=RequestMethod.GET)
     public String gasMonitor(@ModelAttribute GasMonitor gasMonitor, HttpSession session) {
         if (personService.getPermission(session.getAttribute("email").toString()) <= 2) {
-            System.out.println(" ******   GasMonitor.controller.gasMonitor() ");
             return "registerGasMonitor";
         }else{
             return "index";
@@ -70,14 +65,10 @@ public class RegisterGasMonitorController {
     @RequestMapping(value = "RegisterGasMonitor" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("gasMonitor") GasMonitor gasMonitor, BindingResult error, Model modell) {
         if(error.hasErrors()){
-            System.out.println(" Validering feilet **** ");
             return "registerGasMonitor";
         }
         
-        System.out.println(" **** GasMonitor verdi i RegisterGasMonitorController " + gasMonitor);
-        
         if (gasMonitorService.registerGasMonitor(gasMonitor)) {
-            System.out.println("TEST");
             modell.addAttribute("melding","GasMonitor" + gasMonitor + " er registrert");
             return "svarside";
         } else {

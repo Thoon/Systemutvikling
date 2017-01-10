@@ -14,21 +14,27 @@ import springmvc.domene.MonitorResults;
 import springmvc.respository.MonitorResultsRepository;
 
 /**
- *
- * @author ganon
+ *Implementation of MonitorResultService
+ * @author ntnu
  */
 public class MonitorResultsServiceImpl implements MonitorResultsService{
     
     private MonitorResultsRepository repo;
-    
+    /**
+     * Configures repository for MonitorResultService
+     * @param repo 
+     */
     @Autowired
     public void setRepository(MonitorResultsRepository repo){
-        System.out.println("MonitorResultsServiceImpl.setDatabase   " + repo);
         this.repo = repo;
     }
+    /**
+     * Method for getting all MonitorResults returned
+     * @param userLevel
+     * @return List
+     */
     @Override
     public List<MonitorResults> getAllMonitorResults(int userLevel){
-        System.out.println("**** MonitorResultsServiceImpl.getAllMonitorResults()  *** ");
         if(userLevel == 0){
             return repo.getAllMonitorResultsAdmin();
         }
@@ -48,8 +54,6 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
      */
     @Override
     public List<MonitorResults> getCalculatedResults (int userLevel){
-        System.out.println("**** MonitorResultsServiceImpl.getCalculatedResults ****");
-        
         return sortByPercentage(getAllMonitorResults(userLevel));
     }
     
@@ -59,7 +63,6 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
      * @return A sorted list of GasMonitorobjects by gaslevel-percentage
      */
     private List<MonitorResults> sortByPercentage(List<MonitorResults> gasMonitorList){
-        System.out.println("**** MonitorResultsServiceImpl.sortByPercentage ****");
         Collections.sort(gasMonitorList, new ComparatorImpl());
         for(int i = 0; i < gasMonitorList.size();i++){  
             double max = gasMonitorList.get(i).getMaxWeight();
@@ -75,14 +78,15 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
         }
         return gasMonitorList;
     }
-    
+    /**
+     * Help method to sort MonitorResults
+     */
     private static class ComparatorImpl implements Comparator<MonitorResults> {
     
         public ComparatorImpl() {}
 
         @Override
         public int compare(MonitorResults mr1, MonitorResults mr2) {
-            System.out.println("**** comparator ****");
             return Double.compare(mr1.percentage, mr2.percentage);
         }
     }

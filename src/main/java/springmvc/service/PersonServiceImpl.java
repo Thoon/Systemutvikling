@@ -8,32 +8,31 @@ import static springmvc.domene.Password.*;
 import springmvc.domene.Email;
 import springmvc.respository.PersonRepository;
 
-//@Service
+/**
+ * Implementation of PersonService
+ * @author ntnu
+ */
 public class PersonServiceImpl implements PersonService{
      
     private PersonRepository repo;
 
      @Autowired
      public void setRepository(PersonRepository repo){
-         System.out.println("PersonServiceImpl.setDatabase2   " + repo);
          this.repo = repo;
      }
    
     @Override
     public Person getPerson(String email){
-        System.out.println("**** PersonServiceImpl.getPerson()  *** ");
         return repo.getPerson(email);
     }
      
     @Override
     public List<Person> getEveryone(){
-        System.out.println("**** PersonServiceImpl.getEveryone()  *** ");
         return repo.getEveryone();
     }
     
     @Override
     public boolean updatePersons(List<Person> personList){
-        System.out.println("**** PersonServiceImpl.updatePersons()  *** ");
         if (personList == null || personList.size() == 0){
             return true;
         }
@@ -47,13 +46,11 @@ public class PersonServiceImpl implements PersonService{
     
     @Override
     public boolean registerPerson(Person p){
-        System.out.println("**** PersonServiceImpl.registerPerson()  *** ");
         return repo.registerPerson(p);
     }
     
     @Override
     public boolean deletePersons(List<Person> personList){
-        System.out.println("**** PersonServiceImpl.deletePersons()  *** ");
         if (personList == null || personList.isEmpty()) return true;
                
         boolean isDeleteOK = true;
@@ -65,13 +62,11 @@ public class PersonServiceImpl implements PersonService{
     
     @Override
     public boolean updatePerson(Person p){
-        System.out.println("**** PersonServiceImpl.updatePerson()  *** ");
         return repo.updatePerson(p);
     }
     
     @Override
     public boolean updatePassword(Person p) {
-        System.out.println(p);
         return repo.updatePassword(p);
     }
     
@@ -95,7 +90,6 @@ public class PersonServiceImpl implements PersonService{
         try {
             Person personToCheck = repo.getPerson(p.getEmail());
             if (!Password.checkPassword(p.getPassword(), personToCheck.getPassword())) {
-                System.out.println(p.getPassword()+ " " + personToCheck.getPassword());
                 return 3;
             }
             return 5;

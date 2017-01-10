@@ -35,7 +35,6 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     
     @Autowired
     public void setDataSource(DataSource dataSource){
-        System.out.println(" Database.setDataSource " + dataSource);
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
@@ -59,7 +58,6 @@ public class PersonDatabaseJdbcTemplateRepositoryImpl implements PersonRepositor
     
     @Override
     public boolean updatePerson(Person person){
-        System.out.println("** Repository ** " + person);
         jdbcTemplateObject.update(sqlUpdatePerson, new Object[]{
             person.getFirstName(),
             person.getLastName(),

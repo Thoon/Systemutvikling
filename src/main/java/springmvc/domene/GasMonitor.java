@@ -6,7 +6,10 @@
 package springmvc.domene;
 
 import javax.validation.constraints.NotNull;
-
+/**
+ * Creates object of type GasMonitor
+ * @author ntnu
+ */
 
 public class GasMonitor {
     private int id;

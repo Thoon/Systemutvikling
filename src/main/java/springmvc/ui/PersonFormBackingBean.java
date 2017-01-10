@@ -30,7 +30,6 @@ public class PersonFormBackingBean {
     }
     
     public void setEveryone(List<Person> everyone){
-        System.out.println(" PersonFormBackingBean.setEveryone()  "  + everyone);
         this.everyone = everyone;
     }
 }

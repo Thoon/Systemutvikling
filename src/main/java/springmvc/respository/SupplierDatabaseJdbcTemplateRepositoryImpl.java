@@ -34,7 +34,6 @@ public class SupplierDatabaseJdbcTemplateRepositoryImpl implements SupplierRepos
     
     @Autowired
     public void setDataSource(DataSource dataSource){
-        System.out.println(" Database.setDataSource " + dataSource);
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
@@ -57,7 +56,6 @@ public class SupplierDatabaseJdbcTemplateRepositoryImpl implements SupplierRepos
     
     @Override
     public boolean updateSupplier(Supplier s){
-        System.out.println("** Repository ** " + s);
         jdbcTemplateObject.update(sqlUpdateSupplier, new Object[]{
             s.getSupplierName(),
             s.getAddress(),

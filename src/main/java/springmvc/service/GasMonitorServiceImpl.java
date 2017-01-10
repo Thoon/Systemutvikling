@@ -9,29 +9,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import springmvc.domene.GasMonitor;
 import springmvc.respository.GasMonitorRepository;
 
+/**
+ *Implementation of GasMonitorService
+ * @author ntnu
+ */
 
 public class GasMonitorServiceImpl implements GasMonitorService {
     private GasMonitorRepository repo;
-    
+    /**
+     * Configures repository GasMonitorService will use
+     * @param repo 
+     */
     @Autowired
     public void setRepository(GasMonitorRepository repo){
-        System.out.println("GasMonitorServiceImpl.setDatabase2   " + repo);
         this.repo = repo;
     }
+    /**
+     * Sends a request to repository to get GasMonitor with specified id
+     * @param id
+     * @return GasMonitor
+     */
     @Override
     public GasMonitor getGasMonitor(int id){
-        System.out.println("**** GasMonitorServiceImpl.getGasmonitor()  *** ");
         return repo.getGasMonitor(id);
     }
+    /**
+     * Takes an object of GasMonitor to be inserted into the database
+     * @param g
+     * @return true, false
+     */
     @Override
     public boolean registerGasMonitor(GasMonitor g){
-        System.out.println("******* GasMonitorServiceImpl.registerGasMonitor() ***** " + g);
         return repo.registerGasMonitor(g);
     }
-    
+    /**
+     * Takes a List of GasMonitorObjects to be deleted
+     * @param gasMonitorList
+     * @return true, false
+     */
     @Override
     public boolean deleteGasMonitors(List<GasMonitor> gasMonitorList){
-        System.out.println("**** GasMonitorServiceImpl.deleteGasMonitor()  *** ");
         if (gasMonitorList == null || gasMonitorList.size() == 0) return true;
                
         boolean isDeleteOK = true;
@@ -40,29 +57,36 @@ public class GasMonitorServiceImpl implements GasMonitorService {
         }
         return isDeleteOK;
     }
-    
+    /**
+     * Gets a List of all GasMonitors stored in the database
+     * @return List
+     */
     @Override
     public List<GasMonitor> getAllGasMonitors(){
-        System.out.println("**** GasMonitorServiceImpl.getAllGasMonitors()  *** ");
         return repo.getAllGasMonitors();
     }
-    
+    /**
+     * Takes a List of GasMonitorObjects to be updated in the database
+     * @param gasMonitorList
+     * @return true, false
+     */
     @Override
     public boolean updateGasMonitors(List<GasMonitor> gasMonitorList){
-        System.out.println("**** GasMonitorServiceImpl.updateGasMonitors()  *** ");
         if (gasMonitorList == null || gasMonitorList.size() == 0) return true;
             
         boolean isUpdateOK = true;
         for (GasMonitor g : gasMonitorList){
-            System.out.println("test");
             if (!repo.updateGasMonitor(g)) isUpdateOK=false;
         }
         return isUpdateOK;
     }
-    
+    /**
+     * Takes a GasMonitor object to be updated in the database
+     * @param g
+     * @return true, false
+     */
     @Override
     public boolean updateGasMonitor(GasMonitor g){
-        System.out.println("**** GasMonitorServiceImpl.updateGasMonitor()  *** ");
         return repo.updateGasMonitor(g);
     }
 }

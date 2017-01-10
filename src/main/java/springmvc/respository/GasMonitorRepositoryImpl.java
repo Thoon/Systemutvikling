@@ -28,14 +28,12 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     
     @Autowired
     public void setDataSource(DataSource dataSource){
-        System.out.println(" Database.setDataSource " + dataSource);
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
     
     @Override
     public boolean registerGasMonitor(GasMonitor g){
-        System.out.println("*** GAS MONITOR REPOSITORY *** " + g);
         jdbcTemplateObject.update(sqlInsertGasMonitor,
                 new Object []{
                     g.getId(),
@@ -65,7 +63,6 @@ public class GasMonitorRepositoryImpl implements GasMonitorRepository{
     
     @Override
     public boolean updateGasMonitor(GasMonitor gasMonitor){
-        System.out.println("** Repository ** " + gasMonitor);
         jdbcTemplateObject.update(sqlUpdateGasMonitor, new Object[]{
             gasMonitor.getMaxWeight(),
             gasMonitor.getCustomerId(),

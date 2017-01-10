@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package springmvc.kontroller;
 
-/**
- *
- * @author ganon
- */
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -45,8 +38,6 @@ public class RegisterSupplierChainController {
     //SupplierChainDatabaseRepositoryImpl. Dette avgjøres i springmvc.konfig.Konfigurasjon.respoistory().
     @ExceptionHandler({Exception.class})
     public ModelAndView handleError(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterSupplierChainController.handleError " + exception);
-        
         ModelAndView mav = new ModelAndView();
         mav.addObject("melding", "feilmelding.generell");
         mav.addObject("unntak", exception);
@@ -57,8 +48,6 @@ public class RegisterSupplierChainController {
     //Håndterer "SQL"-unntaket DuplicateKeyException
     @ExceptionHandler({DuplicateKeyException.class})
     public ModelAndView handleDuplicateKey(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterSupplierChainController.handleError " + exception);
-        
         ModelAndView mav = new ModelAndView();
         //mav.addObject("melding", "To forhandlerkjeder kan ikke ha samme forhandlerkjeden-Id");
         mav.addObject("melding", "feilmelding.prim.nokkel");
@@ -71,7 +60,6 @@ public class RegisterSupplierChainController {
     public String supplierChain(@ModelAttribute SupplierChain supplierChain,
             @ModelAttribute("supplierChainPerson") SupplierChainPerson supplierChainPerson, 
             HttpSession session) {
-        System.out.println(" ******   RegisterSupplierChain.controller.supplier() ");
         if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
             return "index";
         }        
@@ -80,10 +68,6 @@ public class RegisterSupplierChainController {
 
     @RequestMapping(value = "RegisterSupplierChain" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("supplier") SupplierChain supplierChain, BindingResult error, Model modell) {
-        System.out.println(supplierChain.getName());
-        
-        System.out.println(" **** SupplierChain verdi i RegisterSupplierChainController " + supplierChain);
-        
         if (scService.registerSupplierChain(supplierChain)) {
             modell.addAttribute("melding","SupplierChain " + supplierChain.getName() + " er registrert");
             return "svarside";
@@ -94,8 +78,6 @@ public class RegisterSupplierChainController {
     }
     @RequestMapping(value = "registerSupplierChainPerson" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("supplierChainPerson") SupplierChainPerson suppChPers, BindingResult err, Model modell){
-        System.out.println(" **** Supplier verdi i RegisterSupplierController " + suppChPers);
-        
         if(scService.registerSupplierPerson(suppChPers)){
             modell.addAttribute("melding","SupplierPerson " + suppChPers.toString() + " er registrert");
             return "svarside";

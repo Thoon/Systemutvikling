@@ -48,14 +48,12 @@ public class MonitorResultsRepositoryImpl implements MonitorResultsRepository{
     
     @Autowired
     public void setDataSource(DataSource dataSource){
-        System.out.println(" Database.setDataSource " + dataSource);
         this.dataSource = dataSource;
         this.jdbcTemplateObject = new JdbcTemplate(dataSource);
     }
     
     @Override
     public List<MonitorResults> getAllMonitorResultsAdmin(){
-        System.out.println("**** MonitorResultsRepositoryImpl.getAllMonitorResults ****");
         return jdbcTemplateObject.query(sqlSelectResultsAdmin, new MonResMapper());
     }
     

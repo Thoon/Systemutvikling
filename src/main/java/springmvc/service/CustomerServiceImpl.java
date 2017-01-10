@@ -12,34 +12,45 @@ import springmvc.domene.CustomerPerson;
 import springmvc.respository.CustomerRepository;
 
 /**
- *
- * @author ganon
+ *Implementation of CustomerService
+ * @author ntnu
  */
 public class CustomerServiceImpl implements CustomerService {
      
     private CustomerRepository repo;
-
+/**
+ * Sets which repository CustomerService will use
+ * @param repo 
+ */
      @Autowired
      public void setRepository(CustomerRepository repo){
-         System.out.println("CustomerServiceImpl.setDatabase2   " + repo);
          this.repo = repo;
      }
-   
+   /**
+    * Send request to repository to get Customer with specified id
+    * @param customerId
+    * @return Customer
+    */
     @Override
     public Customer getCustomer(int customerId){
-        System.out.println("**** CustomerServiceImpl.getCustomer()  *** ");
         return repo.getCustomer(customerId);
     }
-     
+     /**
+      * Send request to repository to get all Customers listed in the database
+      * @return List
+      */
     @Override
     public List<Customer> getEveryone(){
-        System.out.println("**** CustomerServiceImpl.getEveryone()  *** ");
         return repo.getEveryone();
     }
-    
+    /**
+     * Takes list of Customer objects and sends to repository for update
+     * boolean tells us if update is ok
+     * @param customerList
+     * @return true, false 
+     */
     @Override
     public boolean updateCustomers(List<Customer> customerList){
-        System.out.println("**** CustomerServiceImpl.updateCustomers()  *** ");
         if (customerList == null || customerList.size() == 0){
             return true;
         }
@@ -50,16 +61,22 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return isUpdateOK;
     }
-    
+    /**
+     * Takes parameter of Customer and sends to repository to be inserted into the database
+     * @param c
+     * @return true, false
+     */
     @Override
     public boolean registerCustomer(Customer c){
-        System.out.println("**** CustomerServiceImpl.registerCustomer()  *** ");
         return repo.registerCustomer(c);
     }
-    
+    /**
+     * Takes a list of Customer and sends to repository for deletion
+     * @param customerList
+     * @return true,false
+     */
     @Override
     public boolean deleteCustomers(List<Customer> customerList){
-        System.out.println("**** CustomerServiceImpl.deleteCustomers()  *** ");
         if (customerList == null || customerList.isEmpty()) return true;
                
         boolean isDeleteOK = true;
@@ -68,16 +85,22 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return isDeleteOK;
     }
-    
+    /**
+     * Takes a Customer object to get updated in the database
+     * @param c
+     * @return true, false
+     */
     @Override
     public boolean updateCustomer(Customer c){
-        System.out.println("**** CustomerServiceImpl.updateCustomer()  *** ");
         return repo.updateCustomer(c);
     }
-    
+    /**
+     * Takes a CustomerPerson object to get registered in the database
+     * @param c
+     * @return true, false
+     */
     @Override
     public boolean registerCustomerPerson(CustomerPerson c){
-        System.out.println("**** CustomerServiceImpl.registerCustomerPerson()  *** ");
         return repo.registerCustomerPerson(c);
     }
 }

@@ -42,7 +42,6 @@ public class CustomerFormBackingBean {
     }
     
     public void setEveryone(List<Customer> everyone){
-        System.out.println(" CustomerFormBackingBean.setEveryone()  "  + everyone);
         this.everyone = everyone;
     }
     

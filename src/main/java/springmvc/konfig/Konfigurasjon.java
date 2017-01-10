@@ -99,9 +99,9 @@ public class Konfigurasjon extends WebMvcConfigurationSupport {
         dmds.setDriverClassName("com.mysql.jdbc.Driver");
         try{
             Connection con = dmds.getConnection();
-            System.out.println(" *********  Konfig " + con );
+
         }catch(Exception e){
-            System.out.println(" Konfig.Feil ved henting av connection() " + e);
+
         }
         return dmds;
     }

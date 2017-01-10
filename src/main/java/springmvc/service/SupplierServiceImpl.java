@@ -22,25 +22,21 @@ public class SupplierServiceImpl implements SupplierService {
 
      @Autowired
      public void setRepository(SupplierRepository repo){
-         System.out.println("SupplierServiceImpl.setDatabase2   " + repo);
          this.repo = repo;
      }
    
     @Override
     public Supplier getSupplier(int supplierId){
-        System.out.println("**** SupplierServiceImpl.getSupplier()  *** ");
         return repo.getSupplier(supplierId);
     }
      
     @Override
     public List<Supplier> getEveryone(){
-        System.out.println("**** SupplierServiceImpl.getEveryone()  *** ");
         return repo.getEveryone();
     }
     
     @Override
     public boolean updateSuppliers(List<Supplier> supplierList){
-        System.out.println("**** SupplierServiceImpl.updateSuppliers()  *** ");
         if (supplierList == null || supplierList.size() == 0){
             return true;
         }
@@ -54,14 +50,11 @@ public class SupplierServiceImpl implements SupplierService {
     
     @Override
     public boolean registerSupplier(Supplier s){
-        System.out.println("**** SupplierServiceImpl.registerSupplier()  *** ");
-        System.out.println(s.toString());
         return repo.registerSupplier(s);
     }
     
     @Override
     public boolean deleteSuppliers(List<Supplier> supplierList){
-        System.out.println("**** SupplierServiceImpl.deleteSuppliers()  *** ");
         if (supplierList == null || supplierList.isEmpty()) return true;
                
         boolean isDeleteOK = true;
@@ -73,12 +66,10 @@ public class SupplierServiceImpl implements SupplierService {
     
     @Override
     public boolean updateSupplier(Supplier s){
-        System.out.println("**** SupplierServiceImpl.updateSupplier()  *** ");
-        return repo.updateSupplier(s);
+       return repo.updateSupplier(s);
     }
     @Override
     public boolean registerSupplierPerson(SupplierPerson c){
-        System.out.println("**** CustomerServiceImpl.registerCustomerPerson()  *** ");
         return repo.registerSupplierPerson(c);
     }
 }

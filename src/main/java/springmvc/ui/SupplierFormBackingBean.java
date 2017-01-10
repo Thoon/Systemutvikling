@@ -40,7 +40,6 @@ public class SupplierFormBackingBean {
     }
     
     public void setEveryone(List<Supplier> everyone){
-        System.out.println(" SupplierFormBackingBean.setEveryone()  "  + everyone);
         this.everyone = everyone;
     }
     

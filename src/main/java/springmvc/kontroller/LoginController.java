@@ -43,7 +43,6 @@ public class LoginController {
             Person pers = personService.getPerson(person.getEmail());
             session.setAttribute("email", pers.getEmail());
             session.setAttribute("permissions", pers.getPermission());
-            //session.setAttribute("permissions", pers.getPermission());
             return "index";
         }
         switch (returnValue) {
@@ -85,21 +84,17 @@ public class LoginController {
         int returnValue = personService.checkNewUser(person);
 
         if (returnValue == 3) {
-            System.out.println("3");
             model.addAttribute("melding", "Epost er sendt");
             return "login";
         }
         switch (returnValue) {
             case 0:
-                System.out.println("0");
                 model.addAttribute("melding", "E-post er ikke fylt ut.");
                 break;
             case 1:
-                System.out.println("1");
                 model.addAttribute("melding", "Epost eksisterer ikke.");
                 break;
             case 2:
-                System.out.println("2");
                 model.addAttribute("melding", "Epost er sendt");
                 return "login";
             default:

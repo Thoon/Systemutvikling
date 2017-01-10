@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package springmvc.kontroller;
 
-/**
- *
- * @author ganon
- */
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -45,8 +38,6 @@ public class RegisterSupplierController {
     //SupplierDatabaseRepositoryImpl. Dette avgjøres i springmvc.konfig.Konfigurasjon.respoistory().
     @ExceptionHandler({Exception.class})
     public ModelAndView handleError(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterSupplierController.handleError " + exception);
-        
         ModelAndView mav = new ModelAndView();
         mav.addObject("melding", "feilmelding.generell");
         mav.addObject("unntak", exception);
@@ -57,10 +48,7 @@ public class RegisterSupplierController {
     //Håndterer "SQL"-unntaket DuplicateKeyException
     @ExceptionHandler({DuplicateKeyException.class})
     public ModelAndView handleDuplicateKey(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterSupplierController.handleError " + exception);
-        
         ModelAndView mav = new ModelAndView();
-        //mav.addObject("melding", "To forhandlere kan ikke ha samme forhandlernummer");
         mav.addObject("melding", "feilmelding.prim.nokkel");
         mav.addObject("unntak", exception);
         mav.setViewName("error");
@@ -73,14 +61,11 @@ public class RegisterSupplierController {
         if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
             return "index";
         }
-        System.out.println(" ******   RegisterSupplier.controller.supplier() ");
         return "registerSupplier";
     }
 
     @RequestMapping(value = "RegisterSupplier" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("supplier") Supplier supplier, BindingResult error, Model modell) {
-        
-        System.out.println(" **** Supplier verdi i RegisterSupplierController " + supplier);
         
         if (supplierService.registerSupplier(supplier)) {
             modell.addAttribute("melding","Supplier " + supplier.getSupplierName() + " er registrert");
@@ -94,8 +79,6 @@ public class RegisterSupplierController {
     
     @RequestMapping(value = "registerSupplierPerson" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("supplierPerson") SupplierPerson suppPers, BindingResult err, Model modell){
-        System.out.println(" **** Supplier verdi i RegisterSupplierController " + suppPers);
-        
         if(supplierService.registerSupplierPerson(suppPers)){
             modell.addAttribute("melding","SupplierPerson " + suppPers.toString() + " er registrert");
             return "svarside";

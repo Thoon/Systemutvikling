@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- *
- * @author ganon
+ *Creates object of type SupplierChain
+ * @author ntnu
  */
 public class SupplierChain {
     @NotNull

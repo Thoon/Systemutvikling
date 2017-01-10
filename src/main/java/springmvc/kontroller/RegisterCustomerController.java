@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package springmvc.kontroller;
 
-/**
- *
- * @author ganon
- */
+
 
 import java.util.HashSet;
 import java.util.Set;
@@ -50,8 +43,6 @@ public class RegisterCustomerController {
     //CustomerDatabaseRepositoryImpl. Dette avgjøres i springmvc.konfig.Konfigurasjon.respoistory().
     @ExceptionHandler({Exception.class})
     public ModelAndView handleError(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterCustomerController.handleError " + exception);
-        
         ModelAndView mav = new ModelAndView();
         mav.addObject("melding", "feilmelding.generell");
         mav.addObject("unntak", exception);
@@ -62,8 +53,6 @@ public class RegisterCustomerController {
     //Håndterer "SQL"-unntaket DuplicateKeyException
     @ExceptionHandler({DuplicateKeyException.class})
     public ModelAndView handleDuplicateKey(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterCustomerController.handleError " + exception);
-        
         ModelAndView mav = new ModelAndView();
         //mav.addObject("melding", "To customerer kan ikke ha samme customernr");
         mav.addObject("melding", "feilmelding.prim.nokkel");
@@ -71,33 +60,18 @@ public class RegisterCustomerController {
         mav.setViewName("error");
         return mav;
     }
-       /**
-        * When clicking "Register Kunde"
-        * @param customer
-        * @return Register Customer form
-        */
+
     @RequestMapping(value = "/registerCustomer" , method=RequestMethod.GET)
     public String customer(@ModelAttribute Customer customer,
             @ModelAttribute("customerPerson") CustomerPerson customerPerson, HttpSession session){
         if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
             return "index";
         }
-        
-        System.out.println(" ******   RegisterCustomer.controller.customer() ");
         return "registerCustomer";
     }
 
     @RequestMapping(value = "registerCustomer" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("customer") Customer customer, BindingResult error, Model modell) {
-        
-        /*if(error.hasErrors()){
-            System.out.println(" Validering feilet **** ");
-            //modell.addAttribute("melding", "Kunde-Id ikke fylt ut riktig"); // kun ibruk v return svarside
-            return "registerCustomer";
-        }
-        */
-        System.out.println(" **** Customer verdi i RegisterCustomerController " + customer);
-        
         if (customerService.registerCustomer(customer)) {
             modell.addAttribute("melding","Customer " + customer.getCustomerName() + " er registrert");
             return "svarside";
@@ -109,8 +83,6 @@ public class RegisterCustomerController {
     
     @RequestMapping(value = "registerCustomerPerson" , method=RequestMethod.POST)
     public String svarside(@Valid @ModelAttribute("customerPerson") CustomerPerson custPers, BindingResult err, Model modell){
-        System.out.println(" **** Customer verdi i RegisterCustomerController " + custPers);
-        
         if(customerService.registerCustomerPerson(custPers)){
             modell.addAttribute("melding","CustomerPerson " + custPers.toString() + " er registrert");
             return "svarside";

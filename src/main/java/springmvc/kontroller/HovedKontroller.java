@@ -84,7 +84,6 @@ public class HovedKontroller {
 
     @RequestMapping(value = "/editPerson")
     public String editPerson(@Valid @ModelAttribute PersonFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request, HttpSession session) {
-        System.out.println("****************Start oversikt***********************");
         if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
             return "index";
         }
@@ -96,7 +95,6 @@ public class HovedKontroller {
         if (deletePersons != null) { 
             List<Person> selectedPersons = backingBean.getSelectedPersons();
             
-            System.out.println("*** slett person **** ");
             if (selectedPersons != null) {
                 if (personService.deletePersons(selectedPersons)){
                     backingBean.setEveryone(personService.getEveryone());//oppdaterer verdiene i backingBean
@@ -116,7 +114,6 @@ public class HovedKontroller {
                     
             if (personService.updatePersons(backingBean.getEveryone())){
                 backingBean.setEveryone(personService.getEveryone());
-                System.out.println("TEST");
                 return "editPerson";
             }else{ //feil ved oppdatering
                 modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
@@ -129,11 +126,7 @@ public class HovedKontroller {
     
     @RequestMapping(value = "/editGasMonitor")
     public String editGasMonitor(@Valid @ModelAttribute GasMonitorFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request, HttpSession session) {
-        System.out.println("****************Start oversikt***********************");
-       if (personService.getPermission(session.getAttribute("email").toString()) <= 2) {
-            
-        
-           
+        if (personService.getPermission(session.getAttribute("email").toString()) <= 2) {           
             String deleteGasMonitors = request.getParameter("deleteGasMonitors");
       
             
@@ -141,7 +134,6 @@ public class HovedKontroller {
             if (deleteGasMonitors != null) { 
                 List<GasMonitor> selectGasMonitor = backingBean.getSelectedGasMonitors();
             
-                System.out.println("*** slett gasmonitor **** ");
                 if (selectGasMonitor != null) {
                     if (gasMonitorService.deleteGasMonitors(selectGasMonitor)){
                         backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());//oppdaterer verdiene i backingBean
@@ -160,7 +152,6 @@ public class HovedKontroller {
                 }  
                 if (gasMonitorService.updateGasMonitors(backingBean.getAllGasMonitors())){
                     backingBean.setAllGasMonitors(gasMonitorService.getAllGasMonitors());
-                    System.out.println("TEST2");
                     return "editGasMonitor";
                 }else{ //feil ved oppdatering
                     modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
@@ -175,8 +166,6 @@ public class HovedKontroller {
     
     @RequestMapping(value = "/editCustomer")
     public String editCustomer(@Valid @ModelAttribute CustomerFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request, HttpSession session) {
-        System.out.println("****************Start oversikt***********************");
-        
         if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
             return "index";
         }
@@ -188,7 +177,6 @@ public class HovedKontroller {
         if (deleteCustomers != null) { 
             List<Customer> selectedCustomers = backingBean.getSelectedCustomers();
             
-            System.out.println("*** slett kunde **** ");
             if (selectedCustomers != null) {
                 if (customerService.deleteCustomers(selectedCustomers)){
                     backingBean.setEveryone(customerService.getEveryone());//oppdaterer verdiene i backingBean
@@ -208,7 +196,6 @@ public class HovedKontroller {
                     
             if (customerService.updateCustomers(backingBean.getEveryone())){
                 backingBean.setEveryone(customerService.getEveryone());
-                System.out.println("TEST");
                 return "editCustomer";
             }else{ //feil ved oppdatering
                 modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
@@ -278,19 +265,15 @@ public class HovedKontroller {
 
     @RequestMapping(value = "/editSupplier")
     public String editSupplier(@Valid @ModelAttribute SupplierFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request,HttpSession session) {
-        System.out.println("****************Start oversikt***********************");
-        if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
+       if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
             return "index";
-        }
-           
+        } 
         String deleteSuppliers = request.getParameter("deleteSuppliers");
-      
-            
+        
         //Slett forhandlere valgt i checkbox'er
         if (deleteSuppliers != null) { 
             List<Supplier> selectedSuppliers = backingBean.getSelectedSuppliers();
             
-            System.out.println("*** slett forhandlers **** ");
             if (selectedSuppliers != null) {
                 if (supplierService.deleteSuppliers(selectedSuppliers)){
                     backingBean.setEveryone(supplierService.getEveryone());//oppdaterer verdiene i backingBean
@@ -310,7 +293,6 @@ public class HovedKontroller {
                     
             if (supplierService.updateSuppliers(backingBean.getEveryone())){
                 backingBean.setEveryone(supplierService.getEveryone());
-                System.out.println("TEST");
                 return "editSupplier";
             }else{ //feil ved oppdatering
                 modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
@@ -323,8 +305,6 @@ public class HovedKontroller {
 
     @RequestMapping(value = "/editSupplierChain")
     public String editSupplierChain(@Valid @ModelAttribute SupplierChainFormBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request, HttpSession session) {
-        System.out.println("****************Start oversikt***********************");
-        
         if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
             return "index";
         }
@@ -336,7 +316,6 @@ public class HovedKontroller {
         if (deleteSupplierChains != null) { 
             List<SupplierChain> selectedSupplierChains = backingBean.getSelectedSupplierChains();
             
-            System.out.println("*** slett forhandlerkjeder **** ");
             if (selectedSupplierChains != null) {
                 if (scService.deleteSupplierChains(selectedSupplierChains)){
                     backingBean.setEveryone(scService.getEveryone());//oppdaterer verdiene i backingBean
@@ -356,7 +335,6 @@ public class HovedKontroller {
                     
             if (scService.updateSupplierChains(backingBean.getEveryone())){
                 backingBean.setEveryone(scService.getEveryone());
-                System.out.println("TEST");
                 return "editSupplierChain";
             }else{ //feil ved oppdatering
                 modell.addAttribute("melding","feilside.oppdater");//feilside.oppdater er kode. Tekst hentes fra message.properties.
@@ -369,10 +347,7 @@ public class HovedKontroller {
     
     @RequestMapping(value = "/myMonitors")
     public String myMonitors(@Valid @ModelAttribute MonitorResultsBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request, HttpSession s) {
-        System.out.println("****************Start oversikt***********************");
         int userLevel = (int) s.getAttribute("permissions");
-        System.out.println(userLevel);
-        System.out.println("***Setter backingbeanverdier***");
         backingBean.setAllResults(mrService.getCalculatedResults(userLevel));
         return "myMonitors";
     }

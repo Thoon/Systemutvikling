@@ -10,8 +10,8 @@ import javax.servlet.http.HttpSession;
 import springmvc.domene.MonitorResults;
 
 /**
- *
- * @author ganon
+ *Interface for MonitorResultsService
+ * @author ntnu
  */
 public interface MonitorResultsService {
     public List<MonitorResults> getAllMonitorResults(int userLevel);
