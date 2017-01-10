@@ -11,6 +11,11 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
 
+/**
+ * Create object of type Email
+ * @author ntnu
+ */
+
 public class Email{
 
     private String emailAddressTo = new String();
@@ -23,6 +28,12 @@ public class Email{
 
     public Email() {
     }
+    /**
+     * Creates and sends emails to specified email address
+     * @param emailAddressTo
+     * @param msgSubject
+     * @param msgText 
+     */
 
     public void createAndSendEmail(String emailAddressTo, String msgSubject, String msgText) {
         this.emailAddressTo = emailAddressTo;
@@ -30,7 +41,9 @@ public class Email{
         this.msgText = msgText;
         sendEmailMessage();
     }
-
+/**
+ * Parameters for sending Email from specified address
+ */
     private void sendEmailMessage() {
 
         //Create email sending properties
@@ -62,15 +75,24 @@ public class Email{
             throw new RuntimeException(e);
         }
     }
-
+/**
+ * Sets which address to send an Email
+ * @param emailAddressTo 
+ */
     public void setEmailAddressTo(String emailAddressTo) {
         this.emailAddressTo = emailAddressTo;
     }
-
+/**
+ * Sets message subject
+ * @param subject 
+ */
     public void setSubject(String subject) {
         this.msgSubject = subject;
     }
-
+/**
+ * Sets message text
+ * @param msgText 
+ */
     public void setMessageText(String msgText) {
         this.msgText = msgText;
     }

@@ -3,6 +3,11 @@ package springmvc.service;
 import java.util.List;
 import springmvc.domene.Person;
 
+/**
+ * Interface for PersonService
+ * @author ntnu
+ */
+
 public interface PersonService {
         
     public List<Person> getEveryone();

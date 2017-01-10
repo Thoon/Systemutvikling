@@ -8,9 +8,9 @@ import java.beans.PropertyEditorSupport;
 import springmvc.domene.Person;
 import springmvc.service.PersonService;
 /**
- *
- * @author Grethe
- * Brukes for å konvertere String til Person
+ *Converts string to object 
+ * @author ntnu
+ * 
  */
 public class PersonEditor extends PropertyEditorSupport {
     private PersonService personService;

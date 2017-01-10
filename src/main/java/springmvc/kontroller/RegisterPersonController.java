@@ -30,8 +30,6 @@ public class RegisterPersonController {
     //PersonDatabaseRepositoryImpl. Dette avgjøres i springmvc.konfig.Konfigurasjon.respoistory().
     @ExceptionHandler({Exception.class})
     public ModelAndView handleError(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterPersonController.handleError " + exception);
-        
         ModelAndView mav = new ModelAndView();
         mav.addObject("melding", "feilmelding.generell");
         mav.addObject("unntak", exception);
@@ -42,8 +40,6 @@ public class RegisterPersonController {
     //Håndterer "SQL"-unntaket DuplicateKeyException
     @ExceptionHandler({DuplicateKeyException.class})
     public ModelAndView handleDuplicateKey(HttpServletRequest req, Exception exception) {
-        System.out.println("Feil i RegisterPersonController.handleError " + exception);
-        
         ModelAndView mav = new ModelAndView();
         //mav.addObject("melding", "To personer kan ikke ha samme personnr");
         mav.addObject("melding", "feilmelding.prim.nokkel");
@@ -57,7 +53,6 @@ public class RegisterPersonController {
          if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
             return "index";
         }
-        System.out.println(" ******   RegisterPerson.controller.person() ");
         return "registerPerson";
     }
 
@@ -65,11 +60,8 @@ public class RegisterPersonController {
     public String svarside(@Valid @ModelAttribute("person") Person person, BindingResult error, Model modell) {
         
         if(error.hasErrors()){
-            System.out.println(" Validering feilet **** ");
             return "registerPerson";
         }
-        
-        System.out.println(" **** Person verdi i RegisterPersonController " + person);
         
         if (personService.registerPerson(person)) {
             modell.addAttribute("melding","Person " + person.toString() + " er registrert");

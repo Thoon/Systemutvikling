@@ -4,7 +4,10 @@ import java.beans.PropertyEditorSupport;
 import springmvc.domene.SupplierChain;
 import springmvc.service.SupplierChainService;
 
-
+/**
+ * Converts string to Object
+ * @author ntnu
+ */
 public class SupplierChainEditor extends PropertyEditorSupport{
     private SupplierChainService supplierChainService;
     

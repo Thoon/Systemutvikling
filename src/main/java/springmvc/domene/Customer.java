@@ -7,7 +7,11 @@ package springmvc.domene;
 
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
-
+/**
+ * Class Customer
+ * Creates object of type customer
+ * @author ntnu
+ */
 public class Customer {
     
     @NotNull

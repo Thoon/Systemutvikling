@@ -5,6 +5,10 @@ import java.beans.PropertyEditorSupport;
 import springmvc.domene.GasMonitor;
 import springmvc.service.GasMonitorService;
 
+/**
+ * Converts string to Object
+ * @author ntnu
+ */
 
 public class GasMonitorEditor extends PropertyEditorSupport{
     private GasMonitorService gasMonitorService;
@@ -13,13 +17,15 @@ public class GasMonitorEditor extends PropertyEditorSupport{
         this.gasMonitorService = gasMonitorService;
     }
     
+
     @Override
     public void setAsText(String text) throws IllegalArgumentException{
         String[] t = text.split(" ");
         GasMonitor g = gasMonitorService.getGasMonitor(Integer.parseInt(text));
         setValue(g);   
     }
-        public int getAString(){
+    
+    public int getAString(){
         GasMonitor g = (GasMonitor)getValue();
         return g.getId();
     }

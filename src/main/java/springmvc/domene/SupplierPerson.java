@@ -6,8 +6,8 @@
 package springmvc.domene;
 
 /**
- *
- * @author ander
+ *Creates object of type SupplierPerson
+ * @author ntnu
  */
 public class SupplierPerson {
     private int supplierId;

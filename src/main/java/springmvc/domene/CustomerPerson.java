@@ -8,8 +8,8 @@ package springmvc.domene;
 import java.util.List;
 
 /**
- *
- * @author ander
+ *Creates object of type CustomerPerson
+ * @author ntnu
  */
 public class CustomerPerson {
     private String email;

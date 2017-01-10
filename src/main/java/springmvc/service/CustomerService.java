@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package springmvc.service;
 
 import java.util.List;
@@ -10,8 +6,8 @@ import springmvc.domene.Customer;
 import springmvc.domene.CustomerPerson;
 
 /**
- *
- * @author ganon
+ *Interface for CustomerService
+ * @author ntnu
  */
 public interface CustomerService {
     

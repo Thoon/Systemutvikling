@@ -4,7 +4,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-
+/**
+ * Creates object of type Person
+ * @author ntnu
+ */
 public class Person {
     
     @NotEmpty

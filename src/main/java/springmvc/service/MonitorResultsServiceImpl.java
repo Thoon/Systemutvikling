@@ -14,21 +14,27 @@ import springmvc.domene.MonitorResults;
 import springmvc.respository.MonitorResultsRepository;
 
 /**
- *
- * @author ganon
+ *Implementation of MonitorResultService
+ * @author ntnu
  */
 public class MonitorResultsServiceImpl implements MonitorResultsService{
     
     private MonitorResultsRepository repo;
-    
+    /**
+     * Configures repository for MonitorResultService
+     * @param repo 
+     */
     @Autowired
     public void setRepository(MonitorResultsRepository repo){
-        System.out.println("MonitorResultsServiceImpl.setDatabase   " + repo);
         this.repo = repo;
     }
+    /**
+     * Method for getting all MonitorResults returned
+     * @param userLevel
+     * @return List
+     */
     @Override
     public List<MonitorResults> getAllMonitorResults(int userLevel){
-        System.out.println("**** MonitorResultsServiceImpl.getAllMonitorResults()  *** ");
         if(userLevel == 0){
             return repo.getAllMonitorResultsAdmin();
         }
@@ -75,7 +81,9 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
         }
         return gasMonitorList;
     }
-    
+    /**
+     * Help method to sort MonitorResults
+     */
     private static class ComparatorImpl implements Comparator<MonitorResults> {
     
         public ComparatorImpl() {}

@@ -3,6 +3,11 @@ package springmvc.domene;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * Creates object of type Supplier
+ * @author ntnu
+ */
+
 public class Supplier {
     @NotNull
     private int supplierId;

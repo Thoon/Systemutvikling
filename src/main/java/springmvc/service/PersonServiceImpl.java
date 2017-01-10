@@ -8,7 +8,10 @@ import static springmvc.domene.Password.*;
 import springmvc.domene.Email;
 import springmvc.respository.PersonRepository;
 
-//@Service
+/**
+ * Implementation of PersonService
+ * @author ntnu
+ */
 public class PersonServiceImpl implements PersonService{
      
     private PersonRepository repo;

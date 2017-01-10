@@ -5,10 +5,7 @@
  */
 package springmvc.domene;
 
-/**
- *
- * @author ander
- */
+
 /**
  * Author: Ian Gallagher <igallagher@securityinnovation.com>
  *

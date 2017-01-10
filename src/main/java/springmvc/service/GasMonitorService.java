@@ -11,8 +11,8 @@ import springmvc.domene.MonitorResults;
 import springmvc.domene.Person;
 
 /**
- *
- * @author ander
+ *Interface for GasMonitorService
+ * @author ntnu
  */
 public interface GasMonitorService {
     
