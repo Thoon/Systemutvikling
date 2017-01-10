@@ -13,6 +13,7 @@ package springmvc.kontroller;
 import java.util.HashSet;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,11 +33,15 @@ import springmvc.ui.CustomerFormBackingBean;
 import springmvc.ui.PersonFormBackingBean;
 
 
+
 @Controller
 public class RegisterCustomerController {
     
     @Autowired
     private CustomerService customerService;
+    
+    @Autowired
+    private PersonService personService;
     
     //Sørger for å gi en feilside når feil oppstår, merk at vi godt kunne hatt
     //flere slike feilhåndterere og håndtert ulike feil mer spesifikt
@@ -73,7 +78,10 @@ public class RegisterCustomerController {
         */
     @RequestMapping(value = "/registerCustomer" , method=RequestMethod.GET)
     public String customer(@ModelAttribute Customer customer,
-            @ModelAttribute("customerPerson") CustomerPerson customerPerson){
+            @ModelAttribute("customerPerson") CustomerPerson customerPerson, HttpSession session){
+        if (personService.getPermission(session.getAttribute("email").toString()) != 0) {
+            return "index";
+        }
         
         System.out.println(" ******   RegisterCustomer.controller.customer() ");
         return "registerCustomer";

@@ -24,4 +24,6 @@ public interface PersonService {
     public boolean updatePassword(Person p);
     
     public void changePassword(String p, String email);
+    
+    public int getPermission(String email);
 }
