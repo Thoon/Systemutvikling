@@ -8,6 +8,7 @@ package springmvc.service;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import springmvc.domene.MonitorResults;
 import springmvc.respository.MonitorResultsRepository;
@@ -26,9 +27,18 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
         this.repo = repo;
     }
     @Override
-    public List<MonitorResults> getAllMonitorResults(){
+    public List<MonitorResults> getAllMonitorResults(int userLevel){
         System.out.println("**** MonitorResultsServiceImpl.getAllMonitorResults()  *** ");
-        return repo.getAllMonitorResults();
+        if(userLevel == 0){
+            return repo.getAllMonitorResultsAdmin();
+        }
+        if(userLevel == 2){
+            return repo.getAllMonitorResultsSupplier(userLevel);
+        }
+        if(userLevel == 3){
+            return repo.getAllMonitorResultsCustomer(userLevel);
+        }
+        else return null;
     }
     
     /**
@@ -37,9 +47,10 @@ public class MonitorResultsServiceImpl implements MonitorResultsService{
      * @return resultList after calculations
      */
     @Override
-    public List<MonitorResults> getCalculatedResults (){
+    public List<MonitorResults> getCalculatedResults (int userLevel){
         System.out.println("**** MonitorResultsServiceImpl.getCalculatedResults ****");
-        return sortByPercentage(getAllMonitorResults());
+        
+        return sortByPercentage(getAllMonitorResults(userLevel));
     }
     
     /**

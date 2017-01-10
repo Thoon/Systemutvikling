@@ -6,6 +6,7 @@
 package springmvc.service;
 
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import springmvc.domene.MonitorResults;
 
 /**
@@ -13,6 +14,6 @@ import springmvc.domene.MonitorResults;
  * @author ganon
  */
 public interface MonitorResultsService {
-    public List<MonitorResults> getAllMonitorResults();
-    public List<MonitorResults> getCalculatedResults();
+    public List<MonitorResults> getAllMonitorResults(int userLevel);
+    public List<MonitorResults> getCalculatedResults(int userLevel);
 }

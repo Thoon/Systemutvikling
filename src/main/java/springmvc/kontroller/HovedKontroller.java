@@ -348,10 +348,12 @@ public class HovedKontroller {
     }
     
     @RequestMapping(value = "/myMonitors")
-    public String myMonitors(@Valid @ModelAttribute MonitorResultsBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request) {
+    public String myMonitors(@Valid @ModelAttribute MonitorResultsBackingBean backingBean, BindingResult error, Model modell, HttpServletRequest request, HttpSession s) {
         System.out.println("****************Start oversikt***********************");
+        int userLevel = (int) s.getAttribute("permissions");
+        System.out.println(userLevel);
         System.out.println("***Setter backingbeanverdier***");
-        backingBean.setAllResults(mrService.getCalculatedResults());
+        backingBean.setAllResults(mrService.getCalculatedResults(userLevel));
         return "myMonitors";
     }
 }

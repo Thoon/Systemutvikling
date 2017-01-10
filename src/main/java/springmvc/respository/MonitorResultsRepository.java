@@ -6,6 +6,7 @@
 package springmvc.respository;
 
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import springmvc.domene.MonitorResults;
 
 /**
@@ -13,5 +14,7 @@ import springmvc.domene.MonitorResults;
  * @author ganon
  */
 public interface MonitorResultsRepository {
-    public List<MonitorResults> getAllMonitorResults();
+    public List<MonitorResults> getAllMonitorResultsAdmin();
+    public List<MonitorResults> getAllMonitorResultsSupplier(int userLevel);
+    public List<MonitorResults> getAllMonitorResultsCustomer(int userLevel);
 }
