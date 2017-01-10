@@ -34,22 +34,18 @@
 <h2>Registrer Person</h2>
 <form:form action="registerCustomerPerson.htm" method="post" modelAttribute="customerPerson" >
     <table>
-        <tr>  
-            <td> Kundenavn </td>
-            <td>
-                    <form:select path="customer.customerName">         
-                    <form:options items="${customerFormBackingBean.getEveryone}" itemValue="customerId" itemLabel="customerName"/>
-                    </form:select>  
+        <td> Kunde id </td>
+            <td> <form:input path="customerId" />
+                 <form:errors path="customerId" />
             </td> 
         </tr>
-        <tr>  
-            <td> Person </td>
-            <td>
-                    <form:select path="person">         
-                    <form:options items="${personFormBackingBean.getEveryone}" itemValue="email" itemLabel="fullName"/>
-                    </form:select>  
-            </td> 
+        <tr>
+            <td> Epost </td>
+            <td> <form:input path="email" />
+                 <form:errors path="email" />
+            </td>
         </tr>
+        
         <tr><td colspan="2"><input type="submit" value="Registrer kundeforhold"></td></tr>
     </table>
 

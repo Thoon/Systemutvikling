@@ -18,7 +18,6 @@ public class MonResMapper implements RowMapper<MonitorResults> {
     
     @Override
     public MonitorResults mapRow(ResultSet rs, int i) throws SQLException {
-        System.out.println("**** MonitorResultsverdiene mappes ****");
         MonitorResults mr = new MonitorResults();
         mr.setSerialNumber(rs.getInt("serialnumber"));
         mr.setMaxWeight(rs.getDouble("max_weight"));

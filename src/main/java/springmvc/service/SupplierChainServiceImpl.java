@@ -8,6 +8,7 @@ package springmvc.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import springmvc.domene.SupplierChain;
+import springmvc.domene.SupplierChainPerson;
 import springmvc.respository.SupplierChainRepository;
 
 /**
@@ -72,4 +73,9 @@ public class SupplierChainServiceImpl implements SupplierChainService {
         System.out.println("**** SupplierChainServiceImpl.updateSupplierChain()  *** ");
         return repo.updateSupplierChain(sc);
     }
+    
+    @Override
+    public boolean registerSupplierPerson(SupplierChainPerson c){
+        return repo.registerSupplierChainPerson(c);
+    }    
 }

@@ -37,7 +37,6 @@ public class RegisterCustomerController {
     
     @Autowired
     private CustomerService customerService;
-    private PersonService personService;
     
     //Sørger for å gi en feilside når feil oppstår, merk at vi godt kunne hatt
     //flere slike feilhåndterere og håndtert ulike feil mer spesifikt
@@ -74,12 +73,7 @@ public class RegisterCustomerController {
         */
     @RequestMapping(value = "/registerCustomer" , method=RequestMethod.GET)
     public String customer(@ModelAttribute Customer customer,
-            @ModelAttribute("customerPerson") CustomerPerson customerPerson/*,
-            @ModelAttribute CustomerFormBackingBean customerFormBackingBean,
-            @ModelAttribute PersonFormBackingBean personFormBackingBean*/){
-        
-       /* customerFormBackingBean.setEveryone(customerService.getEveryone());
-        personFormBackingBean.setEveryone(personService.getEveryone());*/
+            @ModelAttribute("customerPerson") CustomerPerson customerPerson){
         
         System.out.println(" ******   RegisterCustomer.controller.customer() ");
         return "registerCustomer";
@@ -110,7 +104,7 @@ public class RegisterCustomerController {
         System.out.println(" **** Customer verdi i RegisterCustomerController " + custPers);
         
         if(customerService.registerCustomerPerson(custPers)){
-            modell.addAttribute("melding","CustomerPerson " + custPers.getCustomer() + " er registrert");
+            modell.addAttribute("melding","CustomerPerson " + custPers.toString() + " er registrert");
             return "svarside";
         } else {
             modell.addAttribute("melding","feilmelding.reg.customer");//DENNE LINJEN ER ENDRET SIDEN VIDEO BLE LAGET

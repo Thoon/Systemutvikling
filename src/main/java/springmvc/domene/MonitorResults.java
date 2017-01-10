@@ -19,17 +19,19 @@ public class MonitorResults {
     private int customerId;
     private String customerName;
     private String customerAddress;
-    public double percentage = 100.0;
+    public double percentage;
+    private String streng;
 
-    public MonitorResults(int sn, double mw, double cw, Timestamp ts, int cId, String cn, String ca) {
-        this.serialnumber = sn;
-        this.maxWeight = mw;
-        this.currentWeight = cw;
-        this.timestamp = ts;
-        this.customerId = cId;
-        this.customerName = cn;
-        this.customerAddress = ca;
-        this.percentage = currentWeight/maxWeight;
+    public MonitorResults(int serialnumber, double maxWeight, double currentWeight, Timestamp timestamp, int supplierId, int customerId, String customerName, String customerAddress, double percentage, String streng) {
+        this.serialnumber = serialnumber;
+        this.maxWeight = maxWeight;
+        this.currentWeight = currentWeight;
+        this.timestamp = timestamp;
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.percentage = percentage;
+        this.streng = streng;
     }
     
     public MonitorResults(){};
@@ -92,5 +94,23 @@ public class MonitorResults {
     
     public double getPercentage(){
         return percentage;
+    }
+    
+    public void setPercentage(double p){
+        this.percentage = p;
+    }
+    
+    public String getStreng(){
+        return streng;
+    }
+    
+    public void setStreng(String streng){
+        this.streng = streng;
+    }
+    
+
+    @Override
+    public String toString() {
+        return "ID: " + serialnumber + ",  Navn: " + customerName + ",  Addresse: " + customerAddress + ",  Prosent igjen: " + percentage + "%,  Tidspunkt: " + timestamp;
     }
 }
