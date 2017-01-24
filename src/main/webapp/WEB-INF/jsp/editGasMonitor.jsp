@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h2>Registrer ny gassmonitor</h2>
+<h2>Rediger målere</h2>
 
 <form:form action="editGasMonitor" method="post" modelAttribute="gasMonitorFormBackingBean">
     <table>
